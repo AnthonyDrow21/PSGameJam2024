@@ -6,10 +6,10 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i3qfr"]
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_u64yt")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["Invertable"]]
 scale = Vector2(20, 20)
 texture = SubResource("CanvasTexture_76pse")
 
