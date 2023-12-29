@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhyngl3yw2nlk"]
+[gd_scene load_steps=10 format=3 uid="uid://dhyngl3yw2nlk"]
 
 [ext_resource type="Texture2D" uid="uid://rvnog7dr0rk1" path="res://Assets/TX Tileset Grass.png" id="1_o13ts"]
 [ext_resource type="PackedScene" uid="uid://gr572puwdk2y" path="res://Scenes/Environment/stone_pillar.tscn" id="2_4mey3"]
 [ext_resource type="Script" path="res://Scenes/Levels/Enemy.gd" id="3_u67w2"]
 [ext_resource type="Texture2D" uid="uid://cfboo4djajq5g" path="res://Assets/Skeleton.png" id="4_xlas8"]
+[ext_resource type="PackedScene" uid="uid://ch4r163rdpvqp" path="res://Scenes/Player/Player.tscn" id="5_1dl50"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_arrt0"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -703,3 +704,8 @@ shape = SubResource("CapsuleShape2D_ort83")
 [node name="Sprite2D" type="Sprite2D" parent="Enemy"]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_xlas8")
+
+[node name="PlayerSpawn" type="Marker2D" parent="."]
+position = Vector2(50, 300)
+
+[node name="Player" parent="PlayerSpawn" instance=ExtResource("5_1dl50")]
