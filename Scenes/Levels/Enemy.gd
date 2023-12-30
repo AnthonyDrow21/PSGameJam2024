@@ -38,7 +38,6 @@ func move(target,delta):
 
 func get_circle_position(random):
 	var kill_circle_center = player.position ##Switch out with player location later
-	print("current kill center: ", kill_circle_center)
 	
 	var _radius = 40
 	var _angle = random * PI * 2;

@@ -5,6 +5,7 @@ signal playerHit;
 
 @export var speed = 20.0;
 var friction = 0.9;
+var currentColor: Color = Color.WHITE;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,7 +13,7 @@ func _ready() -> void:
 
 # Called every PHYSICS! frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	# Statically type our motion to be a vector.
+	# Statically type our motion to be a vector and get the movement inputs from the player.
 	var motion: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	
 	# Check if we have no input so that we can zero out the velocity rather than waiting for friction 
@@ -23,8 +24,28 @@ func _physics_process(delta: float) -> void:
 		velocity += motion.normalized() * speed;
 		velocity *= friction;
 	
-	# This handles the physics based movement, and will return a 
-	move_and_slide();
+	# This handles the physics based movement, and will return true if it collided with an object.
+	var collided = move_and_slide();
+	var badCollision = false;
+	
+	# Check for collisions with enemies.
+	for i in get_slide_collision_count():
+			var collision = get_slide_collision(i);
+			var colObject = collision.get_collider();
+			
+			# We will only detect an enemy collision if they are in the "Enemy" group.
+			if(colObject.is_in_group("Enemy") == true):
+				badCollision = true;
+				break;
+	
+	# Revert our color if we have not hit anything or the environment, otherwise set the hit color.
+	if(collided == false || badCollision == false):
+		if($Sprite2D.get_self_modulate() != currentColor):
+			print("setting non hit color")
+			$Sprite2D.set_self_modulate(currentColor);
+	else:
+		print("setting hit color")
+		$Sprite2D.set_self_modulate(Color.RED);
 
 # Make sure we flip the player's sprite when an invert occurs.
 func _input(event):
@@ -33,9 +54,9 @@ func _input(event):
 
 # Invert the color of the sprite
 func invert():
-	var currentColor = $Sprite2D.self_modulate;
 	var invertedColor = Color(1.0 - currentColor.r, 1.0 - currentColor.g, 1.0 - currentColor.b);
 	$Sprite2D.set_self_modulate(invertedColor);
+	currentColor = $Sprite2D.self_modulate;	
 	print("Invert Player hit");
 
 ###

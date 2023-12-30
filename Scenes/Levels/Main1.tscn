@@ -701,7 +701,7 @@ position = Vector2(586, 167)
 [node name="StonePillar5" parent="PillarControl" instance=ExtResource("2_4mey3")]
 position = Vector2(448, 398)
 
-[node name="Enemy" type="CharacterBody2D" parent="."]
+[node name="Enemy" type="CharacterBody2D" parent="." groups=["Enemy"]]
 position = Vector2(551, 250)
 script = ExtResource("3_u67w2")
 
