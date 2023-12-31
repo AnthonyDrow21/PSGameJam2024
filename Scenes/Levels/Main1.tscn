@@ -712,3 +712,5 @@ shape = SubResource("CapsuleShape2D_ort83")
 [node name="Sprite2D" type="Sprite2D" parent="Enemy"]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_xlas8")
+
+[connection signal="magicWandShoot" from="Player" to="." method="_on_player_magic_wand_shoot"]

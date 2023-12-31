@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ljcwmgccruuh"]
+
+[ext_resource type="Script" path="res://Scenes/Weapons/MagicWandBullet.gd" id="1_dcf6r"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_jchxq"]
+
+[node name="MagicWandBullet" type="Area2D"]
+script = ExtResource("1_dcf6r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.029026, 0.0768795)
+scale = Vector2(6.5, 6.5)
+texture = SubResource("CanvasTexture_jchxq")

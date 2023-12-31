@@ -2,10 +2,13 @@ class_name Player
 extends CharacterBody2D
 
 signal playerHit;
+signal magicWandShoot(bullet, direction, location);
 
 @export var speed = 20.0;
+var bullet = preload("res://Scenes/Weapons/MagicWandBullet.tscn");
 var friction = 0.9;
 var currentColor: Color = Color.WHITE;
+var isInverted = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -46,6 +49,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		print("setting hit color")
 		$Sprite2D.set_self_modulate(Color.RED);
+	
+	fireWeapons();
 
 # Make sure we flip the player's sprite when an invert occurs.
 func _input(event):
@@ -57,11 +62,12 @@ func invert():
 	var invertedColor = Color(1.0 - currentColor.r, 1.0 - currentColor.g, 1.0 - currentColor.b);
 	$Sprite2D.set_self_modulate(invertedColor);
 	currentColor = $Sprite2D.self_modulate;	
+	isInverted = !isInverted;
 	print("Invert Player hit");
 
 ###
 ### /brief Get all weapons a player has an fire them.
 ###
 func fireWeapons():
-	
-	pass;
+	if(isInverted == true):
+		magicWandShoot.emit(bullet, rotation, position);
