@@ -10,6 +10,7 @@
 script = ExtResource("1_u64yt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.12549, 0.254902, 0.909804, 1)
 scale = Vector2(20, 20)
 texture = SubResource("CanvasTexture_76pse")
 

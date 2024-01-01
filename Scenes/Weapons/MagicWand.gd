@@ -1,3 +1,4 @@
+class_name MagicWand
 extends Area2D
 
 
@@ -11,3 +12,8 @@ func _process(delta: float) -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
+	pass;
+
+func shoot():
+	magicWandShoot.emit(bullet, rotation, position);
+	pass;

@@ -19,7 +19,7 @@ func _ready() -> void:
 			closestEnemy = enemy;
 	
 	targetVector = self.position.direction_to(closestEnemy.position);
-	print(targetVector);
+	#print(targetVector);
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

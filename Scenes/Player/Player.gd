@@ -5,10 +5,11 @@ signal playerHit;
 signal magicWandShoot(bullet, direction, location);
 
 @export var speed = 20.0;
+@onready var currentColor = $Sprite2D.get_self_modulate();
 var bullet = preload("res://Scenes/Weapons/MagicWandBullet.tscn");
 var friction = 0.9;
-var currentColor: Color = Color.WHITE;
 var isInverted = false;
+var currentWeapons := [];
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,7 +19,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	# Statically type our motion to be a vector and get the movement inputs from the player.
 	var motion: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	
 	# Check if we have no input so that we can zero out the velocity rather than waiting for friction 
 	# to slow us down. This makes the controls feel more snappy.
 	if(motion == Vector2.ZERO):
@@ -26,7 +26,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity += motion.normalized() * speed;
 		velocity *= friction;
-	
 	# This handles the physics based movement, and will return true if it collided with an object.
 	var collided = move_and_slide();
 	var badCollision = false;
@@ -39,7 +38,6 @@ func _physics_process(delta: float) -> void:
 			# We will only detect an enemy collision if they are in the "Enemy" group.
 			if(colObject.is_in_group("Enemy") == true):
 				badCollision = true;
-				break;
 	
 	# Revert our color if we have not hit anything or the environment, otherwise set the hit color.
 	if(collided == false || badCollision == false):
