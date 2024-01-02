@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhyngl3yw2nlk"]
+[gd_scene load_steps=9 format=3 uid="uid://dhyngl3yw2nlk"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Main1.gd" id="1_ifvqx"]
 [ext_resource type="Texture2D" uid="uid://rvnog7dr0rk1" path="res://Assets/TX Tileset Grass.png" id="1_o13ts"]
 [ext_resource type="PackedScene" uid="uid://gr572puwdk2y" path="res://Scenes/Environment/stone_pillar.tscn" id="2_4mey3"]
-[ext_resource type="PackedScene" path="res://Scenes/NPC/Enemy.tscn" id="2_ixrcc"]
+[ext_resource type="PackedScene" uid="uid://du5q1ptq7fmw" path="res://Scenes/NPC/Enemy.tscn" id="2_ixrcc"]
 [ext_resource type="PackedScene" uid="uid://ch4r163rdpvqp" path="res://Scenes/Player/Player.tscn" id="5_1dl50"]
-[ext_resource type="PackedScene" uid="uid://clr0to0jc8x3s" path="res://Scenes/Weapons/MagicWand.tscn" id="5_dhma0"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_arrt0"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -676,8 +675,6 @@ layer_0/tile_data = PackedInt32Array(2097165, 917504, 6, 2097166, 983040, 2, 209
 
 [node name="Player" parent="." instance=ExtResource("5_1dl50")]
 position = Vector2(50, 300)
-
-[node name="MagicWand" parent="Player" instance=ExtResource("5_dhma0")]
 
 [node name="PlayerSpawn" type="Marker2D" parent="."]
 position = Vector2(50, 300)

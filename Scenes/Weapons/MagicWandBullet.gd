@@ -32,6 +32,6 @@ func _physics_process(delta: float) -> void:
 	var speed = targetVector * bulletSpeed;
 	position += speed * delta;
 
-
+## This screen notifier connection means we will remove this bullet from the scene once it is outside of the player's view.
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free();

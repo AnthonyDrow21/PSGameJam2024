@@ -15,10 +15,11 @@ var isInverted = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# This is currently assuming that the player will always get a Magic wand on startup.
-	wand = $MagicWand;
+	# This adds a magic wand to the player by default.
+	wand = MagicWand.new();
 	wand.name = "Wand";
-	pass # Replace with function body.
+	self.add_child(wand);
+	pass;
 
 # Called every PHYSICS! frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
