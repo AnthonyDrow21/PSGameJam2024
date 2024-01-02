@@ -2,17 +2,22 @@ class_name Player
 extends CharacterBody2D
 
 signal playerHit;
-signal magicWandShoot(bullet, direction, location);
 
 @export var speed = 20.0;
+# This is a measure of attacks per second.
+@export var attackSpeed = 1.0;
 @onready var currentColor = $Sprite2D.get_self_modulate();
-var bullet = preload("res://Scenes/Weapons/MagicWandBullet.tscn");
+var wand;
+
+var currentWeapons := [];
 var friction = 0.9;
 var isInverted = false;
-var currentWeapons := [];
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# This is currently assuming that the player will always get a Magic wand on startup.
+	wand = $MagicWand;
+	wand.name = "Wand";
 	pass # Replace with function body.
 
 # Called every PHYSICS! frame. 'delta' is the elapsed time since the previous frame.
@@ -68,4 +73,6 @@ func invert():
 ###
 func fireWeapons():
 	if(isInverted == true):
-		magicWandShoot.emit(bullet, rotation, position);
+		wand.shoot(self.rotation, self.position);
+		pass;
+		#magicWandShoot.emit(bullet, rotation, position);

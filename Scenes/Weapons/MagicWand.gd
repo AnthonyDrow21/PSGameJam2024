@@ -1,6 +1,9 @@
 class_name MagicWand
 extends Area2D
 
+signal magicWandShoot(bullet, direction, location);
+
+var bullet = preload("res://Scenes/Weapons/MagicWandBullet.tscn");
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,6 +17,6 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	pass;
 
-func shoot():
-	magicWandShoot.emit(bullet, rotation, position);
+func shoot(startRotation, startPosition):
+	magicWandShoot.emit(bullet, startRotation, startPosition);
 	pass;
