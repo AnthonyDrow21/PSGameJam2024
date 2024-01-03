@@ -12,9 +12,9 @@ func _process(delta: float) -> void:
 	checkForMagicWand();
 	
 	# DEBUG # prints the number of children in the scene every frame.
+
 	#var children = self.get_children();
 	#print(children.size());
-
 
 func onMagicWandShoot(bullet: Variant, direction: Variant, location: Variant) -> void:
 	## AED ## We need to set the bullet's position first before we add it to the scene, otherwise the 
