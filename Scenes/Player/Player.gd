@@ -7,7 +7,7 @@ signal playerHit;
 # This is a measure of attacks per second.
 @export var attackSpeed = 1.0;
 @onready var currentColor = $Sprite2D.get_self_modulate();
-var wand;
+var wand: MagicWand;
 
 var currentWeapons := [];
 var friction = 0.9;
