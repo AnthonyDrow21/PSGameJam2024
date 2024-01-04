@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 signal playerHit;
+const wandScene = preload("res://Scenes/Weapons/MagicWand.tscn");
 
 @export var speed = 20.0;
 # This is a measure of attacks per second.
@@ -16,7 +17,7 @@ var isInverted = false;
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# This adds a magic wand to the player by default.
-	wand = MagicWand.new();
+	wand = wandScene.instantiate();
 	wand.name = "Wand";
 	self.add_child(wand);
 	pass;
