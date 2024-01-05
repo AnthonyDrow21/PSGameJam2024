@@ -682,6 +682,7 @@ layer_0/tile_data = PackedInt32Array(2097165, 917504, 6, 2097166, 983040, 2, 209
 
 [node name="Player" parent="." instance=ExtResource("5_1dl50")]
 position = Vector2(50, 300)
+damageInterval = 0.25
 
 [node name="PlayerSpawn" type="Marker2D" parent="."]
 position = Vector2(50, 300)

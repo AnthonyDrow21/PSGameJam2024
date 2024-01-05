@@ -2,24 +2,32 @@ class_name Player
 extends CharacterBody2D
 
 signal playerHit;
+
 const wandScene = preload("res://Scenes/Weapons/MagicWand.tscn");
+@onready var currentColor = $Sprite2D.get_self_modulate();
+@onready var wand: MagicWand = wandScene.instantiate();
 
 @export var speed = 20.0;
-# This is a measure of attacks per second.
-@export var attackSpeed = 1.0;
-@onready var currentColor = $Sprite2D.get_self_modulate();
-var wand: MagicWand;
+@export var attackSpeed = 1.0; # This is a measure of attacks per second.
+@export var damageInterval = 0.5;
 
 var currentWeapons := [];
 var friction = 0.9;
+
+var MAX_HEALTH: float = 100.0;
+var currentHealth: float = MAX_HEALTH;
+
 var isInverted = false;
+var isDamagable = true;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# This adds a magic wand to the player by default.
-	wand = wandScene.instantiate();
 	wand.name = "Wand";
 	self.add_child(wand);
+	
+	$DamageTimer.wait_time = damageInterval;
+	updateHealth();
 	pass;
 
 # Called every PHYSICS! frame. 'delta' is the elapsed time since the previous frame.
@@ -49,11 +57,12 @@ func _physics_process(delta: float) -> void:
 	# Revert our color if we have not hit anything or the environment, otherwise set the hit color.
 	if(collided == false || badCollision == false):
 		if($Sprite2D.get_self_modulate() != currentColor):
-			print("setting non hit color")
-			$Sprite2D.set_self_modulate(currentColor);
+			#print("setting non hit color")
+			setPlayerColor(currentColor)
 	else:
-		print("setting hit color")
-		$Sprite2D.set_self_modulate(Color.RED);
+		setPlayerColor(Color.RED);
+		if(isDamagable == true):
+			damagePlayer(5.0);
 	
 	fireWeapons();
 
@@ -77,4 +86,20 @@ func fireWeapons():
 	if(isInverted == true):
 		wand.shoot(self.rotation, self.position);
 		pass;
-		#magicWandShoot.emit(bullet, rotation, position);
+
+func damagePlayer(damage):
+	currentHealth -= damage;
+	updateHealth();
+	isDamagable = false;
+	$DamageTimer.start();
+	pass;
+
+# TODO # The current health bar looks transparent. Find a way to make it stand out.
+func updateHealth():
+	$HealthBar.value = currentHealth;	
+
+func setPlayerColor(color):
+	$Sprite2D.set_self_modulate(color);	
+
+func _on_damage_timer_timeout() -> void:
+	isDamagable = true;
