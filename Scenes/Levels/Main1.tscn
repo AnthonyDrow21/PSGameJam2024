@@ -709,9 +709,6 @@ position = Vector2(448, 398)
 
 [node name="Enemy" parent="." instance=ExtResource("2_ixrcc")]
 
-[node name="Enemy2" parent="." instance=ExtResource("2_ixrcc")]
-position = Vector2(250, 250)
-
 [node name="EnemySpawner" parent="." instance=ExtResource("6_83mbe")]
 spawns = Array[ExtResource("7_8u0y1")]([SubResource("Resource_t138i")])
 

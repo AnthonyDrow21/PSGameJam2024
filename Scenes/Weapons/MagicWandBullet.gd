@@ -5,6 +5,8 @@ extends Area2D
 var bulletSpeed = 100.0;
 var targetVector = Vector2.RIGHT;
 var closestEnemy;
+var damage = 5;
+var pierce = 1;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -35,3 +37,8 @@ func _physics_process(delta: float) -> void:
 ## This screen notifier connection means we will remove this bullet from the scene once it is outside of the player's view.
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free();
+
+func enemyHit(charge = 1):
+	pierce -= charge
+	if pierce <= 0:
+		queue_free()
