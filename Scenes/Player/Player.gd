@@ -33,39 +33,40 @@ func _ready() -> void:
 
 # Called every PHYSICS! frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	# Statically type our motion to be a vector and get the movement inputs from the player.
-	var motion: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	# Check if we have no input so that we can zero out the velocity rather than waiting for friction 
-	# to slow us down. This makes the controls feel more snappy.
-	if(motion == Vector2.ZERO):
-		velocity = Vector2.ZERO;
-	else:
-		velocity += motion.normalized() * speed;
-		velocity *= friction;
-	# This handles the physics based movement, and will return true if it collided with an object.
-	var collided = move_and_slide();
-	var badCollision = false;
-	
-	# Check for collisions with enemies.
-	for i in get_slide_collision_count():
-			var collision = get_slide_collision(i);
-			var colObject = collision.get_collider();
-			
-			# We will only detect an enemy collision if they are in the "Enemy" group.
-			if(colObject.is_in_group("Enemy") == true):
-				badCollision = true;
-	
-	# Revert our color if we have not hit anything or the environment, otherwise set the hit color.
-	if(collided == false || badCollision == false):
-		if($Sprite2D.get_self_modulate() != currentColor):
-			#print("setting non hit color")
-			setPlayerColor(currentColor)
-	else:
-		setPlayerColor(Color.RED);
-		if(isDamagable == true):
-			damagePlayer(5.0);
-	
-	fireWeapons();
+	if(self.is_visible() == true):
+		# Statically type our motion to be a vector and get the movement inputs from the player.
+		var motion: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+		# Check if we have no input so that we can zero out the velocity rather than waiting for friction 
+		# to slow us down. This makes the controls feel more snappy.
+		if(motion == Vector2.ZERO):
+			velocity = Vector2.ZERO;
+		else:
+			velocity += motion.normalized() * speed;
+			velocity *= friction;
+		# This handles the physics based movement, and will return true if it collided with an object.
+		var collided = move_and_slide();
+		var badCollision = false;
+		
+		# Check for collisions with enemies.
+		for i in get_slide_collision_count():
+				var collision = get_slide_collision(i);
+				var colObject = collision.get_collider();
+				
+				# We will only detect an enemy collision if they are in the "Enemy" group.
+				if(colObject.is_in_group("Enemy") == true):
+					badCollision = true;
+		
+		# Revert our color if we have not hit anything or the environment, otherwise set the hit color.
+		if(collided == false || badCollision == false):
+			if($Sprite2D.get_self_modulate() != currentColor):
+				#print("setting non hit color")
+				setPlayerColor(currentColor)
+		else:
+			setPlayerColor(Color.RED);
+			if(isDamagable == true):
+				damagePlayer(5.0);
+		
+		fireWeapons();
 
 # Make sure we flip the player's sprite when an invert occurs.
 func _input(event):
@@ -96,7 +97,7 @@ func damagePlayer(damage):
 	isDamagable = false;
 	
 	if(currentHealth <= 0):
-		#killPlayer();
+		killPlayer();
 		playerDied.emit();
 	else:
 		$DamageTimer.start();
@@ -112,4 +113,4 @@ func _on_damage_timer_timeout() -> void:
 	isDamagable = true;
 
 func killPlayer() -> void:
-	self.queue_free();
+	self.hide();

@@ -1,6 +1,7 @@
 extends Node2D
 
 var wand;
+var wandFound = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,7 +10,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# Check every frame if the magic wand has been added. If it has, then wire up the shoot signal.
-	checkForMagicWand();
+	var player = get_node("Player");
+	if(player != null && wandFound == false):
+		checkForMagicWand(player);
 	
 	# DEBUG # prints the number of children in the scene every frame.
 	#var children = self.get_children();
@@ -22,9 +25,8 @@ func onMagicWandShoot(bullet: Variant, direction: Variant, location: Variant) ->
 	spawnedBullet.position = location;
 	add_child(spawnedBullet);
 
-func checkForMagicWand() -> void:
+func checkForMagicWand(player) -> void:
 	if(wand == null):
-		var player = get_node("Player");
 		wand = player.get_node("Wand");
 	
 	if(wand != null):
@@ -32,6 +34,7 @@ func checkForMagicWand() -> void:
 		if(isConnected == false):
 			wand.magicWandShoot.connect(onMagicWandShoot);
 			print("magic Wand shoot is Connected");
+			wandFound = true;
 
 
 func _on_player_player_died() -> void:
