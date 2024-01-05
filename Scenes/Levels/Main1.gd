@@ -32,3 +32,7 @@ func checkForMagicWand() -> void:
 		if(isConnected == false):
 			wand.magicWandShoot.connect(onMagicWandShoot);
 			print("magic Wand shoot is Connected");
+
+
+func _on_player_player_died() -> void:
+	$HUD.showGameOver();

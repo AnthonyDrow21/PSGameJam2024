@@ -720,4 +720,5 @@ autostart = true
 
 [node name="HUD" parent="." instance=ExtResource("8_bblo0")]
 
+[connection signal="playerDied" from="Player" to="." method="_on_player_player_died"]
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]

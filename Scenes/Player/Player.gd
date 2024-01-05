@@ -1,7 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
-signal playerHit;
+signal playerHit(damage);
+signal playerDied;
 
 const wandScene = preload("res://Scenes/Weapons/MagicWand.tscn");
 @onready var currentColor = $Sprite2D.get_self_modulate();
@@ -27,7 +28,7 @@ func _ready() -> void:
 	self.add_child(wand);
 	
 	$DamageTimer.wait_time = damageInterval;
-	updateHealth();
+	updateHealthBar();
 	pass;
 
 # Called every PHYSICS! frame. 'delta' is the elapsed time since the previous frame.
@@ -89,13 +90,19 @@ func fireWeapons():
 
 func damagePlayer(damage):
 	currentHealth -= damage;
-	updateHealth();
+	
+	playerHit.emit(damage);
+	updateHealthBar();
 	isDamagable = false;
-	$DamageTimer.start();
-	pass;
+	
+	if(currentHealth <= 0):
+		#killPlayer();
+		playerDied.emit();
+	else:
+		$DamageTimer.start();
 
 # TODO # The current health bar looks transparent. Find a way to make it stand out.
-func updateHealth():
+func updateHealthBar():
 	$HealthBar.value = currentHealth;	
 
 func setPlayerColor(color):
@@ -103,3 +110,6 @@ func setPlayerColor(color):
 
 func _on_damage_timer_timeout() -> void:
 	isDamagable = true;
+
+func killPlayer() -> void:
+	self.queue_free();

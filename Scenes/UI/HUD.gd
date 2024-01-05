@@ -13,6 +13,8 @@ func _ready() -> void:
 	minutesLeft = (maxTime - currentTime) / 60;
 	secondsLeft = fmod(maxTime, 60);
 	$Timer.text = "%02d:%02d" % [minutesLeft, secondsLeft];
+	
+	$ScreenMessage.hide();
 	pass # Replace with function body.
 
 
@@ -24,3 +26,6 @@ func _process(delta: float) -> void:
 	secondsLeft = fmod(maxTime - currentTime, 60);
 	$Timer.text = "%02d:%02d" % [minutesLeft, secondsLeft];
 	pass
+
+func showGameOver():
+	$ScreenMessage.show();
