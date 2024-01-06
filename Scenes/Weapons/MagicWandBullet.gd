@@ -45,6 +45,5 @@ func _on_area_2d_area_entered(area):
 	# TODO : fix this line: The group of parent is Enemy as intended.  Was there something else 
 	#			broken here?
 	if(parent.is_in_group("Enemy") == true):
-		print(parent.get_groups())
 		parent.DamageEnemy(self.damage);
 		_Enemy_Hit()

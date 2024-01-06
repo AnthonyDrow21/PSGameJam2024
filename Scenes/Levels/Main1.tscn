@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dhyngl3yw2nlk"]
+[gd_scene load_steps=14 format=3 uid="uid://dhyngl3yw2nlk"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Main1.gd" id="1_ifvqx"]
 [ext_resource type="Texture2D" uid="uid://rvnog7dr0rk1" path="res://Assets/TX Tileset Grass.png" id="1_o13ts"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bv70yfk6036eo" path="res://Scenes/NPC/EnemySpawner.tscn" id="6_83mbe"]
 [ext_resource type="Script" path="res://Scenes/NPC/spawn_info.gd" id="7_8u0y1"]
 [ext_resource type="PackedScene" uid="uid://cj12h42s62ac8" path="res://Scenes/UI/HUD.tscn" id="8_bblo0"]
+[ext_resource type="PackedScene" uid="uid://bka6s55gapgh6" path="res://Scenes/Music/LevelMusicPlayer.tscn" id="9_dgq3r"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_arrt0"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -719,6 +720,8 @@ spawns = Array[ExtResource("7_8u0y1")]([SubResource("Resource_t138i")])
 autostart = true
 
 [node name="HUD" parent="." instance=ExtResource("8_bblo0")]
+
+[node name="LevelMusicPlayer" parent="." instance=ExtResource("9_dgq3r")]
 
 [connection signal="playerDied" from="Player" to="." method="_on_player_player_died"]
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]

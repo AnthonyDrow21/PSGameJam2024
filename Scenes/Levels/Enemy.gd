@@ -13,8 +13,6 @@ func _physics_process(_delta):
 	move_and_slide()
 
 func DamageEnemy(damage):
-	print("Damage: ", damage);
 	enemyHealth -= damage;
-	print("Enemy Health: ", enemyHealth);
 	if enemyHealth <= 0:
 		queue_free()

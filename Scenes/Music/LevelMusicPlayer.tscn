@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bka6s55gapgh6"]
+
+[ext_resource type="AudioStream" uid="uid://0g81hks3e1ep" path="res://Assets/Music/maybe1-001.wav" id="1_jdioq"]
+
+[node name="LevelMusicPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_jdioq")
+volume_db = -20.0
+autoplay = true
