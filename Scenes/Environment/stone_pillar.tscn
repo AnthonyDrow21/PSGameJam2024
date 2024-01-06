@@ -1,20 +1,21 @@
 [gd_scene load_steps=3 format=3 uid="uid://gr572puwdk2y"]
 
-[ext_resource type="Texture2D" uid="uid://bxawf6dtcvp2s" path="res://Assets/StonePillar.png" id="1_d4o3c"]
+[ext_resource type="Texture2D" uid="uid://yyj62fth8hir" path="res://Assets/Obelisk.png" id="1_wy5gb"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ndwy"]
-size = Vector2(32, 27)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ubbjl"]
+radius = 18.0
+height = 88.0
 
 [node name="StonePillar" type="Node2D"]
 y_sort_enabled = true
 
 [node name="StonePillar" type="Sprite2D" parent="."]
-position = Vector2(0, -38)
-texture = ExtResource("1_d4o3c")
+position = Vector2(7, -79)
+texture = ExtResource("1_wy5gb")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(0, -24)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 11)
-shape = SubResource("RectangleShape2D_0ndwy")
+position = Vector2(1, 15)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ubbjl")
