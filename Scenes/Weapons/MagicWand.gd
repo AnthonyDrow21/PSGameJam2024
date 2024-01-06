@@ -2,6 +2,7 @@ class_name MagicWand
 extends Area2D
 
 signal magicWandShoot(bullet, direction, location);
+signal magicWandAltFire(bullet)
 
 var bullet = preload("res://Scenes/Weapons/MagicWandBullet.tscn");
 var readyToShoot = true;
@@ -24,6 +25,10 @@ func shoot(startRotation, startPosition):
 		readyToShoot = false;
 		magicWandShoot.emit(bullet, startRotation, startPosition);
 	pass;
+
+func altShoot(startRotation, startPosition):
+	if(readyToShoot == true):
+		magicWandShoot.emit(bullet, startRotation, startPosition);
 
 
 func _on_attack_timer_timeout() -> void:

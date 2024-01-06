@@ -86,8 +86,9 @@ func invert():
 ###
 func fireWeapons():
 	if(isInverted == true):
+		wand.altShoot(self.rotation, self.position);
+	else:
 		wand.shoot(self.rotation, self.position);
-		pass;
 
 func damagePlayer(damage):
 	currentHealth -= damage;

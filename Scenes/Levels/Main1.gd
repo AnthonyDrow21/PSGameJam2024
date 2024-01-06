@@ -11,6 +11,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	# Check every frame if the magic wand has been added. If it has, then wire up the shoot signal.
 	var player = get_node("Player");
+	#print("The player's current speed is: ", player.speed);
 	if(player != null && wandFound == false):
 		checkForMagicWand(player);
 	

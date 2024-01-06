@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_amqwi"]
 size = Vector2(8, 8)
 
-[node name="MagicWandBullet" type="Area2D" groups=["attack"]]
+[node name="MagicWandBullet" type="Area2D" groups=["attack", "projectile"]]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_dcf6r")
@@ -21,12 +21,9 @@ texture = SubResource("CanvasTexture_jchxq")
 
 [node name="sndPlay" type="AudioStreamPlayer2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["attack"]]
-shape = SubResource("RectangleShape2D_amqwi")
-
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 15
-collision_mask = 15
+collision_layer = 4
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["attack"]]
 shape = SubResource("RectangleShape2D_amqwi")

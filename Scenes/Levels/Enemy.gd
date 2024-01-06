@@ -1,18 +1,20 @@
+class_name Enemy;
 extends CharacterBody2D
 
 @export var movementSpeed = 30.0
-@export var enemyHealth = 1;
+@export var enemyHealth = 5
 @onready var player = get_tree().get_first_node_in_group("Player")
+@onready var incomingProjectile
+var incomingDamage = 1
 
 func _physics_process(_delta):
 	var direction = global_position.direction_to(player.global_position)
 	velocity = direction * movementSpeed
 	move_and_slide()
 
-func _on_hit_box_area_entered(area):
-	enemyHealth = enemyHealth - 1
+func DamageEnemy(damage):
+	print("Damage: ", damage);
+	enemyHealth -= damage;
+	print("Enemy Health: ", enemyHealth);
 	if enemyHealth <= 0:
 		queue_free()
-	else:
-		pass
-	pass # Replace with function body.

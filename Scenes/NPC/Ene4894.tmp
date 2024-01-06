@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://du5q1ptq7fmw"]
+
+[ext_resource type="Script" path="res://Scenes/Levels/Enemy.gd" id="1_snbp4"]
+[ext_resource type="Texture2D" uid="uid://cfboo4djajq5g" path="res://Assets/Skeleton.png" id="2_1sint"]
+[ext_resource type="PackedScene" uid="uid://doqjam87h7732" path="res://Scenes/Utility/hit_box.tscn" id="4_ew8ov"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ort83"]
+radius = 8.0
+height = 32.0
+
+[node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
+position = Vector2(551, 250)
+script = ExtResource("1_snbp4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 1)
+shape = SubResource("CapsuleShape2D_ort83")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_1sint")
+
+[node name="HitBox" parent="." instance=ExtResource("4_ew8ov")]
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
