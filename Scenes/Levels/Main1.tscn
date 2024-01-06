@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dhyngl3yw2nlk"]
+[gd_scene load_steps=15 format=3 uid="uid://dhyngl3yw2nlk"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Main1.gd" id="1_ifvqx"]
 [ext_resource type="Texture2D" uid="uid://rvnog7dr0rk1" path="res://Assets/TX Tileset Grass.png" id="1_o13ts"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ch4r163rdpvqp" path="res://Scenes/Player/Player.tscn" id="5_1dl50"]
 [ext_resource type="PackedScene" uid="uid://bv70yfk6036eo" path="res://Scenes/NPC/EnemySpawner.tscn" id="6_83mbe"]
 [ext_resource type="Script" path="res://Scenes/NPC/spawn_info.gd" id="7_8u0y1"]
+[ext_resource type="PackedScene" uid="uid://nta62ow40nvt" path="res://Scenes/UI/PauseScreen.tscn" id="8_aujhq"]
 [ext_resource type="PackedScene" uid="uid://cj12h42s62ac8" path="res://Scenes/UI/HUD.tscn" id="8_bblo0"]
 [ext_resource type="PackedScene" uid="uid://bka6s55gapgh6" path="res://Scenes/Music/LevelMusicPlayer.tscn" id="9_dgq3r"]
 
@@ -671,7 +672,8 @@ timeEnd = 1800
 enemyNum = 5
 enemySpawnDelay = 1
 
-[node name="Scene" type="Node2D"]
+[node name="Main" type="Node2D"]
+process_mode = 3
 y_sort_enabled = true
 script = ExtResource("1_ifvqx")
 
@@ -687,9 +689,11 @@ position = Vector2(50, 300)
 damageInterval = 0.25
 
 [node name="PlayerSpawn" type="Marker2D" parent="."]
+process_mode = 1
 position = Vector2(50, 300)
 
 [node name="PillarControl" type="Node2D" parent="."]
+process_mode = 1
 y_sort_enabled = true
 
 [node name="StonePillar6" parent="PillarControl" instance=ExtResource("2_4mey3")]
@@ -719,9 +723,12 @@ spawns = Array[ExtResource("7_8u0y1")]([SubResource("Resource_t138i")])
 [node name="Timer" type="Timer" parent="EnemySpawner"]
 autostart = true
 
+[node name="PauseScreen" parent="." instance=ExtResource("8_aujhq")]
+
 [node name="HUD" parent="." instance=ExtResource("8_bblo0")]
 
 [node name="LevelMusicPlayer" parent="." instance=ExtResource("9_dgq3r")]
+process_mode = 4
 
 [connection signal="playerDied" from="Player" to="." method="_on_player_player_died"]
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]

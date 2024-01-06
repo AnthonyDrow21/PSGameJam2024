@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Weapons/MagicWand.gd" id="1_crgft"]
 
 [node name="MagicWand" type="Area2D"]
+process_mode = 1
 script = ExtResource("1_crgft")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

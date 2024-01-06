@@ -1,12 +1,14 @@
 extends Node2D
 
+signal pausePressed();
+signal unpausePressed();
+
 var wand;
 var wandFound = false;
+var isPaused = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# Pause the music for testing purposes. TODO: Remove this.
-	$LevelMusicPlayer.stream_paused = true;
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,6 +40,16 @@ func checkForMagicWand(player) -> void:
 			wand.magicWandShoot.connect(onMagicWandShoot);
 			wandFound = true;
 
+func _input(event):
+	if event.is_action_pressed("Pause"):
+		var tree = get_tree();
+		if(tree.paused == false):
+			tree.paused = true;
+			pausePressed.emit();
+		else:
+			tree.paused = false;
+			unpausePressed.emit();
+	pass;
 
 func _on_player_player_died() -> void:
 	$HUD.showGameOver();

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://du5q1ptq7fmw"]
 
-[ext_resource type="Script" path="res://Scenes/Levels/Enemy.gd" id="1_snbp4"]
+[ext_resource type="Script" path="res://Scenes/NPC/Enemy.gd" id="1_kviuq"]
 [ext_resource type="Texture2D" uid="uid://cfboo4djajq5g" path="res://Assets/Skeleton.png" id="2_1sint"]
 [ext_resource type="PackedScene" uid="uid://doqjam87h7732" path="res://Scenes/Utility/hit_box.tscn" id="4_ew8ov"]
 
@@ -9,8 +9,9 @@ radius = 8.0
 height = 32.0
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
+process_mode = 1
 position = Vector2(551, 250)
-script = ExtResource("1_snbp4")
+script = ExtResource("1_kviuq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 1)

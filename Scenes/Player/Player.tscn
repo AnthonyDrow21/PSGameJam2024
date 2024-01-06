@@ -8,6 +8,7 @@ radius = 5.0
 height = 18.0
 
 [node name="Player" type="CharacterBody2D" groups=["Invertable", "Player"]]
+process_mode = 1
 script = ExtResource("1_u64yt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
