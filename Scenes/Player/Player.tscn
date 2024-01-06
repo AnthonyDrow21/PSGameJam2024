@@ -3,7 +3,9 @@
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_u64yt"]
 [ext_resource type="Texture2D" uid="uid://b85kxknm3tm4d" path="res://Assets/IdlePyramid2-Sheet.png" id="2_8hv44"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3qfr"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8um42"]
+radius = 5.0
+height = 18.0
 
 [node name="Player" type="CharacterBody2D" groups=["Invertable", "Player"]]
 script = ExtResource("1_u64yt")
@@ -14,7 +16,8 @@ texture = ExtResource("2_8hv44")
 hframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_i3qfr")
+position = Vector2(-1, 3)
+shape = SubResource("CapsuleShape2D_8um42")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 modulate = Color(0.815686, 0, 0.184314, 1)

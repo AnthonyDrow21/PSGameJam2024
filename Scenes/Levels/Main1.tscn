@@ -671,6 +671,7 @@ enemyNum = 5
 enemySpawnDelay = 1
 
 [node name="Scene" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_ifvqx")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -688,6 +689,7 @@ damageInterval = 0.25
 position = Vector2(50, 300)
 
 [node name="PillarControl" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="StonePillar6" parent="PillarControl" instance=ExtResource("2_4mey3")]
 position = Vector2(457, 148)
@@ -708,6 +710,7 @@ position = Vector2(586, 167)
 position = Vector2(448, 398)
 
 [node name="Enemy" parent="." instance=ExtResource("2_ixrcc")]
+y_sort_enabled = true
 
 [node name="EnemySpawner" parent="." instance=ExtResource("6_83mbe")]
 spawns = Array[ExtResource("7_8u0y1")]([SubResource("Resource_t138i")])

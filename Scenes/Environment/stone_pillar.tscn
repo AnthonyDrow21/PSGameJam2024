@@ -6,12 +6,15 @@
 size = Vector2(32, 27)
 
 [node name="StonePillar" type="Node2D"]
+y_sort_enabled = true
 
 [node name="StonePillar" type="Sprite2D" parent="."]
+position = Vector2(0, -38)
 texture = ExtResource("1_d4o3c")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -24)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 24.5)
+position = Vector2(0, 11)
 shape = SubResource("RectangleShape2D_0ndwy")
