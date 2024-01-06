@@ -21,6 +21,15 @@ var currentHealth: float = MAX_HEALTH;
 var isInverted = false;
 var isDamagable = true;
 
+var totalLevel: int = 1;
+var totalXp: float = 0.0;
+var lightLevel: int = 0;
+var darkLevel: int = 0;
+var lightXP = 0.0;
+var darkXP = 0.0;
+var requiredLightXP = 10.0;
+var requiredDarkXP = 10.0;
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# This adds a magic wand to the player by default.
@@ -115,3 +124,34 @@ func _on_damage_timer_timeout() -> void:
 
 func killPlayer() -> void:
 	self.hide();
+
+func gainXp(xp) -> void:
+	totalXp += xp;
+	if(isInverted == true):
+		darkXP += xp;
+	else:
+		lightXP += xp;
+	
+	var ding = false;
+	var darkLvlUp = false;
+	if(darkXP >= requiredDarkXP):
+		ding = true;
+		darkLvlUp = true;
+	elif(lightXP >= requiredLightXP):
+		ding = true;
+	
+	if(ding == true):
+		lvlUp(darkLvlUp);
+
+func lvlUp(isDarkLevelUp):
+	totalLevel += 1;
+	if(isDarkLevelUp == true):
+		darkLevel += 1;
+		requiredDarkXP += requiredDarkXP;
+		print("Dark Level ding")
+	else:
+		lightLevel += 1;
+		requiredLightXP += requiredLightXP;
+		print("Light Level ding")
+	
+	print("Ding! Level ", totalLevel, " achieved");

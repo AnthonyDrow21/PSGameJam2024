@@ -1,6 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://cj12h42s62ac8"]
+[gd_scene load_steps=6 format=3 uid="uid://cj12h42s62ac8"]
 
 [ext_resource type="Script" path="res://Scenes/UI/HUD.gd" id="1_71gr2"]
+
+[sub_resource type="Gradient" id="Gradient_ul724"]
+offsets = PackedFloat32Array(0, 0.328671, 0.678322, 0.996503)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s03kt"]
+gradient = SubResource("Gradient_ul724")
+width = 1150
+height = 20
+
+[sub_resource type="Gradient" id="Gradient_eitut"]
+offsets = PackedFloat32Array(0, 0.562937, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.850349, 0.0242096, 0.422132, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6m355"]
+gradient = SubResource("Gradient_eitut")
+width = 1150
+height = 20
 
 [node name="HUD" type="CanvasLayer"]
 process_mode = 1
@@ -31,3 +49,30 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 100
 text = "You're not him"
+
+[node name="LightLevelBar" type="TextureProgressBar" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -38.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_under = SubResource("GradientTexture2D_s03kt")
+texture_progress = SubResource("GradientTexture2D_6m355")
+
+[node name="LightLevel" type="Label" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -43.0
+offset_top = -40.0
+offset_right = -3.0
+offset_bottom = -17.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "10"
+horizontal_alignment = 2

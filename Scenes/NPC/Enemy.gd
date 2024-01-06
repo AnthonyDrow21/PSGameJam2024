@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var player = get_tree().get_first_node_in_group("Player")
 @onready var incomingProjectile
 var incomingDamage = 1
+var xpValue = 1.0;
 
 func _physics_process(_delta):
 	var direction = global_position.direction_to(player.global_position)
@@ -15,4 +16,5 @@ func _physics_process(_delta):
 func DamageEnemy(damage):
 	enemyHealth -= damage;
 	if enemyHealth <= 0:
+		player.gainXp(xpValue);
 		queue_free()

@@ -1,3 +1,4 @@
+class_name Main;
 extends Node2D
 
 signal pausePressed();
@@ -6,6 +7,9 @@ signal unpausePressed();
 var wand;
 var wandFound = false;
 var isPaused = false;
+
+# Max time in seconds
+@export var maxTime = 600.0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

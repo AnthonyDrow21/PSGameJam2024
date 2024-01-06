@@ -2,7 +2,7 @@ class_name MagicWandBullet;
 extends Area2D
 
 @onready var enemies = get_tree().get_nodes_in_group("Enemy");
-var bulletSpeed = 100.0;
+var bulletSpeed = 200.0;
 var targetVector = Vector2.RIGHT;
 var closestEnemy;
 var damage = 5;
