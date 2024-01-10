@@ -2,6 +2,7 @@ extends Enemy
 
 func _ready():
 	movementSpeed = 120;
+	enemyHealth = 20;
 
 #func _physics_process(_delta):
 	#var direction = global_position.direction_to(player.global_position)
