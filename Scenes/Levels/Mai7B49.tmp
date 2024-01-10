@@ -758,10 +758,11 @@ y_sort_enabled = true
 spawns = Array[ExtResource("7_8u0y1")]([SubResource("Resource_t138i")])
 
 [node name="Timer" type="Timer" parent="EnemySpawner"]
+one_shot = true
 autostart = true
 
 [node name="ProgressTimer" type="Timer" parent="EnemySpawner"]
-wait_time = 15.0
+wait_time = 60.0
 one_shot = true
 autostart = true
 
