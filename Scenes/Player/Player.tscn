@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ch4r163rdpvqp"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_u64yt"]
-[ext_resource type="Texture2D" uid="uid://b85kxknm3tm4d" path="res://Assets/IdlePyramid2-Sheet.png" id="2_8hv44"]
+[ext_resource type="Texture2D" uid="uid://cvx7348lpvi7f" path="res://Assets/IdlePyramid2-Sheet.png" id="2_8hv44"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8um42"]
 radius = 5.0

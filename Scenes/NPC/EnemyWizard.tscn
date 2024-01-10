@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0w72rvgw6gmi"]
+
+[ext_resource type="Script" path="res://Scenes/NPC/EnemyWizard.gd" id="1_a6cng"]
+[ext_resource type="Texture2D" uid="uid://bmkkap6ux7apt" path="res://Assets/BlackMage_NoAnimation1.png" id="2_ljifw"]
+[ext_resource type="PackedScene" uid="uid://doqjam87h7732" path="res://Scenes/Utility/hit_box.tscn" id="3_ybjvp"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uphvn"]
+radius = 16.0
+height = 46.0
+
+[node name="EnemyWizard" type="CharacterBody2D"]
+script = ExtResource("1_a6cng")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, -21)
+shape = SubResource("CapsuleShape2D_uphvn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3, -32)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_ljifw")
+
+[node name="HitBox" parent="." instance=ExtResource("3_ybjvp")]
+position = Vector2(6, -23)
+scale = Vector2(1.39, 1.39)
