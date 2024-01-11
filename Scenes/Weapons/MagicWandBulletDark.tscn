@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvxxsl6q53yt3"]
+
+[ext_resource type="Script" path="res://Scenes/Weapons/MagicWandBulletDark.gd" id="1_x3edw"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_jchxq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_amqwi"]
+size = Vector2(8, 8)
+
+[node name="MagicWandBulletDark" type="Area2D" groups=["attack", "projectile"]]
+process_mode = 1
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_x3edw")
+bulletSpeed = 50.0
+damage = 1
+pierce = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0.029026, 0.0768795)
+scale = Vector2(6.5, 6.5)
+texture = SubResource("CanvasTexture_jchxq")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="sndPlay" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["attack"]]
+shape = SubResource("RectangleShape2D_amqwi")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

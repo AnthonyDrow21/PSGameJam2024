@@ -2,11 +2,13 @@ class_name MagicWandBullet;
 extends Area2D
 
 @onready var enemies = get_tree().get_nodes_in_group("Enemy");
-var bulletSpeed = 200.0;
+
+@export var bulletSpeed = 200.0;
+@export var damage = 5;
+@export var pierce = 2;
+
 var targetVector = Vector2.RIGHT;
 var closestEnemy;
-var damage = 5;
-var pierce = 2;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

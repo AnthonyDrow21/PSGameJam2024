@@ -153,11 +153,13 @@ func lvlUp(isDarkLevelUp):
 		darkLevel += 1;
 		requiredDarkXP += darkXPIncrement;
 		darkXP = 0.0;
+		wand.darkLevelUp();
 		print("Dark Level ding")
 	else:
 		lightLevel += 1;
 		requiredLightXP += lightXPIncrement;
 		lightXP = 0.0;
+		wand.lightLevelUp();
 		print("Light Level ding")
 	
 	print("Ding! Level ", totalLevel, " achieved");

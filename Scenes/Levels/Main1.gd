@@ -4,9 +4,9 @@ extends Node2D
 signal pausePressed();
 signal unpausePressed();
 
-var wand;
-var wandFound = false;
-var isPaused = false;
+var wand: MagicWand;
+var wandFound: bool = false;
+var isPaused: bool = false;
 
 # Max time in seconds
 @export var maxTime = 600.0;
@@ -37,6 +37,8 @@ func onMagicWandShoot(bullet: Variant, direction: Variant, location: Variant) ->
 	## ready function will think the bullet's position is zero rather than the player's position.
 	var spawnedBullet = bullet.instantiate();
 	spawnedBullet.position = location;
+	#applyUpgrades(spawnedBullet);
+	spawnedBullet.damage += wand.damageUpgrade;
 	add_child(spawnedBullet);
 
 func checkForMagicWand(player) -> void:
