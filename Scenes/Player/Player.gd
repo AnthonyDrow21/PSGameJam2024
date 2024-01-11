@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 signal playerHit(damage);
+signal playerInverted(isInverted);
 signal playerDied;
 
 const wandScene = preload("res://Scenes/Weapons/MagicWand.tscn");
@@ -18,7 +19,7 @@ var friction = 0.9;
 var MAX_HEALTH: float = 100.0;
 var currentHealth: float = MAX_HEALTH;
 
-var isInverted = false;
+@export var isInverted = false;
 var isDamagable = true;
 
 var totalLevel: int = 1;
@@ -27,8 +28,10 @@ var lightLevel: int = 0;
 var darkLevel: int = 0;
 var lightXP = 0.0;
 var darkXP = 0.0;
-var requiredLightXP = 10.0;
-var requiredDarkXP = 10.0;
+@export var requiredLightXP = 10.0;
+@export var requiredDarkXP = 10.0;
+@export var lightXPIncrement = 5.0;
+@export var darkXPIncrement = 5.0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -88,6 +91,7 @@ func invert():
 	$Sprite2D.set_self_modulate(invertedColor);
 	currentColor = $Sprite2D.self_modulate;	
 	isInverted = !isInverted;
+	playerInverted.emit(isInverted);
 	print("Invert Player hit");
 
 ###
@@ -147,11 +151,13 @@ func lvlUp(isDarkLevelUp):
 	totalLevel += 1;
 	if(isDarkLevelUp == true):
 		darkLevel += 1;
-		requiredDarkXP += requiredDarkXP;
+		requiredDarkXP += darkXPIncrement;
+		darkXP = 0.0;
 		print("Dark Level ding")
 	else:
 		lightLevel += 1;
-		requiredLightXP += requiredLightXP;
+		requiredLightXP += lightXPIncrement;
+		lightXP = 0.0;
 		print("Light Level ding")
 	
 	print("Ding! Level ", totalLevel, " achieved");
