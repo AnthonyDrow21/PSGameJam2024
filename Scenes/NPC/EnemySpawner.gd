@@ -2,36 +2,41 @@ extends Node2D
 
 @export var spawns: Array[SpawnInfo] = []
 
-@onready var player = get_tree().get_first_node_in_group("Player")
+@onready var player: Player = get_tree().get_first_node_in_group("Player")
 var skeleton = preload("res://Scenes/NPC/Enemy.tscn")
 var wizard = preload("res://Scenes/NPC/EnemyWizard.tscn")
 var time = 0
+var playerIsDead: bool = false;
+
+func _ready() -> void:
+	player.playerDied.connect(onPlayerDied);
 
 func _on_timer_timeout():
-	time += 1
-	for i in spawns:
-		if time >= i.timeStart and time <= 60:
-			if i.spawnDelayCounter < i.enemySpawnDelay:
-				i.spawnDelayCounter += 1
-			else:
-				i.spawnDelayCounter = 0
-				var counter = 0
-				while counter < i.enemyNum:
-					var enemySpawn = skeleton.instantiate()
-					enemySpawn.global_position = get_random_position()
-					add_child(enemySpawn)
-					counter += 1
-		if time >= 60 and time <= 600:
-			if i.spawnDelayCounter < i.enemySpawnDelay:
-				i.spawnDelayCounter += 1
-			else:
-				i.spawnDelayCounter = 0
-				var counter = 0
-				while counter < i.enemyNum:
-					var enemySpawn = wizard.instantiate()
-					enemySpawn.global_position = get_random_position()
-					add_child(enemySpawn)
-					counter += 1
+	if(playerIsDead == false):
+		time += 1
+		for i in spawns:
+			if time >= i.timeStart and time <= 60:
+				if i.spawnDelayCounter < i.enemySpawnDelay:
+					i.spawnDelayCounter += 1
+				else:
+					i.spawnDelayCounter = 0
+					var counter = 0
+					while counter < i.enemyNum:
+						var enemySpawn = skeleton.instantiate()
+						enemySpawn.global_position = get_random_position()
+						add_child(enemySpawn)
+						counter += 1
+			if time >= 60 and time <= 600:
+				if i.spawnDelayCounter < i.enemySpawnDelay:
+					i.spawnDelayCounter += 1
+				else:
+					i.spawnDelayCounter = 0
+					var counter = 0
+					while counter < i.enemyNum:
+						var enemySpawn = wizard.instantiate()
+						enemySpawn.global_position = get_random_position()
+						add_child(enemySpawn)
+						counter += 1
 
 func get_random_position():
 	var vpr = get_viewport_rect().size * randf_range(1.1, 1.4)
@@ -61,4 +66,5 @@ func get_random_position():
 	var ySpawn = randf_range(spawnPos1.y, spawnPos2.y)
 	return Vector2(xSpawn, ySpawn)
 
-
+func onPlayerDied():
+	playerIsDead = true;
