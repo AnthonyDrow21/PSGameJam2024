@@ -23,9 +23,14 @@ func _process(delta: float) -> void:
 	if(player != null && wandFound == false):
 		checkForMagicWand(player);
 	
-	# DEBUG # prints the number of children in the scene every frame.
+	# DEBUG # prints the number of direct children of main every frame.
 	#var children = self.get_children();
 	#print(children.size());
+	
+	# DEBUG # prints the number of enemies on screen;
+	#var spawner = get_node("EnemySpawner");
+	#var enemies = spawner.get_children();
+	#print("Current enemy count: ", enemies.size());
 
 func onMagicWandShoot(bullet: Variant, direction: Variant, location: Variant) -> void:
 	## AED ## We need to set the bullet's position first before we add it to the scene, otherwise the 
