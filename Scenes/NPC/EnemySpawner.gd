@@ -4,7 +4,7 @@ extends Node2D
 
 @onready var player: Player = get_tree().get_first_node_in_group("Player")
 var skeleton = preload("res://Scenes/NPC/Enemy.tscn")
-var wizard = preload("res://Scenes/NPC/EnemyWizard.tscn")
+var wizard = preload("res://Scenes/NPC/Wizard/EnemyWizard.tscn")
 var time = 0
 var playerIsDead: bool = false;
 
@@ -15,6 +15,7 @@ func _on_timer_timeout():
 	if(playerIsDead == false):
 		time += 1
 		for i in spawns:
+
 			if time >= i.timeStart and time <= i.timeEnd:
 				if i.spawnDelayCounter < i.enemySpawnDelay:
 					i.spawnDelayCounter += 1
@@ -27,6 +28,7 @@ func _on_timer_timeout():
 							enemySpawn.global_position = get_random_position();
 						elif(i.enemySpawnLocationType == SpawnInfo.SpawnLocationType.RANDOM_OUTER):
 							enemySpawn.global_position = get_random_position();
+						enemySpawn.global_position = get_random_position()
 						add_child(enemySpawn)
 						counter += 1
 
