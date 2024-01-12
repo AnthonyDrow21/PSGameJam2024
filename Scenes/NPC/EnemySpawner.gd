@@ -15,26 +15,18 @@ func _on_timer_timeout():
 	if(playerIsDead == false):
 		time += 1
 		for i in spawns:
-			if time >= i.timeStart and time <= 60:
+			if time >= i.timeStart and time <= i.timeEnd:
 				if i.spawnDelayCounter < i.enemySpawnDelay:
 					i.spawnDelayCounter += 1
 				else:
 					i.spawnDelayCounter = 0
 					var counter = 0
 					while counter < i.enemyNum:
-						var enemySpawn = skeleton.instantiate()
-						enemySpawn.global_position = get_random_position()
-						add_child(enemySpawn)
-						counter += 1
-			if time >= 60 and time <= 600:
-				if i.spawnDelayCounter < i.enemySpawnDelay:
-					i.spawnDelayCounter += 1
-				else:
-					i.spawnDelayCounter = 0
-					var counter = 0
-					while counter < i.enemyNum:
-						var enemySpawn = wizard.instantiate()
-						enemySpawn.global_position = get_random_position()
+						var enemySpawn = i.enemy.instantiate()
+						if(i.enemySpawnLocationType == SpawnInfo.SpawnLocationType.RANDOM_OUTER):
+							enemySpawn.global_position = get_random_position();
+						elif(i.enemySpawnLocationType == SpawnInfo.SpawnLocationType.RANDOM_OUTER):
+							enemySpawn.global_position = get_random_position();
 						add_child(enemySpawn)
 						counter += 1
 

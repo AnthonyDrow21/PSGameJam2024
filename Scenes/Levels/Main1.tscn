@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dhyngl3yw2nlk"]
+[gd_scene load_steps=17 format=3 uid="uid://dhyngl3yw2nlk"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Main1.gd" id="1_ifvqx"]
 [ext_resource type="Texture2D" uid="uid://rvnog7dr0rk1" path="res://Assets/TX Tileset Grass.png" id="1_o13ts"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ch4r163rdpvqp" path="res://Scenes/Player/Player.tscn" id="5_1dl50"]
 [ext_resource type="PackedScene" uid="uid://bv70yfk6036eo" path="res://Scenes/NPC/EnemySpawner.tscn" id="6_83mbe"]
 [ext_resource type="Script" path="res://Scenes/NPC/spawn_info.gd" id="7_8u0y1"]
+[ext_resource type="PackedScene" uid="uid://b0w72rvgw6gmi" path="res://Scenes/NPC/EnemyWizard.tscn" id="8_3ypbc"]
 [ext_resource type="PackedScene" uid="uid://nta62ow40nvt" path="res://Scenes/UI/PauseScreen.tscn" id="8_aujhq"]
 [ext_resource type="PackedScene" uid="uid://cj12h42s62ac8" path="res://Scenes/UI/HUD.tscn" id="8_bblo0"]
 [ext_resource type="PackedScene" uid="uid://bka6s55gapgh6" path="res://Scenes/Music/LevelMusicPlayer.tscn" id="9_dgq3r"]
@@ -702,12 +703,23 @@ texture = ExtResource("1_o13ts")
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_ot4og")
 
-[sub_resource type="Resource" id="Resource_t138i"]
+[sub_resource type="Resource" id="Resource_dfkmv"]
 script = ExtResource("7_8u0y1")
 timeStart = 0
-timeEnd = 1800
+timeEnd = 600
+enemy = ExtResource("2_ixrcc")
 enemyNum = 10
 enemySpawnDelay = 1
+enemySpawnLocationType = 0
+
+[sub_resource type="Resource" id="Resource_gdhwj"]
+script = ExtResource("7_8u0y1")
+timeStart = 30
+timeEnd = 60
+enemy = ExtResource("8_3ypbc")
+enemyNum = 10
+enemySpawnDelay = 1
+enemySpawnLocationType = 0
 
 [node name="Main" type="Node2D"]
 process_mode = 3
@@ -755,7 +767,7 @@ position = Vector2(324, 344)
 y_sort_enabled = true
 
 [node name="EnemySpawner" parent="." instance=ExtResource("6_83mbe")]
-spawns = Array[ExtResource("7_8u0y1")]([SubResource("Resource_t138i")])
+spawns = Array[ExtResource("7_8u0y1")]([SubResource("Resource_dfkmv"), SubResource("Resource_gdhwj")])
 
 [node name="Timer" type="Timer" parent="EnemySpawner"]
 autostart = true
