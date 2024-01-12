@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dhyngl3yw2nlk"]
+[gd_scene load_steps=17 format=3 uid="uid://dhyngl3yw2nlk"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Main1.gd" id="1_ifvqx"]
 [ext_resource type="Texture2D" uid="uid://rvnog7dr0rk1" path="res://Assets/TX Tileset Grass.png" id="1_o13ts"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b0w72rvgw6gmi" path="res://Scenes/NPC/EnemyWizard.tscn" id="8_3ypbc"]
 [ext_resource type="PackedScene" uid="uid://cj12h42s62ac8" path="res://Scenes/UI/HUD.tscn" id="8_bblo0"]
 [ext_resource type="PackedScene" uid="uid://bka6s55gapgh6" path="res://Scenes/Music/LevelMusicPlayer.tscn" id="9_dgq3r"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/PauseScreen.tscn" id="11_ruu0n"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_arrt0"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -779,6 +780,8 @@ autostart = true
 [node name="HUD" parent="." instance=ExtResource("8_bblo0")]
 
 [node name="LevelMusicPlayer" parent="." instance=ExtResource("9_dgq3r")]
+
+[node name="PauseScreen" parent="." instance=ExtResource("11_ruu0n")]
 
 [connection signal="playerDied" from="Player" to="." method="_on_player_player_died"]
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
