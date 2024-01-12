@@ -7,9 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://ch4r163rdpvqp" path="res://Scenes/Player/Player.tscn" id="5_1dl50"]
 [ext_resource type="PackedScene" uid="uid://bv70yfk6036eo" path="res://Scenes/NPC/EnemySpawner.tscn" id="6_83mbe"]
 [ext_resource type="Script" path="res://Scenes/NPC/spawn_info.gd" id="7_8u0y1"]
+<<<<<<< Updated upstream
 [ext_resource type="PackedScene" uid="uid://b0w72rvgw6gmi" path="res://Scenes/NPC/EnemyWizard.tscn" id="8_3ypbc"]
 [ext_resource type="PackedScene" uid="uid://nta62ow40nvt" path="res://Scenes/UI/PauseScreen.tscn" id="8_aujhq"]
+=======
+[ext_resource type="PackedScene" path="res://Scenes/UI/PauseScreen.tscn" id="8_aujhq"]
+>>>>>>> Stashed changes
 [ext_resource type="PackedScene" uid="uid://cj12h42s62ac8" path="res://Scenes/UI/HUD.tscn" id="8_bblo0"]
+[ext_resource type="PackedScene" uid="uid://b0w72rvgw6gmi" path="res://Scenes/NPC/EnemyWizard.tscn" id="8_gvi26"]
 [ext_resource type="PackedScene" uid="uid://bka6s55gapgh6" path="res://Scenes/Music/LevelMusicPlayer.tscn" id="9_dgq3r"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_arrt0"]
@@ -721,6 +726,14 @@ enemyNum = 10
 enemySpawnDelay = 1
 enemySpawnLocationType = 0
 
+[sub_resource type="Resource" id="Resource_symvv"]
+script = ExtResource("7_8u0y1")
+timeStart = 15
+timeEnd = 300
+enemy = ExtResource("8_gvi26")
+enemyNum = 4
+enemySpawnDelay = 0
+
 [node name="Main" type="Node2D"]
 process_mode = 3
 y_sort_enabled = true
@@ -767,7 +780,11 @@ position = Vector2(324, 344)
 y_sort_enabled = true
 
 [node name="EnemySpawner" parent="." instance=ExtResource("6_83mbe")]
+<<<<<<< Updated upstream
 spawns = Array[ExtResource("7_8u0y1")]([SubResource("Resource_dfkmv"), SubResource("Resource_gdhwj")])
+=======
+spawns = Array[ExtResource("7_8u0y1")]([SubResource("Resource_t138i"), SubResource("Resource_symvv")])
+>>>>>>> Stashed changes
 
 [node name="Timer" type="Timer" parent="EnemySpawner"]
 autostart = true
@@ -782,7 +799,6 @@ autostart = true
 [node name="HUD" parent="." instance=ExtResource("8_bblo0")]
 
 [node name="LevelMusicPlayer" parent="." instance=ExtResource("9_dgq3r")]
-process_mode = 4
 
 [connection signal="playerDied" from="Player" to="." method="_on_player_player_died"]
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
