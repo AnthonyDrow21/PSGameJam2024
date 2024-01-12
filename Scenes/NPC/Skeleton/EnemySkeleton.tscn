@@ -1,17 +1,20 @@
 [gd_scene load_steps=5 format=3 uid="uid://b8ccn3wy63r4w"]
 
-[ext_resource type="Script" path="res://Scenes/NPC/Brute/EnemyBrute.gd" id="1_k8oy6"]
+[ext_resource type="Script" path="res://Scenes/NPC/Skeleton/EnemySkeleton.gd" id="1_p244l"]
 [ext_resource type="Texture2D" uid="uid://cfboo4djajq5g" path="res://Assets/Skeleton.png" id="2_ybagg"]
-[ext_resource type="PackedScene" uid="uid://doqjam87h7732" path="res://Scenes/Utility/hit_box.tscn" id="3_6qivo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ort83"]
+radius = 8.0
+height = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oybpc"]
 radius = 8.0
 height = 32.0
 
 [node name="EnemySkeleton" type="CharacterBody2D" groups=["Enemy"]]
 process_mode = 1
 position = Vector2(551, 250)
-script = ExtResource("1_k8oy6")
+script = ExtResource("1_p244l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 2)
@@ -21,7 +24,13 @@ shape = SubResource("CapsuleShape2D_ort83")
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_ybagg")
 
-[node name="HitBox" parent="." instance=ExtResource("3_6qivo")]
-position = Vector2(0, 13)
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 5
+collision_mask = 5
 
-[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-2, 2)
+shape = SubResource("CapsuleShape2D_oybpc")
+
+[node name="DisableHitboxTimer" type="Timer" parent="Hitbox"]
+wait_time = 0.5

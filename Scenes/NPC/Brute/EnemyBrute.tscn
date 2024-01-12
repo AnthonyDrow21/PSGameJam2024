@@ -2,9 +2,12 @@
 
 [ext_resource type="Script" path="res://Scenes/NPC/Brute/EnemyBrute.gd" id="1_urbfu"]
 [ext_resource type="Texture2D" uid="uid://c21fwq2irs8c7" path="res://Assets/Brute.png" id="2_2vj1i"]
-[ext_resource type="PackedScene" uid="uid://doqjam87h7732" path="res://Scenes/Utility/hit_box.tscn" id="3_fkghg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ort83"]
+radius = 53.0
+height = 118.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xwi1n"]
 radius = 53.0
 height = 118.0
 
@@ -14,6 +17,7 @@ position = Vector2(551, 250)
 script = ExtResource("1_urbfu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
 position = Vector2(-2, 4)
 shape = SubResource("CapsuleShape2D_ort83")
 
@@ -21,7 +25,13 @@ shape = SubResource("CapsuleShape2D_ort83")
 scale = Vector2(2, 2)
 texture = ExtResource("2_2vj1i")
 
-[node name="HitBox" parent="." instance=ExtResource("3_fkghg")]
-position = Vector2(-41, -21)
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 5
+collision_mask = 5
 
-[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-2, 4)
+shape = SubResource("CapsuleShape2D_xwi1n")
+
+[node name="DisableHitboxTimer" type="Timer" parent="Hitbox"]
+wait_time = 0.5
