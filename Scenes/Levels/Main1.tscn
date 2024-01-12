@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Levels/Main1.gd" id="1_ifvqx"]
 [ext_resource type="Texture2D" uid="uid://rvnog7dr0rk1" path="res://Assets/TX Tileset Grass.png" id="1_o13ts"]
 [ext_resource type="PackedScene" uid="uid://gr572puwdk2y" path="res://Scenes/Environment/stone_pillar.tscn" id="2_4mey3"]
+[ext_resource type="Script" path="res://Scenes/Levels/Corruption.gd" id="2_6relg"]
 [ext_resource type="PackedScene" uid="uid://du5q1ptq7fmw" path="res://Scenes/NPC/Brute/EnemyBrute.tscn" id="2_ixrcc"]
 [ext_resource type="PackedScene" uid="uid://ch4r163rdpvqp" path="res://Scenes/Player/Player.tscn" id="5_1dl50"]
 [ext_resource type="PackedScene" uid="uid://bv70yfk6036eo" path="res://Scenes/NPC/EnemySpawner.tscn" id="6_83mbe"]
@@ -11,7 +12,14 @@
 [ext_resource type="PackedScene" uid="uid://b0w72rvgw6gmi" path="res://Scenes/NPC/Wizard/EnemyWizard.tscn" id="8_0ssgb"]
 [ext_resource type="PackedScene" uid="uid://cj12h42s62ac8" path="res://Scenes/UI/HUD.tscn" id="8_bblo0"]
 [ext_resource type="PackedScene" uid="uid://bka6s55gapgh6" path="res://Scenes/Music/LevelMusicPlayer.tscn" id="9_dgq3r"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/PauseScreen.tscn" id="11_ruu0n"]
+[ext_resource type="PackedScene" uid="uid://nta62ow40nvt" path="res://Scenes/UI/PauseScreen.tscn" id="11_ruu0n"]
+
+[sub_resource type="Resource" id="Resource_v7bvu"]
+script = ExtResource("2_6relg")
+corruption = 0.0
+corruptionRate = 1.0
+corruptionThreshold = 100.0
+corruptionTier = 0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_arrt0"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -704,17 +712,6 @@ texture = ExtResource("1_o13ts")
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_ot4og")
 
-[sub_resource type="Gradient" id="Gradient_ska4p"]
-offsets = PackedFloat32Array(0, 0.538961)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_6x5hx"]
-gradient = SubResource("Gradient_ska4p")
-width = 256
-height = 256
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
 [sub_resource type="Gradient" id="Gradient_khynl"]
 offsets = PackedFloat32Array(0.12987, 0.558442)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -755,6 +752,7 @@ enemySpawnLocationType = 0
 process_mode = 3
 y_sort_enabled = true
 script = ExtResource("1_ifvqx")
+worldCorruption = SubResource("Resource_v7bvu")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_neyfx")
@@ -766,12 +764,6 @@ layer_0/tile_data = PackedInt32Array(2097165, 524288, 1, 2097166, 458752, 3, 209
 [node name="Player" parent="." instance=ExtResource("5_1dl50")]
 position = Vector2(50, 300)
 damageInterval = 0.25
-
-[node name="PointLight2D" type="PointLight2D" parent="Player"]
-position = Vector2(0, -0.999989)
-scale = Vector2(3.17187, 2.92188)
-color = Color(0.407843, 0.517647, 0.980392, 1)
-texture = SubResource("GradientTexture2D_6x5hx")
 
 [node name="PlayerSpawn" type="Marker2D" parent="."]
 process_mode = 1
@@ -849,8 +841,10 @@ autostart = true
 [node name="HUD" parent="." instance=ExtResource("8_bblo0")]
 
 [node name="LevelMusicPlayer" parent="." instance=ExtResource("9_dgq3r")]
+process_mode = 4
 
 [node name="PauseScreen" parent="." instance=ExtResource("11_ruu0n")]
+visible = false
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 blend_mode = 1
@@ -858,6 +852,11 @@ blend_mode = 1
 [node name="EnemySkeleton" parent="." instance=ExtResource("7_6vcex")]
 position = Vector2(513, 278)
 
+[node name="CorruptionTimer" type="Timer" parent="."]
+
 [connection signal="playerDied" from="Player" to="." method="_on_player_player_died"]
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
 [connection signal="timeout" from="EnemySpawner/ProgressTimer" to="EnemySpawner" method="_on_progress_timer_timeout"]
+[connection signal="timeout" from="CorruptionTimer" to="." method="_on_Corruption_timeout"]
+
+[editable path="Player"]

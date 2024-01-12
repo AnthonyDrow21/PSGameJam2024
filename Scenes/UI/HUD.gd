@@ -2,6 +2,7 @@ class_name HUD;
 extends CanvasLayer;
 
 @onready var player: Player = get_tree().get_first_node_in_group("Player")
+@onready var corruptionInfo: CorruptionInfo = get_tree().current_scene.worldCorruption;
 var maxTime;
 var currentTime: float = 0.0;
 var minutesLeft: int = 0;
@@ -14,7 +15,7 @@ func _ready() -> void:
 	
 	# Connect to player's invert signal on startup so we only have to do this once.
 	player.playerInverted.connect(onInvert);
-	updateXPBars(player.isInverted);
+	updateXPBars();
 	onInvert(player.isInverted);
 	
 	minutesLeft = (maxTime - currentTime) / 60;
@@ -32,22 +33,18 @@ func _process(delta: float) -> void:
 	minutesLeft = (maxTime - currentTime) / 60;
 	secondsLeft = fmod(maxTime - currentTime, 60);
 	$Timer.text = "%02d:%02d" % [minutesLeft, secondsLeft];
-	updateXPBars(player.isInverted);
-	
+	updateXPBars();
 	pass
 
 func showGameOver():
 	$ScreenMessage.show();
 
-func updateXPBars(isInverted):
-	if(isInverted == true):
-		$CurrentLevel.text = str(player.darkLevel);
-		$DarkLevelBar.max_value = player.requiredDarkXP;
-		$DarkLevelBar.value = player.darkXP;
-	else:
-		$CurrentLevel.text = str(player.lightLevel);
-		$LightLevelBar.max_value = player.requiredLightXP;
-		$LightLevelBar.value = player.lightXP;
+func updateXPBars():
+	$CurrentLevel.text = str(player.currentLevel);
+	$DarkLevelBar.max_value = player.requiredXp;
+	$DarkLevelBar.value = player.currentXp;
+	$LightLevelBar.max_value = player.requiredXp;
+	$LightLevelBar.value = player.currentXp;
 
 ###
 ### This function will invert the HUD of the Game based on whether we are in light mode or dark mode.

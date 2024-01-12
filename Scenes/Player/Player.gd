@@ -22,16 +22,11 @@ var currentHealth: float = MAX_HEALTH;
 @export var isInverted = false;
 var isDamagable = true;
 
-var totalLevel: int = 1;
+var currentLevel: int = 1;
 var totalXp: float = 0.0;
-var lightLevel: int = 0;
-var darkLevel: int = 0;
-var lightXP = 0.0;
-var darkXP = 0.0;
-@export var requiredLightXP = 10.0;
-@export var requiredDarkXP = 10.0;
-@export var lightXPIncrement = 5.0;
-@export var darkXPIncrement = 5.0;
+var currentXp = 0.0;
+@export var requiredXp = 10.0;
+@export var xpIncrement = 5.0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -131,37 +126,14 @@ func killPlayer() -> void:
 
 func gainXp(xp) -> void:
 	totalXp += xp;
-	if(isInverted == true):
-		darkXP += xp;
-	else:
-		lightXP += xp;
+	currentXp += xp;
 	
-	var ding = false;
-	var darkLvlUp = false;
-	if(darkXP >= requiredDarkXP):
-		ding = true;
-		darkLvlUp = true;
-	elif(lightXP >= requiredLightXP):
-		ding = true;
-	
-	if(ding == true):
-		lvlUp(darkLvlUp);
+	if(currentXp >= requiredXp):
+		lvlUp();
 
-func lvlUp(isDarkLevelUp):
-	totalLevel += 1;
-	if(isDarkLevelUp == true):
-		darkLevel += 1;
-		requiredDarkXP += darkXPIncrement;
-		darkXP = 0.0;
-		wand.darkLevelUp();
-		print("Dark Level ding")
-	else:
-		lightLevel += 1;
-		requiredLightXP += lightXPIncrement;
-		lightXP = 0.0;
-		wand.lightLevelUp();
-		print("Light Level ding")
-	
-	print("Ding! Level ", totalLevel, " achieved");
-	
-		
+func lvlUp():
+	currentLevel += 1;
+	requiredXp += xpIncrement;
+	currentXp = 0.0;
+	wand.levelUp();
+	print("Ding! Level ", currentLevel, " achieved");

@@ -8,6 +8,8 @@ var wand: MagicWand;
 var wandFound: bool = false;
 var isPaused: bool = false;
 
+@export var worldCorruption: CorruptionInfo;
+
 # Max time in seconds
 @export var maxTime = 600.0;
 
@@ -23,6 +25,14 @@ func _process(delta: float) -> void:
 	#print("The player's current speed is: ", player.speed);
 	if(player != null && wandFound == false):
 		checkForMagicWand(player);
+	
+	var light = player.get_node("PlayerLight");
+	if(player.isInverted == true):
+		if(light.texture_scale > 0.5):
+			light.texture_scale -= .002;
+	elif(player.isInverted == false):
+		if(light.texture_scale < 7.0):
+			light.texture_scale += .002;
 	
 	# DEBUG # prints the number of direct children of main every frame.
 	#var children = self.get_children();
@@ -71,3 +81,11 @@ func onWizardBlast(wizardBullet, position, rotation):
 	var wizBull = wizardBullet.instantiate();
 	wizBull.position = position
 	add_child(wizBull);
+
+
+func _on_Corruption_timeout() -> void:
+	worldCorruption.corruption += worldCorruption.corruptionRate;
+	if(worldCorruption.corruption >= worldCorruption.corruptionThreshold):
+		worldCorruption.corruptionTier += 1;
+		worldCorruption.corruptionRate *= 2;
+		worldCorruption.corruption = 0.0;

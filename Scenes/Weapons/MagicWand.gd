@@ -39,9 +39,5 @@ func altShoot(startRotation, startPosition):
 func _on_attack_timer_timeout() -> void:
 	readyToShoot = true;
 
-func lightLevelUp():
+func levelUp():
 	damageUpgrade += 1;
-
-func darkLevelUp():
-	pierceUpgrade += 1;
-	pass;
