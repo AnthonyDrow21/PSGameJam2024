@@ -1,8 +1,9 @@
 extends Enemy
 
 func _ready():
-	var speed = 90;
-	var enemyHealth = 60;
+	movementSpeed = 90;
+	enemyHealth = 60;
+	print(enemyHealth)
 
 func _physics_process(_delta):
 	var direction = global_position.direction_to(player.global_position)
