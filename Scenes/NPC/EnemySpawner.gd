@@ -3,7 +3,7 @@ extends Node2D
 @export var spawns: Array[SpawnInfo] = []
 
 @onready var player: Player = get_tree().get_first_node_in_group("Player")
-var skeleton = preload("res://Scenes/NPC/Enemy.tscn")
+var skeleton = preload("res://Scenes/NPC/Skeleton/EnemySkeleton.gd")
 var wizard = preload("res://Scenes/NPC/Wizard/EnemyWizard.tscn")
 var time = 0
 var playerIsDead: bool = false;

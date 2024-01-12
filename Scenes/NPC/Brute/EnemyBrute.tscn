@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://du5q1ptq7fmw"]
+
+[ext_resource type="Script" path="res://Scenes/NPC/Brute/EnemyBrute.gd" id="1_urbfu"]
+[ext_resource type="Texture2D" uid="uid://c21fwq2irs8c7" path="res://Assets/Brute.png" id="2_2vj1i"]
+[ext_resource type="PackedScene" uid="uid://doqjam87h7732" path="res://Scenes/Utility/hit_box.tscn" id="3_fkghg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ort83"]
+radius = 53.0
+height = 118.0
+
+[node name="EnemyBrute" type="CharacterBody2D" groups=["Enemy"]]
+process_mode = 1
+position = Vector2(551, 250)
+script = ExtResource("1_urbfu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 4)
+shape = SubResource("CapsuleShape2D_ort83")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_2vj1i")
+
+[node name="HitBox" parent="." instance=ExtResource("3_fkghg")]
+position = Vector2(-41, -21)
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]

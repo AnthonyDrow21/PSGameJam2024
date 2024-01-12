@@ -21,7 +21,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_pck4y")
 
 [node name="HitBox" parent="." instance=ExtResource("3_hgsgs")]
-position = Vector2(6, -23)
+position = Vector2(6, -17)
 scale = Vector2(1.39, 1.39)
 
 [node name="AttackTimer" type="Timer" parent="."]

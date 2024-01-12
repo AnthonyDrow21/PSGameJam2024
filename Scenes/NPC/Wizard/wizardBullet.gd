@@ -2,7 +2,7 @@ extends Area2D
 
 var bulletSpeed = 120.0
 var direction = Vector2(0,0)
-var damage = 25
+var damage = 10
 var readyToDie = false
 @onready var start = self.global_position
 @onready var player = get_tree().get_first_node_in_group("Player")
