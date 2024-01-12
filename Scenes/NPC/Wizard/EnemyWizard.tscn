@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0w72rvgw6gmi"]
+
+[ext_resource type="Script" path="res://Scenes/NPC/Wizard/EnemyWizard.gd" id="1_gymn8"]
+[ext_resource type="Texture2D" uid="uid://bmkkap6ux7apt" path="res://Assets/BlackMage_NoAnimation1.png" id="2_pck4y"]
+[ext_resource type="PackedScene" uid="uid://doqjam87h7732" path="res://Scenes/Utility/hit_box.tscn" id="3_hgsgs"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uphvn"]
+radius = 16.0
+height = 46.0
+
+[node name="EnemyWizard" type="CharacterBody2D" groups=["Enemy"]]
+script = ExtResource("1_gymn8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, -21)
+shape = SubResource("CapsuleShape2D_uphvn")
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["Wizard"]]
+position = Vector2(-3, -32)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_pck4y")
+
+[node name="HitBox" parent="." instance=ExtResource("3_hgsgs")]
+position = Vector2(6, -23)
+scale = Vector2(1.39, 1.39)
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

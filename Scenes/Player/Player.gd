@@ -163,3 +163,5 @@ func lvlUp(isDarkLevelUp):
 		print("Light Level ding")
 	
 	print("Ding! Level ", totalLevel, " achieved");
+	
+		

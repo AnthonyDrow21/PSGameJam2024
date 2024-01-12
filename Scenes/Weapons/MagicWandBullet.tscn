@@ -1,11 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://ljcwmgccruuh"]
 
 [ext_resource type="Script" path="res://Scenes/Weapons/MagicWandBullet.gd" id="1_dcf6r"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_jchxq"]
+[ext_resource type="Texture2D" uid="uid://oi71kn3rp05v" path="res://Assets/WizardBullet.png" id="2_uyuxb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_amqwi"]
-size = Vector2(8, 8)
+size = Vector2(9, 9)
 
 [node name="MagicWandBullet" type="Area2D" groups=["attack", "projectile"]]
 process_mode = 1
@@ -15,8 +14,7 @@ script = ExtResource("1_dcf6r")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0.029026, 0.0768795)
-scale = Vector2(6.5, 6.5)
-texture = SubResource("CanvasTexture_jchxq")
+texture = ExtResource("2_uyuxb")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
@@ -27,6 +25,7 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["attack"]]
+position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_amqwi")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
