@@ -15,11 +15,8 @@ func _on_timer_timeout():
 	if(playerIsDead == false):
 		time += 1
 		for i in spawns:
-<<<<<<< Updated upstream
+
 			if time >= i.timeStart and time <= i.timeEnd:
-=======
-			if time >= i.timeStart and time <= 600:
->>>>>>> Stashed changes
 				if i.spawnDelayCounter < i.enemySpawnDelay:
 					i.spawnDelayCounter += 1
 				else:
@@ -27,14 +24,11 @@ func _on_timer_timeout():
 					var counter = 0
 					while counter < i.enemyNum:
 						var enemySpawn = i.enemy.instantiate()
-<<<<<<< Updated upstream
 						if(i.enemySpawnLocationType == SpawnInfo.SpawnLocationType.RANDOM_OUTER):
 							enemySpawn.global_position = get_random_position();
 						elif(i.enemySpawnLocationType == SpawnInfo.SpawnLocationType.RANDOM_OUTER):
 							enemySpawn.global_position = get_random_position();
-=======
 						enemySpawn.global_position = get_random_position()
->>>>>>> Stashed changes
 						add_child(enemySpawn)
 						counter += 1
 
