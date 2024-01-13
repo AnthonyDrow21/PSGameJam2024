@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cj12h42s62ac8"]
+[gd_scene load_steps=14 format=3 uid="uid://cj12h42s62ac8"]
 
 [ext_resource type="Script" path="res://Scenes/UI/HUD.gd" id="1_71gr2"]
 
@@ -36,6 +36,23 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 gradient = SubResource("Gradient_yj46h")
 width = 1150
 height = 20
+
+[sub_resource type="Gradient" id="Gradient_r4icl"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eufr2"]
+gradient = SubResource("Gradient_r4icl")
+width = 200
+height = 25
+
+[sub_resource type="Gradient" id="Gradient_sc1ye"]
+offsets = PackedFloat32Array(0, 0.294872, 1)
+colors = PackedColorArray(0.310459, 0.000611742, 0.448091, 1, 0.312359, 0.136699, 0.449972, 1, 0.453249, 0.198358, 0.652932, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_42iuh"]
+gradient = SubResource("Gradient_sc1ye")
+width = 200
+height = 25
 
 [node name="HUD" type="CanvasLayer"]
 process_mode = 1
@@ -111,6 +128,20 @@ grow_vertical = 0
 texture_under = SubResource("GradientTexture2D_xrb6j")
 texture_progress = SubResource("GradientTexture2D_4ojp2")
 
-[node name="CorruptionBar" type="ProgressBar" parent="."]
-offset_right = 4.0
-offset_bottom = 27.0
+[node name="HBoxContainer" type="PanelContainer" parent="."]
+offset_right = 200.0
+offset_bottom = 25.0
+
+[node name="CorruptionBar" type="TextureProgressBar" parent="HBoxContainer"]
+layout_mode = 2
+texture_under = SubResource("GradientTexture2D_eufr2")
+texture_progress = SubResource("GradientTexture2D_42iuh")
+
+[node name="CorruptionTier" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
+
+[node name="CorruptionText" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Corruption"

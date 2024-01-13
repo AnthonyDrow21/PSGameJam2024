@@ -8,6 +8,8 @@ var wand: MagicWand;
 var wandFound: bool = false;
 var isPaused: bool = false;
 
+@onready var player: Player = get_node("Player");
+
 @export var worldCorruption: CorruptionInfo;
 
 # Max time in seconds
@@ -21,13 +23,14 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# Check every frame if the magic wand has been added. If it has, then wire up the shoot signal.
-	var player = get_node("Player");
-	#print("The player's current speed is: ", player.speed);
 	if(player != null && wandFound == false):
 		checkForMagicWand(player);
 	
 	var light = player.get_node("PlayerLight");
 	if(player.isInverted == true):
+		
+	
+	
 		if(light.texture_scale > 0.5):
 			light.texture_scale -= .002;
 	elif(player.isInverted == false):
@@ -71,6 +74,25 @@ func _input(event):
 		else:
 			tree.paused = false;
 			unpausePressed.emit();
+	
+	if event.is_action_pressed("invert"):
+		if(player.isInverted == true):
+			startOrResumeCorruption();
+		else:
+			pauseCorruption();
+	pass;
+
+func startOrResumeCorruption():
+	var cTimer: Timer = $CorruptionTimer;
+	if(cTimer.is_paused() == true):
+		cTimer.set_paused(false);
+	elif(cTimer.is_stopped() == true):
+		cTimer.start();
+
+func pauseCorruption():
+	var cTimer: Timer = $CorruptionTimer;
+	if(cTimer.is_paused() == false):
+		cTimer.set_paused(true);
 	pass;
 
 func _on_player_player_died() -> void:
@@ -85,6 +107,7 @@ func onWizardBlast(wizardBullet, position, rotation):
 
 func _on_Corruption_timeout() -> void:
 	worldCorruption.corruption += worldCorruption.corruptionRate;
+	print("World corrupted: ", worldCorruption.corruption);
 	if(worldCorruption.corruption >= worldCorruption.corruptionThreshold):
 		worldCorruption.corruptionTier += 1;
 		worldCorruption.corruptionRate *= 2;

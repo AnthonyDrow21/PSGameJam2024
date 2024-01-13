@@ -17,9 +17,11 @@
 [sub_resource type="Resource" id="Resource_v7bvu"]
 script = ExtResource("2_6relg")
 corruption = 0.0
-corruptionRate = 1.0
+corruptionRate = 5.0
 corruptionThreshold = 100.0
 corruptionTier = 0
+corruptionReduction = 0.0
+darknessPerTier = [7.0, 5.0, 3.0, 1.0, 0.5]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_arrt0"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -853,6 +855,8 @@ blend_mode = 1
 position = Vector2(513, 278)
 
 [node name="CorruptionTimer" type="Timer" parent="."]
+
+[node name="CorruptionCooldown" type="Timer" parent="CorruptionTimer"]
 
 [connection signal="playerDied" from="Player" to="." method="_on_player_player_died"]
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]

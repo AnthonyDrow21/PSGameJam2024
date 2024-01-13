@@ -3,6 +3,9 @@ extends CanvasLayer;
 
 @onready var player: Player = get_tree().get_first_node_in_group("Player")
 @onready var corruptionInfo: CorruptionInfo = get_tree().current_scene.worldCorruption;
+
+@onready var corruptionBar = self.find_child("CorruptionBar");
+@onready var corruptionTier = self.find_child("CorruptionTier");
 var maxTime;
 var currentTime: float = 0.0;
 var minutesLeft: int = 0;
@@ -34,6 +37,7 @@ func _process(delta: float) -> void:
 	secondsLeft = fmod(maxTime - currentTime, 60);
 	$Timer.text = "%02d:%02d" % [minutesLeft, secondsLeft];
 	updateXPBars();
+	updateCorruptionBars();
 	pass
 
 func showGameOver():
@@ -45,6 +49,11 @@ func updateXPBars():
 	$DarkLevelBar.value = player.currentXp;
 	$LightLevelBar.max_value = player.requiredXp;
 	$LightLevelBar.value = player.currentXp;
+
+func updateCorruptionBars():
+	corruptionBar.max_value = corruptionInfo.corruptionThreshold;
+	corruptionBar.value = corruptionInfo.corruption;
+	corruptionTier.text = str(corruptionInfo.corruptionTier);
 
 ###
 ### This function will invert the HUD of the Game based on whether we are in light mode or dark mode.
