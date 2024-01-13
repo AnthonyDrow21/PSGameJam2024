@@ -15,20 +15,20 @@ func _on_timer_timeout():
 	if(playerIsDead == false):
 		time += 1
 		for i in spawns:
-
 			if time >= i.timeStart and time <= i.timeEnd:
 				if i.spawnDelayCounter < i.enemySpawnDelay:
 					i.spawnDelayCounter += 1
 				else:
 					i.spawnDelayCounter = 0
 					var counter = 0
+					var points = arrangeInCircle(i.enemyNum, i.circleRadius, player.global_position);
+					
 					while counter < i.enemyNum:
 						var enemySpawn = i.enemy.instantiate()
 						if(i.enemySpawnLocationType == SpawnInfo.SpawnLocationType.RANDOM_OUTER):
 							enemySpawn.global_position = get_random_position();
-						elif(i.enemySpawnLocationType == SpawnInfo.SpawnLocationType.RANDOM_OUTER):
-							enemySpawn.global_position = get_random_position();
-						enemySpawn.global_position = get_random_position()
+						elif(i.enemySpawnLocationType == SpawnInfo.SpawnLocationType.CIRCLE):
+							enemySpawn.global_position = points[counter];
 						add_child(enemySpawn)
 						counter += 1
 
@@ -59,6 +59,19 @@ func get_random_position():
 	var xSpawn = randf_range(spawnPos1.x, spawnPos2.x)
 	var ySpawn = randf_range(spawnPos1.y, spawnPos2.y)
 	return Vector2(xSpawn, ySpawn)
+
+func arrangeInCircle(n: int, r: float, center = Vector2.ZERO, offsetAngle = 0.0) -> Array:
+	var output = []
+	var offset = 2.0 * PI / abs(n) # could verify that n is non-zero.
+	for i in range(n):
+		var pos = polar2Cartesian(r, i * offset + offsetAngle)
+		output.push_back(pos + center)
+	return output;
+
+func polar2Cartesian(r, theta) -> Vector2:
+	var x = r * cos(theta);
+	var y = r * sin(theta);
+	return Vector2(x, y);
 
 func onPlayerDied():
 	playerIsDead = true;

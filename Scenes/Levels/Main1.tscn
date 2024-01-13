@@ -20,7 +20,7 @@ corruption = 0.0
 corruptionRate = 5.0
 corruptionThreshold = 100.0
 corruptionTier = 0
-corruptionReduction = 0.0
+corruptionReduction = 2.0
 darknessPerTier = [7.0, 5.0, 3.0, 1.0, 0.5]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_arrt0"]
@@ -730,24 +730,30 @@ timeEnd = 600
 enemy = ExtResource("7_6vcex")
 enemyNum = 10
 enemySpawnDelay = 1
+corruptionTier = 0
+circleRadius = 0.0
 enemySpawnLocationType = 0
 
 [sub_resource type="Resource" id="Resource_gdhwj"]
 script = ExtResource("7_8u0y1")
-timeStart = 5
-timeEnd = 60
+timeStart = 30
+timeEnd = 120
 enemy = ExtResource("8_0ssgb")
-enemyNum = 5
-enemySpawnDelay = 1
-enemySpawnLocationType = 0
+enemyNum = 8
+enemySpawnDelay = 10
+corruptionTier = 0
+circleRadius = 300.0
+enemySpawnLocationType = 1
 
 [sub_resource type="Resource" id="Resource_pa2s0"]
 script = ExtResource("7_8u0y1")
 timeStart = 60
 timeEnd = 120
 enemy = ExtResource("2_ixrcc")
-enemyNum = 3
-enemySpawnDelay = 1
+enemyNum = 2
+enemySpawnDelay = 5
+corruptionTier = 0
+circleRadius = 0.0
 enemySpawnLocationType = 0
 
 [node name="Main" type="Node2D"]
@@ -766,6 +772,9 @@ layer_0/tile_data = PackedInt32Array(2097165, 524288, 1, 2097166, 458752, 3, 209
 [node name="Player" parent="." instance=ExtResource("5_1dl50")]
 position = Vector2(50, 300)
 damageInterval = 0.25
+
+[node name="Camera2D" parent="Player" index="4"]
+zoom = Vector2(2.5, 2.5)
 
 [node name="PlayerSpawn" type="Marker2D" parent="."]
 process_mode = 1
@@ -854,13 +863,16 @@ blend_mode = 1
 [node name="EnemySkeleton" parent="." instance=ExtResource("7_6vcex")]
 position = Vector2(513, 278)
 
-[node name="CorruptionTimer" type="Timer" parent="."]
+[node name="CorruptionIncreaseTimer" type="Timer" parent="."]
 
-[node name="CorruptionCooldown" type="Timer" parent="CorruptionTimer"]
+[node name="CorruptionCooldown" type="Timer" parent="CorruptionIncreaseTimer"]
+
+[node name="CorruptionReductionTimer" type="Timer" parent="."]
 
 [connection signal="playerDied" from="Player" to="." method="_on_player_player_died"]
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
 [connection signal="timeout" from="EnemySpawner/ProgressTimer" to="EnemySpawner" method="_on_progress_timer_timeout"]
-[connection signal="timeout" from="CorruptionTimer" to="." method="_on_Corruption_timeout"]
+[connection signal="timeout" from="CorruptionIncreaseTimer" to="." method="_on_Corruption_timeout"]
+[connection signal="timeout" from="CorruptionReductionTimer" to="." method="_on_corruption_reduction_timer_timeout"]
 
 [editable path="Player"]
