@@ -26,3 +26,12 @@ func _physics_process(_delta):
 func _on_attack_timer_timeout():
 	magicReady = true
 
+func DamageEnemy(damage, incoming_dmg_pos):
+	Display_DMG(damage)
+	enemyHealth -= damage;
+	if enemyHealth <= 0:
+		player.gainXp(xpValue);
+		queue_free()
+	else:
+		var knockback_modifier = 5;
+		knockback_enemy(incoming_dmg_pos, damage, knockback_modifier)

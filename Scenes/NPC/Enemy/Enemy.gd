@@ -14,12 +14,15 @@ func _physics_process(_delta):
 	velocity = direction * movementSpeed
 	move_and_slide()
 
-func DamageEnemy(damage):
+func DamageEnemy(damage, incoming_dmg_pos):
 	Display_DMG(damage)
 	enemyHealth -= damage;
 	if enemyHealth <= 0:
 		player.gainXp(xpValue);
 		queue_free()
+	else:
+		var knockback_modifier = 1;
+		knockback_enemy(incoming_dmg_pos, damage, knockback_modifier)
 
 func damage_effect(EFFECT: PackedScene, effect_position: Vector2 = global_position):
 	if EFFECT:
@@ -32,3 +35,8 @@ func Display_DMG(damage: int):
 	var indicator = damage_effect(EnemyDMGAnim)
 	if indicator:
 		indicator.label.text = str(damage)
+
+func knockback_enemy(dmg_source_pos: Vector2, received_dmg: int, knockback_modifier: int):
+	var knockback_strength = received_dmg * knockback_modifier
+	var knockback = dmg_source_pos * knockback_strength
+	move_and_collide(knockback)
