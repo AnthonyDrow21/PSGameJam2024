@@ -15,6 +15,9 @@ height = 48.0
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_gymn8")
+movementSpeed = 30.0
+enemyHealth = 20
+knockbackValue = 15
 
 [node name="Hitbox" type="Area2D" parent="."]
 z_index = 3

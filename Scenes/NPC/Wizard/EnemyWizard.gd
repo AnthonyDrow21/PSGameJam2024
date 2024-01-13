@@ -8,9 +8,6 @@ var magicReady = false
 var wizardBullet = preload("res://Scenes/NPC/Wizard/wizardBullet.tscn")
 
 func _ready():
-	movementSpeed = 30;
-	enemyHealth = 20;
-	self.knockbackValue = 20;
 	self.wizardBlast.connect(getMain.onWizardBlast)
 
 func _physics_process(_delta):
