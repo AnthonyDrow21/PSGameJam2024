@@ -10,6 +10,7 @@ var wizardBullet = preload("res://Scenes/NPC/Wizard/wizardBullet.tscn")
 func _ready():
 	var movementSpeed = 15
 	var enemyHealth = 10
+	self.knockbackValue = 30;
 
 func _physics_process(_delta):
 	if magicReady == true:
@@ -20,13 +21,6 @@ func _physics_process(_delta):
 	var direction = global_position.direction_to(player.global_position)
 	velocity = direction * movementSpeed
 	move_and_slide()
-
-func DamageEnemy(damage):
-	Display_DMG(damage)
-	enemyHealth -= damage;
-	if enemyHealth <= 0:
-		player.gainXp(xpValue);
-		queue_free()
 
 func damage_effect(EFFECT: PackedScene, effect_position: Vector2 = global_position):
 	if EFFECT:

@@ -1,19 +1,14 @@
 extends Enemy;
 
+func _ready():
+	#movementSpeed = 30;
+	#enemyHealth = 5;
+	self.knockbackValue = 5;
+	
 func _physics_process(_delta):
 	var direction = global_position.direction_to(player.global_position)
 	velocity = direction * movementSpeed
 	move_and_slide()
-
-func DamageEnemy(damage, incoming_dmg_pos):
-	Display_DMG(damage)
-	enemyHealth -= damage;
-	if enemyHealth <= 0:
-		player.gainXp(xpValue);
-		queue_free()
-	else:
-		var knockback_modifier = 10;
-		knockback_enemy(incoming_dmg_pos, damage, knockback_modifier)
 
 func damage_effect(EFFECT: PackedScene, effect_position: Vector2 = global_position):
 	if EFFECT: 

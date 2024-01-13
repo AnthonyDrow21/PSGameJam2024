@@ -732,7 +732,7 @@ enemySpawnLocationType = 0
 
 [sub_resource type="Resource" id="Resource_gdhwj"]
 script = ExtResource("7_8u0y1")
-timeStart = 30
+timeStart = 5
 timeEnd = 60
 enemy = ExtResource("8_0ssgb")
 enemyNum = 5
