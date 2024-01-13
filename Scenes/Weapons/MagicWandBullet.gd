@@ -4,7 +4,7 @@ extends Area2D
 @onready var enemies = get_tree().get_nodes_in_group("Enemy");
 
 @export var bulletSpeed = 200.0;
-@export var damage = 5;
+@export var damage = 1;
 @export var pierce = 2;
 
 var targetVector = Vector2.RIGHT;
@@ -47,5 +47,5 @@ func _on_area_2d_area_entered(area):
 	# TODO : fix this line: The group of parent is Enemy as intended.  Was there something else 
 	#			broken here?
 	if(parent.is_in_group("Enemy") == true):
-		parent.DamageEnemy(self.damage);
+		parent.DamageEnemy(self.damage, targetVector, parent.knockbackValue);
 		_Enemy_Hit()

@@ -1,19 +1,17 @@
 extends Enemy;
 
+func _ready():
+	#movementSpeed = 30;
+	#enemyHealth = 5;
+	self.knockbackValue = 5;
+	
 func _physics_process(_delta):
 	var direction = global_position.direction_to(player.global_position)
 	velocity = direction * movementSpeed
 	move_and_slide()
 
-func DamageEnemy(damage):
-	Display_DMG(damage)
-	enemyHealth -= damage;
-	if enemyHealth <= 0:
-		player.gainXp(xpValue);
-		queue_free()
-
 func damage_effect(EFFECT: PackedScene, effect_position: Vector2 = global_position):
-	if EFFECT:
+	if EFFECT: 
 		var effect = EFFECT.instantiate()
 		get_tree().current_scene.add_child(effect)
 		effect.global_position = effect_position
