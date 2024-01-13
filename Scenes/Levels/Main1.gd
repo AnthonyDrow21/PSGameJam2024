@@ -26,17 +26,6 @@ func _process(delta: float) -> void:
 	if(player != null && wandFound == false):
 		checkForMagicWand(player);
 	
-	var light = player.get_node("PlayerLight");
-	if(player.isInverted == true):
-		
-	
-	
-		if(light.texture_scale > 0.5):
-			light.texture_scale -= .002;
-	elif(player.isInverted == false):
-		if(light.texture_scale < 7.0):
-			light.texture_scale += .002;
-	
 	# DEBUG # prints the number of direct children of main every frame.
 	#var children = self.get_children();
 	#print(children.size());
@@ -83,16 +72,18 @@ func _input(event):
 	pass;
 
 func startOrResumeCorruption():
-	var cTimer: Timer = $CorruptionTimer;
+	$CorruptionReductionTimer.stop();
+	var cTimer: Timer = $CorruptionIncreaseTimer;
 	if(cTimer.is_paused() == true):
 		cTimer.set_paused(false);
 	elif(cTimer.is_stopped() == true):
 		cTimer.start();
 
 func pauseCorruption():
-	var cTimer: Timer = $CorruptionTimer;
-	if(cTimer.is_paused() == false):
-		cTimer.set_paused(true);
+	$CorruptionReductionTimer.start();
+	var cIncreaseTimer: Timer = $CorruptionIncreaseTimer;
+	if(cIncreaseTimer.is_paused() == false):
+		cIncreaseTimer.set_paused(true);
 	pass;
 
 func _on_player_player_died() -> void:
@@ -109,6 +100,23 @@ func _on_Corruption_timeout() -> void:
 	worldCorruption.corruption += worldCorruption.corruptionRate;
 	print("World corrupted: ", worldCorruption.corruption);
 	if(worldCorruption.corruption >= worldCorruption.corruptionThreshold):
-		worldCorruption.corruptionTier += 1;
-		worldCorruption.corruptionRate *= 2;
-		worldCorruption.corruption = 0.0;
+		onCorruptionIncrease();
+
+
+func _on_corruption_reduction_timer_timeout() -> void:
+	if(worldCorruption.corruption > 0):
+		print("corruption reduced");
+		worldCorruption.corruption = max(0.0, worldCorruption.corruption - worldCorruption.corruptionReduction);
+
+func onCorruptionIncrease():
+	worldCorruption.corruptionTier += 1;
+	worldCorruption.corruptionRate *= 2;
+	worldCorruption.corruption = 0.0;
+	
+	# Modify the darkness value of the player.
+	var darknessTier = clamp(worldCorruption.corruptionTier, 0, worldCorruption.darknessPerTier.size() - 1);
+	var darknessValue = worldCorruption.darknessPerTier[darknessTier];
+	var light = player.get_node("PlayerLight");
+	light.texture_scale = darknessValue;
+	
+	
