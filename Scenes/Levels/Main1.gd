@@ -8,6 +8,9 @@ var wand: MagicWand;
 var wandFound: bool = false;
 var isPaused: bool = false;
 
+var shotGun: ShotGun;
+var shotGunFound: bool = false;
+
 @onready var player: Player = get_node("Player");
 
 @export var worldCorruption: CorruptionInfo;
@@ -23,8 +26,10 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# Check every frame if the magic wand has been added. If it has, then wire up the shoot signal.
-	if(player != null && wandFound == false):
+	if(wandFound == false):
 		checkForMagicWand(player);
+	if(shotGunFound == false):
+		checkForShotGun(player);
 	
 	# DEBUG # prints the number of direct children of main every frame.
 	#var children = self.get_children();
@@ -44,6 +49,15 @@ func onMagicWandShoot(bullet: Variant, direction: Variant, location: Variant) ->
 	spawnedBullet.damage += wand.damageUpgrade;
 	add_child(spawnedBullet);
 	
+func onShotGunShoot(bullet: Variant, direction: Variant, location: Variant) -> void:
+	for angle in [-30, 0, 30]:
+		var spawnedBullet = bullet.instantiate()
+		spawnedBullet.position = location
+		spawnedBullet.damage += shotGun.damageUpgrade;
+		add_child(spawnedBullet)
+		var newVector = spawnedBullet.targetVector.rotated(deg_to_rad(angle))
+		spawnedBullet.targetVector = newVector
+	
 func checkForMagicWand(player) -> void:
 	if(wand == null):
 		wand = player.get_node("Wand");
@@ -54,6 +68,17 @@ func checkForMagicWand(player) -> void:
 			wand.magicWandShoot.connect(onMagicWandShoot);
 			wandFound = true;
 
+func checkForShotGun(player) -> void:
+	if(shotGun == null):
+		shotGun = player.get_node("ShotGun");
+	
+	if(shotGun != null):
+		var isConnected: bool = shotGun.is_connected("shotGunShoot", onShotGunShoot);
+		if(isConnected == false):
+			shotGun.shotGunShoot.connect(onShotGunShoot);
+			print("ShotGunShoot Connected")
+			shotGunFound = true;
+	
 func _input(event):
 	if event.is_action_pressed("Pause"):
 		var tree = get_tree();

@@ -6,8 +6,10 @@ signal playerInverted(isInverted);
 signal playerDied;
 
 const wandScene = preload("res://Scenes/Weapons/MagicWand.tscn");
+var shotGunScene = load("res://Scenes/Weapons/ShotGun.tscn");
 @onready var currentColor = $Sprite2D.get_self_modulate();
 @onready var wand: MagicWand = wandScene.instantiate();
+@onready var shotGun: ShotGun = shotGunScene.instantiate()
 
 @export var speed = 20.0;
 @export var attackSpeed = 1.0; # This is a measure of attacks per second.
@@ -33,6 +35,9 @@ func _ready() -> void:
 	# This adds a magic wand to the player by default.
 	wand.name = "Wand";
 	self.add_child(wand);
+	#TODO# Shotgun default for now, this will need changed in the future.
+	shotGun.name = "ShotGun";
+	self.add_child(shotGun);
 	
 	$DamageTimer.wait_time = damageInterval;
 	updateHealthBar();
@@ -97,6 +102,7 @@ func fireWeapons():
 		wand.altShoot(self.rotation, self.position);
 	else:
 		wand.shoot(self.rotation, self.position);
+		shotGun.shoot(self.rotation, self.position);
 
 func damagePlayer(damage):
 	currentHealth -= damage;
