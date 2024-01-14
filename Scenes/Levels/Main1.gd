@@ -49,7 +49,7 @@ func onMagicWandShoot(bullet: Variant, direction: Variant, location: Variant) ->
 	add_child(spawnedBullet);
 	
 func onShotGunShoot(bullet: Variant, direction: Variant, location: Variant) -> void:
-	for angle in [-30, 0, 30]:
+	for angle in [-30, -15, 0, 15, 30]:
 		var spawnedBullet = bullet.instantiate()
 		spawnedBullet.position = location
 		spawnedBullet.damage += shotGun.damageUpgrade;
