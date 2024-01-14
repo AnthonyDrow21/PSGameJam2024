@@ -26,6 +26,8 @@ func _on_area_2d_area_entered(area):
 	if(parent.is_in_group("Player") == true):
 		parent.damagePlayer(damage);
 		readyToDie = true
+	elif(parent.is_in_group("Projectile") == true):
+		readyToDie = true
 		
 func _on_timer_timeout():
 	readyToDie = true
