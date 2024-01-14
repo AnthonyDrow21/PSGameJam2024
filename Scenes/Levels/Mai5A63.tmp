@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dhyngl3yw2nlk"]
+[gd_scene load_steps=24 format=3 uid="uid://dhyngl3yw2nlk"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Main1.gd" id="1_ifvqx"]
 [ext_resource type="Texture2D" uid="uid://rvnog7dr0rk1" path="res://Assets/TX Tileset Grass.png" id="1_o13ts"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cj12h42s62ac8" path="res://Scenes/UI/HUD.tscn" id="8_bblo0"]
 [ext_resource type="PackedScene" uid="uid://bka6s55gapgh6" path="res://Scenes/Music/LevelMusicPlayer.tscn" id="9_dgq3r"]
 [ext_resource type="PackedScene" path="res://Scenes/UI/PauseScreen.tscn" id="11_ruu0n"]
+[ext_resource type="Script" path="res://Scenes/Levels/CorruptionControl.gd" id="14_j7wg1"]
 
 [sub_resource type="Resource" id="Resource_v7bvu"]
 script = ExtResource("2_6relg")
@@ -782,7 +783,6 @@ position = Vector2(50, 300)
 
 [node name="PillarControl" type="Node2D" parent="."]
 process_mode = 1
-z_as_relative = false
 y_sort_enabled = true
 
 [node name="StonePillar6" parent="PillarControl" instance=ExtResource("2_4mey3")]
@@ -873,15 +873,13 @@ process_mode = 1
 [node name="CorruptionReductionTimer" type="Timer" parent="."]
 process_mode = 1
 
-[node name="WorldCorruptionDelay" type="Timer" parent="."]
-wait_time = 0.1
-one_shot = true
+[node name="CorruptionControl" type="Node2D" parent="."]
+script = ExtResource("14_j7wg1")
 
 [connection signal="playerDied" from="Player" to="." method="_on_player_player_died"]
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
 [connection signal="timeout" from="EnemySpawner/ProgressTimer" to="EnemySpawner" method="_on_progress_timer_timeout"]
 [connection signal="timeout" from="CorruptionIncreaseTimer" to="." method="_on_Corruption_timeout"]
 [connection signal="timeout" from="CorruptionReductionTimer" to="." method="_on_corruption_reduction_timer_timeout"]
-[connection signal="timeout" from="WorldCorruptionDelay" to="." method="_on_world_corruption_delay_timeout"]
 
 [editable path="Player"]

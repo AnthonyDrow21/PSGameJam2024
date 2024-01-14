@@ -108,3 +108,4 @@ texture = SubResource("GradientTexture2D_bprlt")
 texture_scale = 7.0
 
 [connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]

@@ -144,3 +144,12 @@ func lvlUp():
 	currentXp = 0.0;
 	wand.levelUp();
 	print("Ding! Level ", currentLevel, " achieved");
+	
+#Function Handling World Corruption Damage
+func _on_hit_box_area_entered(area):
+	var corruptionDamage = 5;
+	var parent = area.get_parent();
+	if(parent.is_in_group("Corruption") == true):
+		print("Touched Corruption")
+		self.damagePlayer(corruptionDamage);
+
