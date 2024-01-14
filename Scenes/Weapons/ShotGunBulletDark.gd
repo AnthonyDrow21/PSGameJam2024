@@ -1,4 +1,4 @@
-class_name ShotGunBullet;
+class_name ShotGunBulletDark;
 extends Area2D
 
 @onready var enemies = get_tree().get_nodes_in_group("Enemy");
@@ -50,3 +50,4 @@ func _on_area_2d_area_entered(area):
 	if(parent.is_in_group("Enemy") == true):
 		parent.DamageEnemy(self.damage, targetVector, parent.knockbackValue);
 		_Enemy_Hit()
+
