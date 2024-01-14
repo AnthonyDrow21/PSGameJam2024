@@ -45,8 +45,7 @@ func onMagicWandShoot(bullet: Variant, direction: Variant, location: Variant) ->
 	## ready function will think the bullet's position is zero rather than the player's position.
 	var spawnedBullet = bullet.instantiate();
 	spawnedBullet.position = location;
-	#applyUpgrades(spawnedBullet);
-	spawnedBullet.damage += wand.damageUpgrade;
+	spawnedBullet.applyUpgrades(wand);
 	add_child(spawnedBullet);
 	
 func onShotGunShoot(bullet: Variant, direction: Variant, location: Variant) -> void:
@@ -123,14 +122,12 @@ func onWizardBlast(wizardBullet, position, rotation):
 
 func _on_Corruption_timeout() -> void:
 	worldCorruption.corruption += worldCorruption.corruptionRate;
-	print("World corrupted: ", worldCorruption.corruption);
 	if(worldCorruption.corruption >= worldCorruption.corruptionThreshold):
 		onCorruptionIncrease();
 
 
 func _on_corruption_reduction_timer_timeout() -> void:
 	if(worldCorruption.corruption > 0):
-		print("corruption reduced");
 		worldCorruption.corruption = max(0.0, worldCorruption.corruption - worldCorruption.corruptionReduction);
 
 func onCorruptionIncrease():

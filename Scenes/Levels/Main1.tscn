@@ -864,10 +864,13 @@ blend_mode = 1
 position = Vector2(513, 278)
 
 [node name="CorruptionIncreaseTimer" type="Timer" parent="."]
+process_mode = 1
 
 [node name="CorruptionCooldown" type="Timer" parent="CorruptionIncreaseTimer"]
+process_mode = 1
 
 [node name="CorruptionReductionTimer" type="Timer" parent="."]
+process_mode = 1
 
 [connection signal="playerDied" from="Player" to="." method="_on_player_player_died"]
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]

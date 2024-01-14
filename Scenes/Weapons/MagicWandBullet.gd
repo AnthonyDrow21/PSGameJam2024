@@ -5,7 +5,7 @@ extends Area2D
 
 @export var bulletSpeed = 200.0;
 @export var damage = 1;
-@export var pierce = 2;
+@export var pierce = 1;
 
 var targetVector = Vector2.RIGHT;
 var closestEnemy;
@@ -49,3 +49,8 @@ func _on_area_2d_area_entered(area):
 	if(parent.is_in_group("Enemy") == true):
 		parent.DamageEnemy(self.damage, targetVector, parent.knockbackValue);
 		_Enemy_Hit()
+
+func applyUpgrades(wand):
+	self.damage += wand.damageUpgrade;
+	self.bulletSpeed += wand.speedUpgrade;
+	self.pierce += wand.pierceUpgrade;

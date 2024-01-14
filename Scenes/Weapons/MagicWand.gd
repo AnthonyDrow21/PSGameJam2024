@@ -1,6 +1,8 @@
 class_name MagicWand
 extends Area2D
 
+enum WandUpgrades{DAMAGE, SPEED, PIERCING};
+
 signal magicWandShoot(bullet, direction, location);
 signal magicWandAltFire(bullet)
 
@@ -40,4 +42,14 @@ func _on_attack_timer_timeout() -> void:
 	readyToShoot = true;
 
 func levelUp():
-	damageUpgrade += 1;
+	var randomUpgrade = WandUpgrades.values()[randi() % WandUpgrades.size()];	
+	match randomUpgrade:
+		WandUpgrades.DAMAGE:
+			damageUpgrade += 1;
+			print("Wand damage upgraded");
+		WandUpgrades.SPEED:
+			speedUpgrade += 20;
+			print("Wand speed upgraded");
+		WandUpgrades.PIERCING:
+			pierceUpgrade += 1;
+			print("Wand pierce upgraded");
