@@ -21,6 +21,7 @@ var shotGunFound: bool = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:	
+	var invertedSetting = player.playerInverted
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -49,14 +50,21 @@ func onMagicWandShoot(bullet: Variant, direction: Variant, location: Variant) ->
 	add_child(spawnedBullet);
 	
 func onShotGunShoot(bullet: Variant, direction: Variant, location: Variant) -> void:
-	for angle in [-30, -15, 0, 15, 30]:
-		var spawnedBullet = bullet.instantiate()
-		spawnedBullet.position = location
-		spawnedBullet.damage += shotGun.damageUpgrade;
-		add_child(spawnedBullet)
-		var newVector = spawnedBullet.targetVector.rotated(deg_to_rad(angle))
-		spawnedBullet.targetVector = newVector
-	
+	var invertedSetting = player.isInverted
+	#TODO# Fire multiple shots for the Light version and a single large shot for Dark.
+	if(invertedSetting == false):
+		for angle in [-30, -15, 0, 15, 30]:
+			var spawnedBullet = bullet.instantiate()
+			spawnedBullet.position = location
+			spawnedBullet.damage += shotGun.damageUpgrade;
+			add_child(spawnedBullet)
+			var newVector = spawnedBullet.targetVector.rotated(deg_to_rad(angle))
+			spawnedBullet.targetVector = newVector
+	if(invertedSetting == true):
+		var spawnedBullet = bullet.instantiate();
+		spawnedBullet.position = location;
+		add_child(spawnedBullet);
+
 func checkForMagicWand(player) -> void:
 	if(wand == null):
 		wand = player.get_node("Wand");

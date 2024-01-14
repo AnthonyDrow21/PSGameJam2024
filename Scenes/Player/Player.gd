@@ -100,6 +100,7 @@ func invert():
 func fireWeapons():
 	if(isInverted == true):
 		wand.altShoot(self.rotation, self.position);
+		shotGun.altShoot(self.rotation, self.position);
 	else:
 		wand.shoot(self.rotation, self.position);
 		shotGun.shoot(self.rotation, self.position);

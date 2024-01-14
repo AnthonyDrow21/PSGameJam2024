@@ -5,7 +5,7 @@ signal shotGunShoot(bullet, direction, location);
 
 #TODO# Will need a new scene for the shotgun's bullet
 var bullet = preload("res://Scenes/Weapons/ShotGunBullet.tscn");
-var darkBullet = preload("res://Scenes/Weapons/MagicWandBulletDark.tscn");
+var darkBullet = preload("res://Scenes/Weapons/ShotGunBulletDark.tscn");
 var readyToShoot = true;
 
 var speedUpgrade = 0.0;
@@ -31,10 +31,11 @@ func shoot(startRotation, startPosition):
 
 func altShoot(startRotation, startPosition):
 	if(readyToShoot == true):
+		$AttackTimer.start();
+		readyToShoot = false;
+		shotGunShoot.emit(darkBullet, startRotation, startPosition);
 		pass;
 	pass;
-		#magicWandShoot.emit(darkBullet, startRotation, startPosition);
-
 
 func _on_attack_timer_timeout() -> void:
 	readyToShoot = true;
