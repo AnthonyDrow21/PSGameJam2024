@@ -87,7 +87,7 @@ func _input(event):
 
 # Invert the color of the sprite
 func invert():
-	var invertedColor = Color(1.0 - currentColor.r, 1.0 - currentColor.g, 1.0 - currentColor.b);
+	var invertedColor = Color(1 - currentColor.r, 1 - currentColor.g, 1 - currentColor.b);
 	$Sprite2D.set_self_modulate(invertedColor);
 	currentColor = $Sprite2D.self_modulate;	
 	isInverted = !isInverted;
