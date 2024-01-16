@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oi71kn3rp05v"
-path="res://.godot/imported/WizardBullet.png-9ae11cea93acfcdba9fc8886a97876fd.ctex"
+uid="uid://43xsvl6laoor"
+path="res://.godot/imported/PyramidManIdle-Sheet.png-96b1d04a99c83ccbf124ea4150007a2d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/WizardBullet.png"
-dest_files=["res://.godot/imported/WizardBullet.png-9ae11cea93acfcdba9fc8886a97876fd.ctex"]
+source_file="res://Assets/Music/PyramidManIdle-Sheet.png"
+dest_files=["res://.godot/imported/PyramidManIdle-Sheet.png-96b1d04a99c83ccbf124ea4150007a2d.ctex"]
 
 [params]
 

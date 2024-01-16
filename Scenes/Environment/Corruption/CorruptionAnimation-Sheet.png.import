@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvwasit21c07r"
-path="res://.godot/imported/ShotGunBulletDark.png-d883206c748d8d98a509995d03c1321c.ctex"
+uid="uid://bhgp8i3jr4u2b"
+path="res://.godot/imported/CorruptionAnimation-Sheet.png-42a413c244117964608b45ff537731bc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/ShotGunBulletDark.png"
-dest_files=["res://.godot/imported/ShotGunBulletDark.png-d883206c748d8d98a509995d03c1321c.ctex"]
+source_file="res://Scenes/Environment/Corruption/CorruptionAnimation-Sheet.png"
+dest_files=["res://.godot/imported/CorruptionAnimation-Sheet.png-42a413c244117964608b45ff537731bc.ctex"]
 
 [params]
 

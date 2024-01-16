@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b0w72rvgw6gmi"]
 
 [ext_resource type="Script" path="res://Scenes/NPC/Wizard/EnemyWizard.gd" id="1_gymn8"]
-[ext_resource type="Texture2D" uid="uid://bmkkap6ux7apt" path="res://Assets/BlackMage_NoAnimation1.png" id="2_pck4y"]
+[ext_resource type="Texture2D" uid="uid://c7qb6si6pawab" path="res://Assets/EnemySprites/BlackMage_NoAnimation1.png" id="2_mqnvi"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aefyw"]
 radius = 20.0
@@ -12,8 +12,8 @@ radius = 21.0
 height = 48.0
 
 [node name="EnemyWizard" type="CharacterBody2D" groups=["Enemy"]]
-collision_layer = 5
-collision_mask = 5
+collision_layer = 6
+collision_mask = 6
 script = ExtResource("1_gymn8")
 movementSpeed = 30.0
 enemyHealth = 20
@@ -39,7 +39,7 @@ shape = SubResource("CapsuleShape2D_uphvn")
 z_index = -1
 position = Vector2(-5, -32)
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_pck4y")
+texture = ExtResource("2_mqnvi")
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 5.0

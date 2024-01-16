@@ -87,7 +87,7 @@ func _input(event):
 
 # Invert the color of the sprite
 func invert():
-	var invertedColor = Color(1.0 - currentColor.r, 1.0 - currentColor.g, 1.0 - currentColor.b);
+	var invertedColor = Color(1 - currentColor.r, 1 - currentColor.g, 1 - currentColor.b);
 	$Sprite2D.set_self_modulate(invertedColor);
 	currentColor = $Sprite2D.self_modulate;	
 	isInverted = !isInverted;
@@ -144,3 +144,12 @@ func lvlUp():
 	currentXp = 0.0;
 	wand.levelUp();
 	print("Ding! Level ", currentLevel, " achieved");
+	
+#Function Handling World Corruption Damage
+func _on_hit_box_area_entered(area):
+	var corruptionDamage = 5;
+	var parent = area.get_parent();
+	if(parent.is_in_group("Corruption") == true):
+		print("Touched Corruption")
+		self.damagePlayer(corruptionDamage);
+

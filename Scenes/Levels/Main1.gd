@@ -4,6 +4,10 @@ extends Node2D
 signal pausePressed();
 signal unpausePressed();
 
+var wCorrupt = preload("res://Scenes/Environment/Corruption/WorldCorruption.tscn")
+var placeWorldCorruption = false;
+var worldCorruptionDelayTimerReady = true;
+
 var wand: MagicWand;
 var wandFound: bool = false;
 var isPaused: bool = false;
@@ -27,6 +31,15 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# Check every frame if the magic wand has been added. If it has, then wire up the shoot signal.
+	
+	if placeWorldCorruption == true:
+		if worldCorruptionDelayTimerReady == true:
+			var wCorruptInst = wCorrupt.instantiate()
+			wCorruptInst.position = player.position
+			add_child(wCorruptInst)
+			worldCorruptionDelayTimerReady = false
+			$WorldCorruptionDelay.start()
+	
 	if(wandFound == false):
 		checkForMagicWand(player);
 	if(shotGunFound == false):
@@ -99,8 +112,10 @@ func _input(event):
 	if event.is_action_pressed("invert"):
 		if(player.isInverted == true):
 			startOrResumeCorruption();
+			placeWorldCorruption = true
 		else:
 			pauseCorruption();
+			placeWorldCorruption = false
 	pass;
 
 func startOrResumeCorruption():
@@ -126,7 +141,7 @@ func onWizardBlast(wizardBullet, position, rotation):
 	var wizBull = wizardBullet.instantiate();
 	wizBull.position = position
 	add_child(wizBull);
-
+###
 
 func _on_Corruption_timeout() -> void:
 	worldCorruption.corruption += worldCorruption.corruptionRate;
@@ -139,6 +154,7 @@ func _on_corruption_reduction_timer_timeout() -> void:
 		worldCorruption.corruption = max(0.0, worldCorruption.corruption - worldCorruption.corruptionReduction);
 
 func onCorruptionIncrease():
+	##TODO Add in change to variable that controls spawnrate - tie to cooldown? Possibly create more children at once
 	worldCorruption.corruptionTier += 1;
 	worldCorruption.corruptionRate *= 2;
 	worldCorruption.corruption = 0.0;
@@ -149,4 +165,5 @@ func onCorruptionIncrease():
 	var light = player.get_node("PlayerLight");
 	light.texture_scale = darknessValue;
 	
-	
+func _on_world_corruption_delay_timeout():
+	worldCorruptionDelayTimerReady = true

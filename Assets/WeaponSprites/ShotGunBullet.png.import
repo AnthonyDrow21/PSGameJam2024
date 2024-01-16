@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1s4dboo3x3xw"
-path="res://.godot/imported/Donut Test.png-8d06678e7c2377b04c6fa997a44eec14.ctex"
+uid="uid://bbih3n1ddsg36"
+path="res://.godot/imported/ShotGunBullet.png-f54680da96e66961fc76274f3eb2338f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Donut Test.png"
-dest_files=["res://.godot/imported/Donut Test.png-8d06678e7c2377b04c6fa997a44eec14.ctex"]
+source_file="res://Assets/WeaponSprites/ShotGunBullet.png"
+dest_files=["res://.godot/imported/ShotGunBullet.png-f54680da96e66961fc76274f3eb2338f.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bjiftpo171fln"]
 
 [ext_resource type="Script" path="res://Scenes/NPC/Bomberman/EnemyBomberman.gd" id="1_4opxg"]
-[ext_resource type="Texture2D" uid="uid://bbkvqm5ta33fr" path="res://Assets/Bomberman.png" id="2_8uout"]
+[ext_resource type="Texture2D" uid="uid://bbkvqm5ta33fr" path="res://Assets/EnemySprites/Bomberman.png" id="2_8uout"]
 [ext_resource type="PackedScene" uid="uid://doqjam87h7732" path="res://Scenes/Utility/hit_box.tscn" id="3_0a8ra"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ort83"]

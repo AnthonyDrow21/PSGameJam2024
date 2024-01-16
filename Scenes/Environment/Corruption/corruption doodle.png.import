@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbkvqm5ta33fr"
-path="res://.godot/imported/Bomberman.png-aa8042a05cd3e342f02b312699d7d0dc.ctex"
+uid="uid://o1xjaoeqlw6l"
+path="res://.godot/imported/corruption doodle.png-63c668f36110323ee518847517410a6d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Bomberman.png"
-dest_files=["res://.godot/imported/Bomberman.png-aa8042a05cd3e342f02b312699d7d0dc.ctex"]
+source_file="res://Scenes/Environment/Corruption/corruption doodle.png"
+dest_files=["res://.godot/imported/corruption doodle.png-63c668f36110323ee518847517410a6d.ctex"]
 
 [params]
 

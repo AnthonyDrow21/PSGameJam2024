@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://chq0by6buwvns"]
 
 [ext_resource type="Script" path="res://Scenes/NPC/Wizard/wizardBullet.gd" id="1_6vr60"]
-[ext_resource type="Texture2D" uid="uid://c1s4dboo3x3xw" path="res://Assets/Donut Test.png" id="2_3k224"]
+[ext_resource type="Texture2D" uid="uid://c1s4dboo3x3xw" path="res://Assets/EnemySprites/Donut Test.png" id="2_g8t2k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lixj0"]
 size = Vector2(19, 17)
@@ -13,7 +13,7 @@ collision_mask = 18
 script = ExtResource("1_6vr60")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_3k224")
+texture = ExtResource("2_g8t2k")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0.5, -1.5)
@@ -28,7 +28,7 @@ position = Vector2(0.5, -1.5)
 shape = SubResource("RectangleShape2D_lixj0")
 
 [node name="FadeTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 20.0
 one_shot = true
 autostart = true
 

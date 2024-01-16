@@ -1,9 +1,9 @@
 extends Enemy;
 
 func _ready():
-	#movementSpeed = 30;
-	#enemyHealth = 5;
-	self.knockbackValue = 5;
+	movementSpeed = 60;
+	enemyHealth = 25;
+	self.knockbackValue = 2.5;
 	#$AnimationPlayer
 	
 func _physics_process(_delta):

@@ -7,10 +7,12 @@ radius = 18.0
 height = 88.0
 
 [node name="StonePillar" type="Node2D"]
+z_as_relative = false
 y_sort_enabled = true
 
 [node name="StonePillar" type="Sprite2D" parent="."]
-position = Vector2(7, -79)
+z_as_relative = false
+position = Vector2(7, -77)
 texture = ExtResource("1_wy5gb")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

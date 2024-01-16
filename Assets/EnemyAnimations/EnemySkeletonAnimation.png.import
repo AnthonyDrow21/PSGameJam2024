@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxawf6dtcvp2s"
-path="res://.godot/imported/StonePillar.png-55ab95fa763b5a43112e6b3a97ad9b00.ctex"
+uid="uid://ciqp8gq1sym1u"
+path="res://.godot/imported/EnemySkeletonAnimation.png-4449ba190ae42db8cad5d1a389593ae3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/StonePillar.png"
-dest_files=["res://.godot/imported/StonePillar.png-55ab95fa763b5a43112e6b3a97ad9b00.ctex"]
+source_file="res://Assets/EnemyAnimations/EnemySkeletonAnimation.png"
+dest_files=["res://.godot/imported/EnemySkeletonAnimation.png-4449ba190ae42db8cad5d1a389593ae3.ctex"]
 
 [params]
 

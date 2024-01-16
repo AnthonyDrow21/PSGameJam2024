@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c21fwq2irs8c7"
-path="res://.godot/imported/Brute.png-01ad335cdc603814543a72e7e76c3048.ctex"
+uid="uid://c1s4dboo3x3xw"
+path="res://.godot/imported/Donut Test.png-62b45c1ce1f2489a915dde05c38b2d0e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Brute.png"
-dest_files=["res://.godot/imported/Brute.png-01ad335cdc603814543a72e7e76c3048.ctex"]
+source_file="res://Assets/EnemySprites/Donut Test.png"
+dest_files=["res://.godot/imported/Donut Test.png-62b45c1ce1f2489a915dde05c38b2d0e.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://obo6yhr1a1r"
-path="res://.godot/imported/TX Props.png-1a5440e097cdee3567c96918f446cf73.ctex"
+uid="uid://dvwasit21c07r"
+path="res://.godot/imported/ShotGunBulletDark.png-c38e18c2a039369fbfe62bef4bda46cd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/TX Props.png"
-dest_files=["res://.godot/imported/TX Props.png-1a5440e097cdee3567c96918f446cf73.ctex"]
+source_file="res://Assets/WeaponSprites/ShotGunBulletDark.png"
+dest_files=["res://.godot/imported/ShotGunBulletDark.png-c38e18c2a039369fbfe62bef4bda46cd.ctex"]
 
 [params]
 
