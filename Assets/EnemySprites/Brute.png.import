@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7qb6si6pawab"
-path="res://.godot/imported/BlackMage_NoAnimation1.png-972e6de78878ffa131a9789098569ec2.ctex"
+uid="uid://c21fwq2irs8c7"
+path="res://.godot/imported/Brute.png-a5bc8a8471dea7d1df27da680310882b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Music/BlackMage_NoAnimation1.png"
-dest_files=["res://.godot/imported/BlackMage_NoAnimation1.png-972e6de78878ffa131a9789098569ec2.ctex"]
+source_file="res://Assets/EnemySprites/Brute.png"
+dest_files=["res://.godot/imported/Brute.png-a5bc8a8471dea7d1df27da680310882b.ctex"]
 
 [params]
 

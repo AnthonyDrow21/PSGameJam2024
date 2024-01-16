@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://di0nq402o15r5"]
 
 [ext_resource type="Script" path="res://Scenes/Weapons/ShotGunBulletDark.gd" id="1_rlr5g"]
-[ext_resource type="Texture2D" uid="uid://dvwasit21c07r" path="res://Assets/ShotGunBulletDark.png" id="2_86nw5"]
+[ext_resource type="Texture2D" uid="uid://dvwasit21c07r" path="res://Assets/WeaponSprites/ShotGunBulletDark.png" id="2_86nw5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rxlw4"]
 size = Vector2(9, 9)

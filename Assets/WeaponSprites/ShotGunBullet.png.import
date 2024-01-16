@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ciqp8gq1sym1u"
-path="res://.godot/imported/EnemySkeletonAnimation.png-f14ff6a65bf5fae2508c6978a5611139.ctex"
+uid="uid://bbih3n1ddsg36"
+path="res://.godot/imported/ShotGunBullet.png-f54680da96e66961fc76274f3eb2338f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Animations/EnemySkeletonAnimation.png"
-dest_files=["res://.godot/imported/EnemySkeletonAnimation.png-f14ff6a65bf5fae2508c6978a5611139.ctex"]
+source_file="res://Assets/WeaponSprites/ShotGunBullet.png"
+dest_files=["res://.godot/imported/ShotGunBullet.png-f54680da96e66961fc76274f3eb2338f.ctex"]
 
 [params]
 

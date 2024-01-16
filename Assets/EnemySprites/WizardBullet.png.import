@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbih3n1ddsg36"
-path="res://.godot/imported/ShotGunBullet.png-3fe012a82c46782d9bab1c2f3930001f.ctex"
+uid="uid://oi71kn3rp05v"
+path="res://.godot/imported/WizardBullet.png-0e86fafc8521ccac990e8905664c073c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/ShotGunBullet.png"
-dest_files=["res://.godot/imported/ShotGunBullet.png-3fe012a82c46782d9bab1c2f3930001f.ctex"]
+source_file="res://Assets/EnemySprites/WizardBullet.png"
+dest_files=["res://.godot/imported/WizardBullet.png-0e86fafc8521ccac990e8905664c073c.ctex"]
 
 [params]
 

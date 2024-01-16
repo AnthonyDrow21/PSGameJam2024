@@ -13,6 +13,7 @@ config_version=5
 config/name="Survivors-Like"
 run/main_scene="res://Scenes/Levels/MainMenu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://Assets/icon.svg"
 
 [input]
@@ -54,6 +55,7 @@ Pause={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Loot"
+2d_physics/layer_6="FreeEnemy"
 
 [rendering]
 

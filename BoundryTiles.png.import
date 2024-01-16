@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvwasit21c07r"
-path="res://.godot/imported/ShotGunBulletDark.png-d883206c748d8d98a509995d03c1321c.ctex"
+uid="uid://d3037ujvawr5o"
+path="res://.godot/imported/BoundryTiles.png-005c66c177dc32d325b25d11304033e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/ShotGunBulletDark.png"
-dest_files=["res://.godot/imported/ShotGunBulletDark.png-d883206c748d8d98a509995d03c1321c.ctex"]
+source_file="res://BoundryTiles.png"
+dest_files=["res://.godot/imported/BoundryTiles.png-005c66c177dc32d325b25d11304033e8.ctex"]
 
 [params]
 

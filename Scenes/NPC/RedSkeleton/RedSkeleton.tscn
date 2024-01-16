@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b8ccn3wy63r4w"]
+[gd_scene load_steps=8 format=3 uid="uid://drjtdncp6aqen"]
 
-[ext_resource type="Script" path="res://Scenes/NPC/Skeleton/EnemySkeleton.gd" id="1_p244l"]
-[ext_resource type="Texture2D" uid="uid://ciqp8gq1sym1u" path="res://Assets/EnemyAnimations/EnemySkeletonAnimation.png" id="2_gi6vi"]
+[ext_resource type="Script" path="res://Scenes/NPC/RedSkeleton/RedSkeleton.gd" id="1_7bxyk"]
+[ext_resource type="Texture2D" uid="uid://duqv0ee6m8nfj" path="res://Assets/EnemyAnimations/EnemyRedSkeletonAnimation.png" id="2_qxdet"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ort83"]
 radius = 8.0
@@ -49,19 +49,17 @@ _data = {
 "Walk": SubResource("Animation_tt710")
 }
 
-[node name="EnemySkeleton" type="CharacterBody2D" groups=["Enemy"]]
+[node name="RedSkeleton" type="CharacterBody2D" groups=["Enemy"]]
 process_mode = 1
 position = Vector2(551, 250)
-collision_layer = 6
-collision_mask = 6
-script = ExtResource("1_p244l")
+script = ExtResource("1_7bxyk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 2)
 shape = SubResource("CapsuleShape2D_ort83")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_gi6vi")
+texture = ExtResource("2_qxdet")
 hframes = 8
 frame = 1
 

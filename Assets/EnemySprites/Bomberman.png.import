@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cju84lvt53qw5"
-path="res://.godot/imported/TX Tileset Sand.png-3a2f4473c2052c0274132ea74161abdc.ctex"
+uid="uid://bbkvqm5ta33fr"
+path="res://.godot/imported/Bomberman.png-8f0f9404d7cb725a25a94c131c189357.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/TX Tileset Sand.png"
-dest_files=["res://.godot/imported/TX Tileset Sand.png-3a2f4473c2052c0274132ea74161abdc.ctex"]
+source_file="res://Assets/EnemySprites/Bomberman.png"
+dest_files=["res://.godot/imported/Bomberman.png-8f0f9404d7cb725a25a94c131c189357.ctex"]
 
 [params]
 

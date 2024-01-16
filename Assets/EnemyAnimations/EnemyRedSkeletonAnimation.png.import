@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csrfjetq84yfe"
-path="res://.godot/imported/WorldCorruption.png-cfe54c6628e54d95c5b443a9190bd530.ctex"
+uid="uid://duqv0ee6m8nfj"
+path="res://.godot/imported/EnemyRedSkeletonAnimation.png-6f733d7a5b8b5758ed66ade91cfa1aac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/WorldCorruption.png"
-dest_files=["res://.godot/imported/WorldCorruption.png-cfe54c6628e54d95c5b443a9190bd530.ctex"]
+source_file="res://Assets/EnemyAnimations/EnemyRedSkeletonAnimation.png"
+dest_files=["res://.godot/imported/EnemyRedSkeletonAnimation.png-6f733d7a5b8b5758ed66ade91cfa1aac.ctex"]
 
 [params]
 
