@@ -14,6 +14,8 @@ var isPaused: bool = false;
 
 var shotGun: ShotGun;
 var shotGunFound: bool = false;
+var DarkSGCollide: ShotGunBulletDark;
+var DarkSGCofound: bool = false;
 
 @onready var player: Player = get_node("Player");
 
@@ -64,7 +66,6 @@ func onMagicWandShoot(bullet: Variant, direction: Variant, location: Variant) ->
 	
 func onShotGunShoot(bullet: Variant, direction: Variant, location: Variant) -> void:
 	var invertedSetting = player.isInverted
-	#TODO# Fire multiple shots for the Light version and a single large shot for Dark.
 	if(invertedSetting == false):
 		for angle in [-30, -15, 0, 15, 30]:
 			var spawnedBullet = bullet.instantiate()
@@ -77,6 +78,17 @@ func onShotGunShoot(bullet: Variant, direction: Variant, location: Variant) -> v
 		var spawnedBullet = bullet.instantiate();
 		spawnedBullet.position = location;
 		add_child(spawnedBullet);
+
+func onDarkShotGunCollide(bullet: Variant, direction: Variant, location: Variant) -> void:
+	#TODO# When the Dark Shot Gun shot collides with an enemy, split into a circle of shots.
+	$AttackTimer.start();
+	for angle in [0, 45, 90, 135, 180, 225, 270, 315]:
+		var spawnedBullet = bullet.instantiate()
+		spawnedBullet.position = location
+		#spawnedBullet.damage += shotGun.damageUpgrade;
+		add_child(spawnedBullet)
+		var newVector = spawnedBullet.targetVector.rotated(deg_to_rad(angle))
+		spawnedBullet.targetVector = newVector
 
 func checkForMagicWand(player) -> void:
 	if(wand == null):
@@ -98,7 +110,19 @@ func checkForShotGun(player) -> void:
 			shotGun.shotGunShoot.connect(onShotGunShoot);
 			print("ShotGunShoot Connected")
 			shotGunFound = true;
+			checkDarkShotGun(player)
+
+func checkDarkShotGun(player) -> void:
+	if (DarkSGCollide == null):  
+		DarkSGCollide = player.get_node("ShotGunBulletDark");
 	
+	if (DarkSGCollide != null):
+		var isConnected: bool = DarkSGCollide.is_connected("DarkShotGunCollide", onDarkShotGunCollide);
+		if(isConnected == false):
+			DarkSGCollide.DarkShotGunCollide.connect(onDarkShotGunCollide);
+			print("DarkShotGunCollide Connected")
+			DarkSGCofound = true;
+
 func _input(event):
 	if event.is_action_pressed("Pause"):
 		var tree = get_tree();

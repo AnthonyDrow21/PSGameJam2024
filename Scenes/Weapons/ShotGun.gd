@@ -3,7 +3,6 @@ extends Area2D
 
 signal shotGunShoot(bullet, direction, location);
 
-#TODO# Will need a new scene for the shotgun's bullet
 var bullet = preload("res://Scenes/Weapons/ShotGunBullet.tscn");
 var darkBullet = preload("res://Scenes/Weapons/ShotGunBulletDark.tscn");
 var readyToShoot = true;

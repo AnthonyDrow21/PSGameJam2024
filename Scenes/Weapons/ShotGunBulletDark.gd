@@ -7,6 +7,9 @@ extends Area2D
 @export var damage = 1;
 @export var pierce = 0;
 
+signal DarkShotGunCollide(bullet, direction, location);
+
+var bullet = preload("res://Scenes/Weapons/ShotGunBullet.tscn");
 var targetVector = Vector2.RIGHT;
 var closestEnemy;
 
@@ -37,9 +40,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 #Function defining the pierce quality
 #TODO# Determine if we want the pierce attribute for the shotgun in the future.
 func _Enemy_Hit(charge = 1):
-	pierce -= charge
-	if pierce <= 0:
-		queue_free()
+	queue_free()
 
 #Signal after Area2D is entered
 func _on_area_2d_area_entered(area):
@@ -49,5 +50,6 @@ func _on_area_2d_area_entered(area):
 	#			broken here?
 	if(parent.is_in_group("Enemy") == true):
 		parent.DamageEnemy(self.damage, targetVector, parent.knockbackValue);
+		#TODO# Add the splitting shot after colliding with the enemy.
+		DarkShotGunCollide.emit(bullet, targetVector, self.global_position)
 		_Enemy_Hit()
-
