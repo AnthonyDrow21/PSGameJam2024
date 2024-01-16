@@ -154,6 +154,7 @@ func _on_corruption_reduction_timer_timeout() -> void:
 		worldCorruption.corruption = max(0.0, worldCorruption.corruption - worldCorruption.corruptionReduction);
 
 func onCorruptionIncrease():
+	##TODO Add in change to variable that controls spawnrate - tie to cooldown? Possibly create more children at once
 	worldCorruption.corruptionTier += 1;
 	worldCorruption.corruptionRate *= 2;
 	worldCorruption.corruption = 0.0;
