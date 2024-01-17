@@ -33,7 +33,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# Check every frame if the magic wand has been added. If it has, then wire up the shoot signal.
-	
 	if placeWorldCorruption == true:
 		if worldCorruptionDelayTimerReady == true:
 			var wCorruptInst = wCorrupt.instantiate()
