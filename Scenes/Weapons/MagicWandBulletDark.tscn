@@ -1,11 +1,48 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvxxsl6q53yt3"]
+[gd_scene load_steps=7 format=3 uid="uid://cvxxsl6q53yt3"]
 
 [ext_resource type="Script" path="res://Scenes/Weapons/MagicWandBulletDark.gd" id="1_x3edw"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_jchxq"]
+[ext_resource type="Texture2D" uid="uid://d3df3db84cltp" path="res://Assets/WeaponSprites/ShadowBulletSprite-Sheet.png" id="2_yxn62"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_amqwi"]
 size = Vector2(8, 8)
+
+[sub_resource type="Animation" id="Animation_h8v67"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_vpvu7"]
+resource_name = "bulletAnimation"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j617i"]
+_data = {
+"RESET": SubResource("Animation_h8v67"),
+"bulletAnimation": SubResource("Animation_vpvu7")
+}
 
 [node name="MagicWandBulletDark" type="Area2D" groups=["Projectile", "attack"]]
 process_mode = 1
@@ -15,10 +52,9 @@ script = ExtResource("1_x3edw")
 bulletSpeed = 50.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0, 1)
 position = Vector2(0.029026, 0.0768795)
-scale = Vector2(6.5, 6.5)
-texture = SubResource("CanvasTexture_jchxq")
+texture = ExtResource("2_yxn62")
+hframes = 8
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
@@ -30,6 +66,12 @@ collision_mask = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["attack"]]
 shape = SubResource("RectangleShape2D_amqwi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_j617i")
+}
+autoplay = "bulletAnimation"
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

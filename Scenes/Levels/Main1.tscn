@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dhyngl3yw2nlk"]
+[gd_scene load_steps=31 format=3 uid="uid://dhyngl3yw2nlk"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Main1.gd" id="1_ifvqx"]
 [ext_resource type="Texture2D" uid="uid://rvnog7dr0rk1" path="res://Assets/TX Tileset Grass.png" id="1_o13ts"]
@@ -13,8 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://cj12h42s62ac8" path="res://Scenes/UI/HUD.tscn" id="8_bblo0"]
 [ext_resource type="PackedScene" uid="uid://bka6s55gapgh6" path="res://Scenes/Music/LevelMusicPlayer.tscn" id="9_dgq3r"]
 [ext_resource type="PackedScene" uid="uid://drjtdncp6aqen" path="res://Scenes/NPC/RedSkeleton/RedSkeleton.tscn" id="11_idxgl"]
-[ext_resource type="PackedScene" uid="uid://nta62ow40nvt" path="res://Scenes/UI/PauseScreen.tscn" id="11_ruu0n"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/PauseScreen.tscn" id="11_ruu0n"]
 [ext_resource type="Texture2D" uid="uid://d3037ujvawr5o" path="res://BoundryTiles.png" id="14_0oqfc"]
+[ext_resource type="PackedScene" uid="uid://c0gsn2o8xonou" path="res://Scenes/NPC/Witness/EnemyWitness.tscn" id="16_ky0o4"]
 
 [sub_resource type="Resource" id="Resource_v7bvu"]
 script = ExtResource("2_6relg")
@@ -738,7 +739,7 @@ enemySpawnLocationType = 0
 
 [sub_resource type="Resource" id="Resource_gdhwj"]
 script = ExtResource("7_8u0y1")
-timeStart = 10
+timeStart = 0
 timeEnd = 120
 enemy = ExtResource("8_0ssgb")
 enemyNum = 8
@@ -749,7 +750,7 @@ enemySpawnLocationType = 1
 
 [sub_resource type="Resource" id="Resource_pa2s0"]
 script = ExtResource("7_8u0y1")
-timeStart = 60
+timeStart = 0
 timeEnd = 120
 enemy = ExtResource("2_ixrcc")
 enemyNum = 2
@@ -760,11 +761,22 @@ enemySpawnLocationType = 0
 
 [sub_resource type="Resource" id="Resource_hpcv7"]
 script = ExtResource("7_8u0y1")
-timeStart = 240
+timeStart = 0
 timeEnd = 600
 enemy = ExtResource("11_idxgl")
 enemyNum = 10
 enemySpawnDelay = 1
+corruptionTier = 0
+circleRadius = 0.0
+enemySpawnLocationType = 0
+
+[sub_resource type="Resource" id="Resource_i4rnp"]
+script = ExtResource("7_8u0y1")
+timeStart = 0
+timeEnd = 600
+enemy = ExtResource("16_ky0o4")
+enemyNum = 1
+enemySpawnDelay = 10
 corruptionTier = 0
 circleRadius = 0.0
 enemySpawnLocationType = 0
@@ -1152,9 +1164,6 @@ layer_0/tile_data = PackedInt32Array(2097165, 524288, 1, 2097166, 458752, 3, 209
 position = Vector2(50, 300)
 damageInterval = 0.25
 
-[node name="Camera2D" parent="Player" index="4"]
-zoom = Vector2(2.5, 2.5)
-
 [node name="PlayerSpawn" type="Marker2D" parent="."]
 process_mode = 1
 position = Vector2(50, 300)
@@ -1219,7 +1228,7 @@ color = Color(0.462745, 0.258824, 0.541176, 1)
 texture = SubResource("GradientTexture2D_hg7eg")
 
 [node name="EnemySpawner" parent="." instance=ExtResource("6_83mbe")]
-spawns = Array[ExtResource("7_8u0y1")]([SubResource("Resource_dfkmv"), SubResource("Resource_gdhwj"), SubResource("Resource_pa2s0"), SubResource("Resource_hpcv7")])
+spawns = Array[ExtResource("7_8u0y1")]([SubResource("Resource_dfkmv"), SubResource("Resource_gdhwj"), SubResource("Resource_pa2s0"), SubResource("Resource_hpcv7"), SubResource("Resource_i4rnp")])
 
 [node name="Timer" type="Timer" parent="EnemySpawner"]
 autostart = true

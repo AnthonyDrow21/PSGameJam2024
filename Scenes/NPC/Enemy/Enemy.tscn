@@ -6,6 +6,8 @@
 [node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 process_mode = 1
 position = Vector2(551, 250)
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_cospy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
