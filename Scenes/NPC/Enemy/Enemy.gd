@@ -39,4 +39,4 @@ func Display_DMG(damage: int):
 func knockback_enemy(dmg_source_pos: Vector2, received_dmg: int, knockback_modifier: int):
 	var knockback_strength = received_dmg * knockback_modifier
 	var knockback = dmg_source_pos * knockback_strength
-	move_and_collide(knockback)
+	move_and_collide(knockback) 

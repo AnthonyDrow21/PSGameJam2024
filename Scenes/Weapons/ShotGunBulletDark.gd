@@ -7,7 +7,7 @@ extends Area2D
 @export var damage = 1;
 @export var pierce = 0;
 
-signal DarkShotGunCollide(bullet, direction, location);
+@export var splits = 20;
 
 var bullet = preload("res://Scenes/Weapons/ShotGunBullet.tscn");
 var targetVector = Vector2.RIGHT;
@@ -50,6 +50,5 @@ func _on_area_2d_area_entered(area):
 	#			broken here?
 	if(parent.is_in_group("Enemy") == true):
 		parent.DamageEnemy(self.damage, targetVector, parent.knockbackValue);
-		#TODO# Add the splitting shot after colliding with the enemy.
-		DarkShotGunCollide.emit(bullet, targetVector, self.global_position)
+		get_tree().call_group("DarkShotGunListeners", "onDarkShotGunCollide", bullet, targetVector, self.global_position, self.splits);
 		_Enemy_Hit()

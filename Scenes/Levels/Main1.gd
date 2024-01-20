@@ -5,7 +5,8 @@ signal pausePressed();
 signal unpausePressed();
 
 var wCorrupt = preload("res://Scenes/Environment/Corruption/WorldCorruption.tscn")
-var placeWorldCorruption = false;
+@export var enableCorruption = true;
+@export var placeWorldCorruption = false;
 var worldCorruptionDelayTimerReady = true;
 
 var wand: MagicWand;
@@ -14,8 +15,6 @@ var isPaused: bool = false;
 
 var shotGun: ShotGun;
 var shotGunFound: bool = false;
-var DarkSGCollide: ShotGunBulletDark;
-var DarkSGCofound: bool = false;
 
 @onready var player: Player = get_node("Player");
 
@@ -33,7 +32,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# Check every frame if the magic wand has been added. If it has, then wire up the shoot signal.
-	if placeWorldCorruption == true:
+	if placeWorldCorruption == true && enableCorruption == true:
 		if worldCorruptionDelayTimerReady == true:
 			var wCorruptInst = wCorrupt.instantiate()
 			wCorruptInst.position = player.position
@@ -61,7 +60,7 @@ func onMagicWandShoot(bullet: Variant, direction: Variant, location: Variant) ->
 	var spawnedBullet = bullet.instantiate();
 	spawnedBullet.position = location;
 	spawnedBullet.applyUpgrades(wand);
-	add_child(spawnedBullet);
+	#add_child(spawnedBullet);
 	
 func onShotGunShoot(bullet: Variant, direction: Variant, location: Variant) -> void:
 	var invertedSetting = player.isInverted
@@ -70,7 +69,7 @@ func onShotGunShoot(bullet: Variant, direction: Variant, location: Variant) -> v
 			var spawnedBullet = bullet.instantiate()
 			spawnedBullet.position = location
 			spawnedBullet.damage += shotGun.damageUpgrade;
-			add_child(spawnedBullet)
+			#add_child(spawnedBullet)
 			var newVector = spawnedBullet.targetVector.rotated(deg_to_rad(angle))
 			spawnedBullet.targetVector = newVector
 	if(invertedSetting == true):
@@ -78,16 +77,22 @@ func onShotGunShoot(bullet: Variant, direction: Variant, location: Variant) -> v
 		spawnedBullet.position = location;
 		add_child(spawnedBullet);
 
-func onDarkShotGunCollide(bullet: Variant, direction: Variant, location: Variant) -> void:
+func onDarkShotGunCollide(bullet: Variant, direction: Variant, location: Variant, splits: int) -> void:
 	#TODO# When the Dark Shot Gun shot collides with an enemy, split into a circle of shots.
-	$AttackTimer.start();
-	for angle in [0, 45, 90, 135, 180, 225, 270, 315]:
+	#$AttackTimer.start();
+	 #[0, 45, 90, 135, 180, 225, 270, 315]
+	var iterator = 360 / splits;
+	var currentAngle = 0;
+	
+	for i in splits:
 		var spawnedBullet = bullet.instantiate()
 		spawnedBullet.position = location
 		#spawnedBullet.damage += shotGun.damageUpgrade;
 		add_child(spawnedBullet)
-		var newVector = spawnedBullet.targetVector.rotated(deg_to_rad(angle))
+		var newVector = spawnedBullet.targetVector.rotated(deg_to_rad(currentAngle))
 		spawnedBullet.targetVector = newVector
+		
+		currentAngle += iterator;
 
 func checkForMagicWand(player) -> void:
 	if(wand == null):
@@ -109,18 +114,6 @@ func checkForShotGun(player) -> void:
 			shotGun.shotGunShoot.connect(onShotGunShoot);
 			print("ShotGunShoot Connected")
 			shotGunFound = true;
-			checkDarkShotGun(player)
-
-func checkDarkShotGun(player) -> void:
-	if (DarkSGCollide == null):  
-		DarkSGCollide = player.get_node("ShotGunBulletDark");
-	
-	if (DarkSGCollide != null):
-		var isConnected: bool = DarkSGCollide.is_connected("DarkShotGunCollide", onDarkShotGunCollide);
-		if(isConnected == false):
-			DarkSGCollide.DarkShotGunCollide.connect(onDarkShotGunCollide);
-			print("DarkShotGunCollide Connected")
-			DarkSGCofound = true;
 
 func _input(event):
 	if event.is_action_pressed("Pause"):

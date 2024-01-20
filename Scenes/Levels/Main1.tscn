@@ -1158,10 +1158,11 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_4k4sx")
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" groups=["DarkShotGunListeners"]]
 process_mode = 3
 y_sort_enabled = true
 script = ExtResource("1_ifvqx")
+enableCorruption = false
 worldCorruption = SubResource("Resource_v7bvu")
 
 [node name="FloorTileMap" type="TileMap" parent="."]
@@ -1252,7 +1253,7 @@ autostart = true
 [node name="HUD" parent="." instance=ExtResource("8_bblo0")]
 
 [node name="LevelMusicPlayer" parent="." instance=ExtResource("9_dgq3r")]
-process_mode = 3
+process_mode = 4
 
 [node name="PauseScreen" parent="." instance=ExtResource("11_ruu0n")]
 visible = false
@@ -1273,6 +1274,7 @@ process_mode = 1
 process_mode = 1
 
 [node name="WorldCorruptionDelay" type="Timer" parent="."]
+process_mode = 1
 wait_time = 0.1
 one_shot = true
 
