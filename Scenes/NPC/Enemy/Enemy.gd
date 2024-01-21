@@ -10,6 +10,9 @@ const EnemyDMGAnim = preload("res://Scenes/NPC/EnemyDMG.tscn")
 var incomingDamage = 1
 var xpValue = 1.0;
 
+func _ready():
+	add_to_group("Gems")
+
 func _physics_process(_delta):
 	var direction = global_position.direction_to(player.global_position)
 	velocity = direction * movementSpeed
@@ -19,6 +22,8 @@ func DamageEnemy(damage, incoming_dmg_pos, knockback_modifier = 1):
 	Display_DMG(damage)
 	enemyHealth -= damage;
 	if enemyHealth <= 0:
+		#TODO# See if we want the XP Gemstones dropped in this function.
+		get_tree().call_group("Gems", "spawnGem", incoming_dmg_pos)
 		player.gainXp(xpValue);
 		queue_free()
 	else:

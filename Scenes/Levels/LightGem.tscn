@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctjp6stpys7x2"]
+
+[ext_resource type="Texture2D" uid="uid://djdoalw7agy4o" path="res://Assets/lightGem.png" id="1_5jkoh"]
+[ext_resource type="Script" path="res://Scenes/Levels/LightGem.gd" id="1_tnwmw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_emkuq"]
+size = Vector2(10, 15)
+
+[node name="LightGem" type="Area2D"]
+script = ExtResource("1_tnwmw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -7)
+texture = ExtResource("1_5jkoh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_emkuq")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
