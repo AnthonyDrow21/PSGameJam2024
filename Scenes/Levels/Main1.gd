@@ -60,7 +60,7 @@ func onMagicWandShoot(bullet: Variant, direction: Variant, location: Variant) ->
 	var spawnedBullet = bullet.instantiate();
 	spawnedBullet.position = location;
 	spawnedBullet.applyUpgrades(wand);
-	#add_child(spawnedBullet);
+	add_child(spawnedBullet);
 	
 func onShotGunShoot(bullet: Variant, direction: Variant, location: Variant) -> void:
 	var invertedSetting = player.isInverted
@@ -69,7 +69,7 @@ func onShotGunShoot(bullet: Variant, direction: Variant, location: Variant) -> v
 			var spawnedBullet = bullet.instantiate()
 			spawnedBullet.position = location
 			spawnedBullet.damage += shotGun.damageUpgrade;
-			#add_child(spawnedBullet)
+			add_child(spawnedBullet)
 			var newVector = spawnedBullet.targetVector.rotated(deg_to_rad(angle))
 			spawnedBullet.targetVector = newVector
 	if(invertedSetting == true):
@@ -183,3 +183,7 @@ func onCorruptionIncrease():
 	
 func _on_world_corruption_delay_timeout():
 	worldCorruptionDelayTimerReady = true
+
+
+func _on_player_player_leveled() -> void:
+	$LevelUpScreen.onLevelUp();
