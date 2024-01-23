@@ -51,6 +51,7 @@ _data = {
 
 [node name="EnemySkeleton" type="CharacterBody2D" groups=["Enemy"]]
 process_mode = 1
+z_index = 1
 position = Vector2(551, 250)
 collision_layer = 6
 collision_mask = 6
@@ -66,8 +67,8 @@ hframes = 8
 frame = 1
 
 [node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 5
-collision_mask = 5
+collision_layer = 133
+collision_mask = 133
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(-2, 2)
@@ -82,3 +83,15 @@ libraries = {
 "": SubResource("AnimationLibrary_bl3h1")
 }
 autoplay = "Walk"
+
+[node name="corruptionSpreadDuration" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="corruptionSpreadInterval" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
+[connection signal="timeout" from="corruptionSpreadDuration" to="." method="_on_corruption_spread_duration_timeout"]
+[connection signal="timeout" from="corruptionSpreadInterval" to="." method="_on_corruption_spread_interval_timeout"]

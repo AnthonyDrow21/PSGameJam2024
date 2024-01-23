@@ -5,6 +5,7 @@ signal pausePressed();
 signal unpausePressed();
 
 var wCorrupt = preload("res://Scenes/Environment/Corruption/WorldCorruption.tscn")
+var corruptDrip = preload("res://Scenes/Environment/Corruption/WorldCorruptionEnemy.tscn")
 @export var enableCorruption = true;
 @export var placeWorldCorruption = false;
 var worldCorruptionDelayTimerReady = true;
@@ -187,3 +188,10 @@ func _on_world_corruption_delay_timeout():
 
 func _on_player_player_leveled() -> void:
 	$LevelUpScreen.onLevelUp();
+	
+###Controls Enemies Spreading Corruption
+func mainDripCorruption(position):
+	var corruptDrip = corruptDrip.instantiate()
+	corruptDrip.position = position
+	add_child(corruptDrip)
+	
