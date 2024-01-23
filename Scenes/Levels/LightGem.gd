@@ -1,6 +1,6 @@
 extends Area2D
 
-@onready var player: Player = get_node("Player");
+@onready var player = get_tree().get_first_node_in_group("Player")
 
 @export var xpAmount = 1.0;
 
@@ -9,5 +9,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _on_area_entered(area):
-	player.gainXp(xpAmount);
-	queue_free()
+	var parent = area.get_parent();
+	if(parent.is_in_group("Player") == true): 
+		player.gainXp(xpAmount);
+		queue_free

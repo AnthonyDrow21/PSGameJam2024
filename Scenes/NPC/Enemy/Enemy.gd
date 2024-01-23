@@ -22,11 +22,10 @@ func DamageEnemy(damage, incoming_dmg_pos, knockback_modifier = 1):
 	Display_DMG(damage)
 	enemyHealth -= damage;
 	if enemyHealth <= 0:
-		#TODO# See if we want the XP Gemstones dropped in this function.
-		spawn_gem(incoming_dmg_pos)
-		get_tree().call_group("Gems", "spawnGem", incoming_dmg_pos)
 		player.gainXp(xpValue);
 		queue_free()
+		#TODO# If we want gems for increasing XP this is the call to start at.
+		spawn_gem(incoming_dmg_pos)
 	else:
 		knockback_enemy(incoming_dmg_pos, damage, knockback_modifier)
 
@@ -54,12 +53,9 @@ func spawn_gem(location):
 		#Spawn the Dark Gem
 		var DarkGem = darkGem.instantiate();
 		DarkGem.position = location;
-		add_child(DarkGem);
-		pass;
-	if random_number >= 20.0:
+		self.add_child(DarkGem);
+	else: if random_number >= 20.0:
 		#Spawn the light Gem
 		var LightGem = lightGem.instantiate();
 		LightGem.position = location;
-		add_child(LightGem);
-		pass;
-	pass;
+		self.add_child(LightGem);
