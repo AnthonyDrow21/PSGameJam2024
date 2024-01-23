@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://1e7ok8tt360g"]
+
+[ext_resource type="Texture2D" uid="uid://fxrybw07c805" path="res://Assets/darkGem.png" id="1_1ydwl"]
+[ext_resource type="Script" path="res://Scenes/Levels/DarkGem.gd" id="1_opofq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kc2fy"]
+size = Vector2(10, 15)
+
+[node name="DarkGem" type="Area2D" groups=["Gems"]]
+script = ExtResource("1_opofq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -7)
+texture = ExtResource("1_1ydwl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_kc2fy")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

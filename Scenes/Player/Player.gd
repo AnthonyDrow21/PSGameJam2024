@@ -138,6 +138,7 @@ func killPlayer() -> void:
 	self.hide();
 
 func gainXp(xp) -> void:
+	#TODO# Change XP gain to increase when the player colided with Gemstones
 	totalXp += xp;
 	currentXp += xp;
 	
