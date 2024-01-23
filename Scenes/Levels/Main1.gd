@@ -28,6 +28,7 @@ var shotGunFound: bool = false;
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:	
 	var invertedSetting = player.playerInverted
+	self.resetCorruption();
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -119,12 +120,13 @@ func checkForShotGun(player) -> void:
 func _input(event):
 	if event.is_action_pressed("Pause"):
 		var tree = get_tree();
-		if(tree.paused == false):
-			tree.paused = true;
-			pausePressed.emit();
-		else:
-			tree.paused = false;
-			unpausePressed.emit();
+		if($LevelUpScreen.is_visible() == false):
+			if(tree.paused == false):
+				tree.paused = true;
+				pausePressed.emit();
+			else:
+				tree.paused = false;
+				unpausePressed.emit();
 	
 	if event.is_action_pressed("invert"):
 		if(player.isInverted == true):
@@ -195,3 +197,7 @@ func mainDripCorruption(position):
 	corruptDrip.position = position
 	add_child(corruptDrip)
 	
+
+func resetCorruption():
+	worldCorruption.corruption = 0.0;
+	worldCorruption.corruptionTier = 0;
