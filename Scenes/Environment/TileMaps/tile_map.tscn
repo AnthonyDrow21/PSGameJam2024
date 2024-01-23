@@ -657,6 +657,7 @@ navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_ot4og")
 
 [node name="TileMap" type="TileMap"]
+z_index = -2
 position = Vector2(1, 0)
 tile_set = SubResource("TileSet_neyfx")
 format = 2

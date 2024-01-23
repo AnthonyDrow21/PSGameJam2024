@@ -5,6 +5,7 @@ signal pausePressed();
 signal unpausePressed();
 
 var wCorrupt = preload("res://Scenes/Environment/Corruption/WorldCorruption.tscn")
+var corruptDrip = preload("res://Scenes/Environment/Corruption/WorldCorruptionEnemy.tscn")
 @export var enableCorruption = true;
 @export var placeWorldCorruption = false;
 var worldCorruptionDelayTimerReady = true;
@@ -27,6 +28,7 @@ var shotGunFound: bool = false;
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:	
 	var invertedSetting = player.playerInverted
+	self.resetCorruption();
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -60,7 +62,7 @@ func onMagicWandShoot(bullet: Variant, direction: Variant, location: Variant) ->
 	var spawnedBullet = bullet.instantiate();
 	spawnedBullet.position = location;
 	spawnedBullet.applyUpgrades(wand);
-	#add_child(spawnedBullet);
+	add_child(spawnedBullet);
 	
 func onShotGunShoot(bullet: Variant, direction: Variant, location: Variant) -> void:
 	var invertedSetting = player.isInverted
@@ -69,7 +71,7 @@ func onShotGunShoot(bullet: Variant, direction: Variant, location: Variant) -> v
 			var spawnedBullet = bullet.instantiate()
 			spawnedBullet.position = location
 			spawnedBullet.damage += shotGun.damageUpgrade;
-			#add_child(spawnedBullet)
+			add_child(spawnedBullet)
 			var newVector = spawnedBullet.targetVector.rotated(deg_to_rad(angle))
 			spawnedBullet.targetVector = newVector
 	if(invertedSetting == true):
@@ -118,12 +120,13 @@ func checkForShotGun(player) -> void:
 func _input(event):
 	if event.is_action_pressed("Pause"):
 		var tree = get_tree();
-		if(tree.paused == false):
-			tree.paused = true;
-			pausePressed.emit();
-		else:
-			tree.paused = false;
-			unpausePressed.emit();
+		if($LevelUpScreen.is_visible() == false):
+			if(tree.paused == false):
+				tree.paused = true;
+				pausePressed.emit();
+			else:
+				tree.paused = false;
+				unpausePressed.emit();
 	
 	if event.is_action_pressed("invert"):
 		if(player.isInverted == true):
@@ -183,3 +186,18 @@ func onCorruptionIncrease():
 	
 func _on_world_corruption_delay_timeout():
 	worldCorruptionDelayTimerReady = true
+
+
+func _on_player_player_leveled() -> void:
+	$LevelUpScreen.onLevelUp();
+	
+###Controls Enemies Spreading Corruption
+func mainDripCorruption(position):
+	var corruptDrip = corruptDrip.instantiate()
+	corruptDrip.position = position
+	add_child(corruptDrip)
+	
+
+func resetCorruption():
+	worldCorruption.corruption = 0.0;
+	worldCorruption.corruptionTier = 0;

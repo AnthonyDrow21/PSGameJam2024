@@ -8,9 +8,9 @@ var magicReady = false
 var wizardBullet = preload("res://Scenes/NPC/Wizard/wizardBullet.tscn")
 
 func _ready():
-	var movementSpeed = 15
-	var enemyHealth = 10
-	self.knockbackValue = 30;
+	var movementSpeed = 1
+	var enemyHealth = 1000
+	self.knockbackValue = .01;
 
 func _physics_process(_delta):
 	if magicReady == true:

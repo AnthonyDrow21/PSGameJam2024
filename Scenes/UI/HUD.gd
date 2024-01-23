@@ -1,6 +1,9 @@
 class_name HUD;
 extends CanvasLayer;
 
+var mainLevel = load("res://Scenes/Levels/Main1.tscn")
+var mainMenu = load("res://Scenes/Levels/MainMenu.tscn")
+
 @onready var player: Player = get_tree().get_first_node_in_group("Player")
 @onready var corruptionInfo: CorruptionInfo = get_tree().current_scene.worldCorruption;
 
@@ -15,6 +18,9 @@ var secondsLeft: int = 0;
 func _ready() -> void:
 	var main = get_parent();
 	maxTime = main.maxTime;
+	
+	$RetryButton.hide();
+	$MainMenuButton.hide();
 	
 	# Connect to player's invert signal on startup so we only have to do this once.
 	player.playerInverted.connect(onInvert);
@@ -42,6 +48,8 @@ func _process(delta: float) -> void:
 
 func showGameOver():
 	$ScreenMessage.show();
+	$RetryButton.show();
+	$MainMenuButton.show();
 
 func updateXPBars():
 	$CurrentLevel.text = str(player.currentLevel);
@@ -66,3 +74,11 @@ func onInvert(isInverted):
 	else:
 		$LightLevelBar.show();
 		$DarkLevelBar.hide();
+
+
+func _on_retry_button_pressed() -> void:
+	get_tree().reload_current_scene();
+
+
+func _on_main_menu_button_pressed() -> void:
+	get_tree().change_scene_to_packed(mainMenu);

@@ -4,6 +4,7 @@ extends CharacterBody2D
 signal playerHit(damage);
 signal playerInverted(isInverted);
 signal playerDied;
+signal playerLeveled;
 
 const wandScene = preload("res://Scenes/Weapons/MagicWand.tscn");
 var shotGunScene = load("res://Scenes/Weapons/ShotGun.tscn");
@@ -34,10 +35,15 @@ var currentXp = 0.0;
 func _ready() -> void:
 	# This adds a magic wand to the player by default.
 	wand.name = "Wand";
+	currentWeapons.push_back(wand);
 	self.add_child(wand);
 	#TODO# Shotgun default for now, this will need changed in the future.
 	shotGun.name = "ShotGun";
+	currentWeapons.push_back(shotGun);
 	self.add_child(shotGun);
+	
+	# This determines how space is given when detecting objects.
+	self.safe_margin = 1.0;
 	
 	$DamageTimer.wait_time = damageInterval;
 	updateHealthBar();
@@ -143,8 +149,9 @@ func lvlUp():
 	currentLevel += 1;
 	requiredXp += xpIncrement;
 	currentXp = 0.0;
-	wand.levelUp();
+	#wand.levelUp();
 	print("Ding! Level ", currentLevel, " achieved");
+	playerLeveled.emit();
 	
 #Function Handling World Corruption Damage
 func _on_hit_box_area_entered(area):
