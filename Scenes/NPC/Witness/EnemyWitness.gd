@@ -4,7 +4,7 @@ extends Enemy
 @onready var getMain = get_tree().get_root().get_node("Main")
 
 func _ready():
-	enemyHealth = 300
+	enemyHealth = 25
 	self.knockbackValue = 2;
 
 func _physics_process(_delta):

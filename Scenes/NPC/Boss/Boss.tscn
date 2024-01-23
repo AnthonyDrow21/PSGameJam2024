@@ -1,12 +1,55 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjiftpo171fln"]
+[gd_scene load_steps=10 format=3 uid="uid://bjiftpo171fln"]
 
 [ext_resource type="Script" path="res://Scenes/NPC/Boss/Boss.gd" id="1_4opxg"]
-[ext_resource type="Texture2D" uid="uid://bbkvqm5ta33fr" path="res://Assets/EnemySprites/Bomberman.png" id="2_8uout"]
+[ext_resource type="Texture2D" uid="uid://cyirg8pqi7tgy" path="res://Assets/EnemyAnimations/SpiderBoss-Sheet.png" id="2_bl4ib"]
 [ext_resource type="PackedScene" uid="uid://doqjam87h7732" path="res://Scenes/Utility/hit_box.tscn" id="3_0a8ra"]
+[ext_resource type="Script" path="res://Scenes/NPC/Witness/WitnessLaser.gd" id="4_noknt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ort83"]
 radius = 8.0
 height = 32.0
+
+[sub_resource type="Animation" id="Animation_njheh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ipydg"]
+resource_name = "SpiderAnimation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sxfgi"]
+_data = {
+"RESET": SubResource("Animation_njheh"),
+"SpiderAnimation": SubResource("Animation_ipydg")
+}
+
+[sub_resource type="Curve" id="Curve_queej"]
+min_value = -0.4
+_data = [Vector2(0.5, 0.274725), 0.0, 0.0, 0, 0]
+point_count = 1
 
 [node name="Boss" type="CharacterBody2D" groups=["Enemy"]]
 process_mode = 1
@@ -18,7 +61,9 @@ position = Vector2(-2, 1)
 shape = SubResource("CapsuleShape2D_ort83")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_8uout")
+scale = Vector2(3, 3)
+texture = ExtResource("2_bl4ib")
+hframes = 9
 
 [node name="HitBox" parent="." instance=ExtResource("3_0a8ra")]
 position = Vector2(0, 3)
@@ -28,7 +73,49 @@ position = Vector2(0, -7)
 
 [node name="BombTimer" type="Timer" parent="."]
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sxfgi")
+}
+autoplay = "SpiderAnimation"
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-16, -18)
+target_position = Vector2(25, 50)
+collision_mask = 3
+collide_with_areas = true
+collide_with_bodies = false
+script = ExtResource("4_noknt")
+
+[node name="Line2D" type="Line2D" parent="RayCast2D"]
+points = PackedVector2Array(50, 50, 0, 0)
+width_curve = SubResource("Curve_queej")
+default_color = Color(0.866667, 0, 0.0862745, 1)
+
+[node name="Timer" type="Timer" parent="RayCast2D"]
+wait_time = 1.5
+autostart = true
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+position = Vector2(18, -18)
+target_position = Vector2(25, 50)
+collision_mask = 3
+collide_with_areas = true
+collide_with_bodies = false
+script = ExtResource("4_noknt")
+
+[node name="Line2D" type="Line2D" parent="RayCast2D2"]
+points = PackedVector2Array(50, 50, 0, 0)
+width_curve = SubResource("Curve_queej")
+default_color = Color(0.866667, 0, 0.0862745, 1)
+
+[node name="Timer" type="Timer" parent="RayCast2D2"]
+wait_time = 1.5
+autostart = true
+
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="timeout" from="BombTimer" to="." method="_on_bomb_timer_timeout"]
+[connection signal="timeout" from="RayCast2D/Timer" to="RayCast2D" method="_on_timer_timeout"]
+[connection signal="timeout" from="RayCast2D2/Timer" to="RayCast2D2" method="_on_timer_timeout"]
 
 [editable path="HitBox"]
