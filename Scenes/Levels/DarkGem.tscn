@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kc2fy"]
 size = Vector2(10, 15)
 
-[node name="DarkGem" type="Area2D"]
+[node name="DarkGem" type="Area2D" groups=["Gems"]]
 script = ExtResource("1_opofq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

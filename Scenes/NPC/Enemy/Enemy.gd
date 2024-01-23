@@ -6,12 +6,12 @@ extends CharacterBody2D
 @export var knockbackValue = 5 
 @onready var player = get_tree().get_first_node_in_group("Player")
 @onready var incomingProjectile
+var lightGem = preload("res://Scenes/Levels/LightGem.tscn");
+var darkGem = preload("res://Scenes/Levels/DarkGem.tscn");
 const EnemyDMGAnim = preload("res://Scenes/NPC/EnemyDMG.tscn")
 var incomingDamage = 1
 var xpValue = 1.0;
-
-func _ready():
-	add_to_group("Gems")
+var rng = RandomNumberGenerator.new();
 
 func _physics_process(_delta):
 	var direction = global_position.direction_to(player.global_position)
@@ -23,6 +23,7 @@ func DamageEnemy(damage, incoming_dmg_pos, knockback_modifier = 1):
 	enemyHealth -= damage;
 	if enemyHealth <= 0:
 		#TODO# See if we want the XP Gemstones dropped in this function.
+		spawn_gem(incoming_dmg_pos)
 		get_tree().call_group("Gems", "spawnGem", incoming_dmg_pos)
 		player.gainXp(xpValue);
 		queue_free()
@@ -45,3 +46,20 @@ func knockback_enemy(dmg_source_pos: Vector2, received_dmg: int, knockback_modif
 	var knockback_strength = received_dmg * knockback_modifier
 	var knockback = dmg_source_pos * knockback_strength
 	move_and_collide(knockback) 
+
+func spawn_gem(location):
+		## Randomize the chance that a Gem will spawn, and lower those chances for the higher XP gems.
+	var random_number = rng.randf_range(0.0, 100.0)
+	if random_number >= 90.0:
+		#Spawn the Dark Gem
+		var DarkGem = darkGem.instantiate();
+		DarkGem.position = location;
+		add_child(DarkGem);
+		pass;
+	if random_number >= 20.0:
+		#Spawn the light Gem
+		var LightGem = lightGem.instantiate();
+		LightGem.position = location;
+		add_child(LightGem);
+		pass;
+	pass;

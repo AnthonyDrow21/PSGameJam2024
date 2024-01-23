@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_emkuq"]
 size = Vector2(10, 15)
 
-[node name="LightGem" type="Area2D"]
+[node name="LightGem" type="Area2D" groups=["Gems"]]
 script = ExtResource("1_tnwmw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
