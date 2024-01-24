@@ -13,7 +13,3 @@ func _ready() -> void:
 	
 	targetVector = self.position.direction_to(closestEnemy.position);
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
