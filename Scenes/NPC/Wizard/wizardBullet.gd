@@ -16,8 +16,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var direction = position.direction_to(player.global_position)
-	var velocity = bulletSpeed * direction
-	position += velocity * delta
+	position += (bulletSpeed * direction) * delta
 	if readyToDie == true:
 		queue_free()
 

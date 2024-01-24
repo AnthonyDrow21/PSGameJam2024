@@ -21,6 +21,5 @@ func _physics_process(_delta):
 	velocity = direction * movementSpeed
 	move_and_slide()
 	
-#
 func _on_attack_timer_timeout():
 	magicReady = true

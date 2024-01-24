@@ -50,7 +50,7 @@ func _ready() -> void:
 	pass;
 
 # Called every PHYSICS! frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta):
 	if(self.is_visible() == true):
 		# Statically type our motion to be a vector and get the movement inputs from the player.
 		var motion: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")

@@ -12,4 +12,4 @@ func _on_area_entered(area):
 	var parent = area.get_parent();
 	if(parent.is_in_group("Player") == true): 
 		player.gainXp(xpAmount);
-		queue_free
+		queue_free()

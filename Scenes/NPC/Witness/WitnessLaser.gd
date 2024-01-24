@@ -18,7 +18,7 @@ func _ready():
 	pass	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	laserEndpoint = to_local(player.global_position)
 	findTarget = findTarget.lerp(laserEndpoint, offSet)
 	set_target_position(findTarget)
