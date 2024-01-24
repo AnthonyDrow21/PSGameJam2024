@@ -17,3 +17,10 @@ func OnPause():
 
 func OnUnpause():
 	hide();
+
+func _on_exit_button_pressed() -> void:
+	get_tree().quit();
+
+func _on_resume_button_pressed() -> void:
+	OnUnpause();
+	get_tree().paused = false;

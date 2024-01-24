@@ -31,7 +31,7 @@ func altShoot(startRotation, startPosition):
 func _on_attack_timer_timeout() -> void:
 	readyToShoot = true;
 
-func upgradeWand(upgradeType: WeaponUpgrades.WandUpgrades):
+func levelUp(upgradeType: WeaponUpgrades.WandUpgrades):
 	match upgradeType:
 		WeaponUpgrades.WandUpgrades.DAMAGE:
 			damageUpgrade += 1;

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Survivors-Like"
-run/main_scene="res://Scenes/Levels/MainMenu.tscn"
+run/main_scene="res://Scenes/UI/MainMenuUI.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://Assets/icon.svg"

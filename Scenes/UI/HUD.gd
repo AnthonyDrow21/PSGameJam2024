@@ -2,7 +2,7 @@ class_name HUD;
 extends CanvasLayer;
 
 var mainLevel = load("res://Scenes/Levels/Main1.tscn")
-var mainMenu = load("res://Scenes/Levels/MainMenu.tscn")
+var mainMenu = load("res://Scenes/UI/MainMenuUI.tscn")
 
 @onready var player: Player = get_tree().get_first_node_in_group("Player")
 @onready var corruptionInfo: CorruptionInfo = get_tree().current_scene.worldCorruption;

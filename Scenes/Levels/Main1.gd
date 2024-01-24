@@ -65,24 +65,28 @@ func onMagicWandShoot(bullet: Variant, direction: Variant, location: Variant) ->
 	add_child(spawnedBullet);
 	
 func onShotGunShoot(bullet: Variant, direction: Variant, location: Variant) -> void:
-	var invertedSetting = player.isInverted
-	if(invertedSetting == false):
-		for angle in [-30, -15, 0, 15, 30]:
+	var splits = shotGun.splits + shotGun.splitUpgrade;
+	var angleIncrease = 180.0 / splits;
+	var currentAngle = -90;
+	if(player.isInverted == false):
+		for i in splits:
 			var spawnedBullet = bullet.instantiate()
 			spawnedBullet.position = location
 			spawnedBullet.damage += shotGun.damageUpgrade;
+			spawnedBullet.bulletSpeed += shotGun.speedUpgrade;
 			add_child(spawnedBullet)
-			var newVector = spawnedBullet.targetVector.rotated(deg_to_rad(angle))
+			var newVector = spawnedBullet.targetVector.rotated(deg_to_rad(currentAngle))
 			spawnedBullet.targetVector = newVector
-	if(invertedSetting == true):
+			currentAngle += angleIncrease;
+	elif(player.isInverted == true):
 		var spawnedBullet = bullet.instantiate();
 		spawnedBullet.position = location;
+		spawnedBullet.splits += shotGun.splitUpgrade;
 		add_child(spawnedBullet);
 
 func onDarkShotGunCollide(bullet: Variant, direction: Variant, location: Variant, splits: int) -> void:
 	#TODO# When the Dark Shot Gun shot collides with an enemy, split into a circle of shots.
 	#$AttackTimer.start();
-	 #[0, 45, 90, 135, 180, 225, 270, 315]
 	var iterator = 360 / splits;
 	var currentAngle = 0;
 	

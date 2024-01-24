@@ -6,9 +6,11 @@ signal shotGunShoot(bullet, direction, location);
 var bullet = preload("res://Scenes/Weapons/ShotGunBullet.tscn");
 var darkBullet = preload("res://Scenes/Weapons/ShotGunBulletDark.tscn");
 var readyToShoot = true;
+@export var splits = 5;
 
 var speedUpgrade = 0.0;
 var damageUpgrade = 0;
+var splitUpgrade = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,5 +34,18 @@ func altShoot(startRotation, startPosition):
 func _on_attack_timer_timeout() -> void:
 	readyToShoot = true;
 
-func levelUp():
-	damageUpgrade += 1;
+func levelUp(upgradeType: WeaponUpgrades.ShotGunUpgrades):
+	match upgradeType:
+		WeaponUpgrades.ShotGunUpgrades.DAMAGE:
+			damageUpgrade += 1;
+			print("ShotGun damage upgraded");
+		WeaponUpgrades.ShotGunUpgrades.SPEED:
+			speedUpgrade += 20;
+			print("ShotGun speed upgraded");
+		WeaponUpgrades.ShotGunUpgrades.SPLIT:
+			splitUpgrade += 1;
+			print("ShotGun split upgraded");
+
+func getRandomUpgrade() -> WeaponUpgrades.ShotGunUpgrades:
+	var randomUpgrade = WeaponUpgrades.ShotGunUpgrades.values()[randi() % WeaponUpgrades.ShotGunUpgrades.size()];
+	return randomUpgrade;	
