@@ -161,10 +161,11 @@ func onWizardBlast(wizardBullet, position, rotation):
 	wizBull.position = position
 	add_child(wizBull);
 	##TODO: Boss Projectile
-#func onBossBlast(bossBullet, position, rotation):
-	#var bossBull = bossBullet.instantiate();
-	#bossBull.position = position
-	#add_child(wizBull);
+func onBossBlast(spiderBullet, position, rotation):
+	print("Boss Blasted")
+	spiderBullet = spiderBullet.instantiate();
+	spiderBullet.position = position
+	add_child(spiderBullet);
 ###
 
 func _on_Corruption_timeout() -> void:

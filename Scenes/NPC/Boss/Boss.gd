@@ -3,18 +3,19 @@ extends Enemy
 @onready var getPlayer = get_tree().get_first_node_in_group("res://Scenes/Player/Player.tscn")
 @onready var getMain = get_tree().get_root().get_node("Main")
 
-signal wizardBlast()
+signal spiderBlast()
 var magicReady = false
-var wizardBullet = preload("res://Scenes/NPC/Wizard/wizardBullet.tscn")
+var spiderBullet = preload("res://Scenes/NPC/Boss/spiderBullet.tscn")
 
 func _ready():
 	movementSpeed = 10
 	enemyHealth = 1000
+	self.spiderBlast.connect(getMain.onBossBlast)
 	self.knockbackValue = .01;
 
 func _physics_process(_delta):
 	if magicReady == true:
-		wizardBlast.emit(wizardBullet,self.position, self.rotation)
+		spiderBlast.emit(spiderBullet,self.position, self.rotation)
 		magicReady = false
 	else:
 		pass
@@ -35,5 +36,5 @@ func Display_DMG(damage: int):
 		indicator.label.text = str(damage)
 
 func _on_bomb_timer_timeout():
-	var magicReady = true
+	magicReady = true
 	pass # Replace with function body.
