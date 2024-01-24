@@ -53,6 +53,7 @@ point_count = 1
 
 [node name="Boss" type="CharacterBody2D" groups=["Enemy"]]
 process_mode = 1
+z_index = 1
 position = Vector2(551, 250)
 script = ExtResource("1_4opxg")
 

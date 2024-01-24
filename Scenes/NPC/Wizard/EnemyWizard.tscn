@@ -36,7 +36,6 @@ position = Vector2(0, -20)
 shape = SubResource("CapsuleShape2D_uphvn")
 
 [node name="Sprite2D" type="Sprite2D" parent="." groups=["Wizard"]]
-z_index = -1
 position = Vector2(-5, -32)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_mqnvi")

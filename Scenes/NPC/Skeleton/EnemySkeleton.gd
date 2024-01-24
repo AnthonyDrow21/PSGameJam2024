@@ -6,10 +6,9 @@ var corruptionSpreadInterval = true
 var corruptionDrip = false
 
 func _ready():
-	#movementSpeed = 30;
-	#enemyHealth = 5;
+	movementSpeed = 60;
+	enemyHealth = 12;
 	self.knockbackValue = 5;
-	#$AnimationPlayer
 	
 func _physics_process(_delta):
 	var direction = global_position.direction_to(player.global_position)

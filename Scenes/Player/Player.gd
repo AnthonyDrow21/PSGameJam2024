@@ -161,3 +161,10 @@ func _on_hit_box_area_entered(area):
 		print("Touched Corruption")
 		self.damagePlayer(corruptionDamage);
 
+func healthRegen():
+	currentHealth += 1
+	print(currentHealth)
+	
+func _on_regen_timer_timeout():
+	healthRegen()
+	pass # Replace with function body.

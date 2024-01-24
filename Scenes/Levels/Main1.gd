@@ -207,7 +207,7 @@ func mainDripCorruption(position):
 	corruptDrip.position = position
 	add_child(corruptDrip)
 	
-
 func resetCorruption():
 	worldCorruption.corruption = 0.0;
 	worldCorruption.corruptionTier = 0;
+

@@ -2,8 +2,8 @@ extends Enemy
 
 func _ready():
 	movementSpeed = 90;
-	enemyHealth = 60;
-	self.knockbackValue = 2;
+	enemyHealth = 120;
+	self.knockbackValue = .5;
 	print(enemyHealth)
 
 func _physics_process(_delta):

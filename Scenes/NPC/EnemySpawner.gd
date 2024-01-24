@@ -22,7 +22,6 @@ func _on_timer_timeout():
 					i.spawnDelayCounter = 0
 					var counter = 0
 					var points = arrangeInCircle(i.enemyNum, i.circleRadius, player.global_position);
-					
 					while counter < i.enemyNum:
 						var enemySpawn = i.enemy.instantiate()
 						if(i.enemySpawnLocationType == SpawnInfo.SpawnLocationType.RANDOM_OUTER):
