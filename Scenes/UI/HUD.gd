@@ -75,10 +75,12 @@ func onInvert(isInverted):
 
 
 func _on_retry_button_pressed() -> void:
+	get_tree().paused = false;
 	get_tree().reload_current_scene();
 
 
 func _on_main_menu_button_pressed() -> void:
+	get_tree().paused = false;
 	get_tree().change_scene_to_packed(mainMenu);
 
 func pauseTimer():
@@ -87,8 +89,14 @@ func pauseTimer():
 func unPauseTimer():
 	$ClockTimer.set_paused(false);
 
+func setMessage(str):
+	$ScreenMessage.text = str;
+
 func _on_clock_timer_timeout() -> void:
 	currentTime += 1.0;
+	if(currentTime == maxTime):
+		$ClockTimer.stop();
+		main.gameOver();
 	#var minutes = fmod(currentTime, 3600) / 60;
 	minutesLeft = (maxTime - currentTime) / 60;
 	secondsLeft = fmod(maxTime - currentTime, 60);

@@ -13,6 +13,7 @@ var worldCorruptionDelayTimerReady = true;
 var wand: MagicWand;
 var wandFound: bool = false;
 var isPaused: bool = false;
+var gameIsOver: bool = false;
 
 var shotGun: ShotGun;
 var shotGunFound: bool = false;
@@ -26,7 +27,6 @@ var lightMusicPosition = 0;
 
 # Max time in seconds
 @export var maxTime = 600.0;
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:	
@@ -125,25 +125,26 @@ func checkForShotGun(player) -> void:
 			shotGunFound = true;
 
 func _input(event):
-	if event.is_action_pressed("Pause"):
-		var tree = get_tree();
-		if($LevelUpScreen.is_visible() == false):
-			if(tree.paused == false):
-				tree.paused = true;
-				toggleAudio(true);
-				pausePressed.emit();
+	if(gameIsOver == false):
+		if event.is_action_pressed("Pause"):
+			var tree = get_tree();
+			if($LevelUpScreen.is_visible() == false):
+				if(tree.paused == false):
+					tree.paused = true;
+					toggleAudio(true);
+					pausePressed.emit();
+				else:
+					onUnpause();
+		
+		if event.is_action_pressed("invert"):
+			changeAudio();
+			if(player.isInverted == true):
+				startOrResumeCorruption();
+				placeWorldCorruption = true
 			else:
-				onUnpause();
-	
-	if event.is_action_pressed("invert"):
-		changeAudio();
-		if(player.isInverted == true):
-			startOrResumeCorruption();
-			placeWorldCorruption = true
-		else:
-			pauseCorruption();
-			placeWorldCorruption = false
-	pass;
+				pauseCorruption();
+				placeWorldCorruption = false
+		pass;
 
 func startOrResumeCorruption():
 	$CorruptionReductionTimer.stop();
@@ -162,8 +163,7 @@ func pauseCorruption():
 
 func _on_player_player_died() -> void:
 	$HUD.showGameOver();
-	$DarkMusic.stop();
-	$LightMusic.stop();
+	stopMusic();
 	$PlayerDeath.play();
 	
 ###NPC Utility
@@ -248,3 +248,15 @@ func onUnpause():
 	get_tree().paused = false;
 	toggleAudio(false);
 	unpausePressed.emit();
+
+func stopMusic():
+	$DarkMusic.stop();
+	$LightMusic.stop();
+
+func gameOver():
+	gameIsOver = true;
+	get_tree().paused = true;
+	$HUD.setMessage("You Win");
+	stopMusic();
+	$Victory.play();
+	$HUD.showGameOver();

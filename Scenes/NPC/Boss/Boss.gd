@@ -4,6 +4,7 @@ extends Enemy
 @onready var getMain = get_tree().get_root().get_node("Main")
 
 signal spiderBlast()
+signal bossKilled()
 var magicReady = false
 var spiderBullet = preload("res://Scenes/NPC/Boss/spiderBullet.tscn")
 
