@@ -729,13 +729,15 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_hg7eg"]
 gradient = SubResource("Gradient_khynl")
+width = 96
+height = 96
 fill = 1
 fill_from = Vector2(0.486239, 0.486239)
 
 [sub_resource type="Resource" id="Resource_dfkmv"]
 script = ExtResource("7_8u0y1")
 timeStart = 0
-timeEnd = 480
+timeEnd = 240
 enemy = ExtResource("7_6vcex")
 enemyNum = 5
 enemySpawnDelay = 5
@@ -746,7 +748,7 @@ enemySpawnLocationType = 0
 [sub_resource type="Resource" id="Resource_gdhwj"]
 script = ExtResource("7_8u0y1")
 timeStart = 30
-timeEnd = 480
+timeEnd = 360
 enemy = ExtResource("8_0ssgb")
 enemyNum = 8
 enemySpawnDelay = 30
@@ -757,7 +759,7 @@ enemySpawnLocationType = 1
 [sub_resource type="Resource" id="Resource_pa2s0"]
 script = ExtResource("7_8u0y1")
 timeStart = 120
-timeEnd = 480
+timeEnd = 360
 enemy = ExtResource("2_ixrcc")
 enemyNum = 1
 enemySpawnDelay = 10
@@ -767,8 +769,8 @@ enemySpawnLocationType = 0
 
 [sub_resource type="Resource" id="Resource_hpcv7"]
 script = ExtResource("7_8u0y1")
-timeStart = 300
-timeEnd = 480
+timeStart = 240
+timeEnd = 360
 enemy = ExtResource("11_idxgl")
 enemyNum = 5
 enemySpawnDelay = 5
@@ -779,7 +781,7 @@ enemySpawnLocationType = 0
 [sub_resource type="Resource" id="Resource_i4rnp"]
 script = ExtResource("7_8u0y1")
 timeStart = 240
-timeEnd = 480
+timeEnd = 360
 enemy = ExtResource("16_ky0o4")
 enemyNum = 1
 enemySpawnDelay = 15
@@ -790,7 +792,7 @@ enemySpawnLocationType = 0
 [sub_resource type="Resource" id="Resource_xaabl"]
 script = ExtResource("7_8u0y1")
 timeStart = 300
-timeEnd = 480
+timeEnd = 360
 enemy = ExtResource("11_idxgl")
 enemyNum = 10
 enemySpawnDelay = 5
@@ -800,8 +802,8 @@ enemySpawnLocationType = 0
 
 [sub_resource type="Resource" id="Resource_s0g64"]
 script = ExtResource("7_8u0y1")
-timeStart = 480
-timeEnd = 481
+timeStart = 360
+timeEnd = 361
 enemy = ExtResource("18_ei266")
 enemyNum = 1
 enemySpawnDelay = 1
@@ -1191,7 +1193,6 @@ layer_0/tile_data = PackedInt32Array(2097165, 524288, 1, 2097166, 458752, 3, 209
 [node name="Player" parent="." instance=ExtResource("5_1dl50")]
 z_index = 1
 position = Vector2(50, 300)
-collision_mask = 35
 damageInterval = 0.25
 
 [node name="PlayerSpawn" type="Marker2D" parent="."]

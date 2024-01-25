@@ -1,7 +1,7 @@
 extends Enemy;
 
 func _ready():
-	movementSpeed = 60;
+	movementSpeed = 90;
 	enemyHealth = 70;
 	self.knockbackValue = 2.5;
 	

@@ -19,7 +19,7 @@ var shotGunScene = load("res://Scenes/Weapons/ShotGun.tscn");
 var currentWeapons := [];
 var friction = 0.9;
 
-var MAX_HEALTH: float = 100.0;
+var MAX_HEALTH: float = 250.0;
 var currentHealth: float = MAX_HEALTH;
 
 @export var isInverted = false;

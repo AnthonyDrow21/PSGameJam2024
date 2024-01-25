@@ -6,7 +6,7 @@ var corruptionSpreadInterval = true
 var corruptionDrip = false
 
 func _ready():
-	movementSpeed = 60;
+	movementSpeed = 80;
 	enemyHealth = 12;
 	self.knockbackValue = 5;
 	
