@@ -55,6 +55,8 @@ point_count = 1
 process_mode = 1
 z_index = 1
 position = Vector2(551, 250)
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_4opxg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

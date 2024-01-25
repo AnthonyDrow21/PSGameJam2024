@@ -12,8 +12,8 @@ radius = 21.0
 height = 48.0
 
 [node name="EnemyWizard" type="CharacterBody2D" groups=["Enemy"]]
-collision_layer = 6
-collision_mask = 6
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_gymn8")
 movementSpeed = 30.0
 enemyHealth = 20

@@ -156,8 +156,7 @@ func lvlUp():
 func _on_hit_box_area_entered(area):
 	var corruptionDamage = 5;
 	var parent = area.get_parent();
-	if(parent.is_in_group("Corruption") == true):
-		print("Touched Corruption")
+	if(parent.is_in_group("Corruption") == true) or parent.is_in_group("CorruptionEnemy"):
 		self.damagePlayer(corruptionDamage);
 
 func healthRegen():
