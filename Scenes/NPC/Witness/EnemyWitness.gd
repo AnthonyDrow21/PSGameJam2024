@@ -5,6 +5,7 @@ extends Enemy
 
 func _ready():
 	enemyHealth = 25
+	self.xpValue = 3.0
 	self.knockbackValue = 2;
 
 func _physics_process(_delta):

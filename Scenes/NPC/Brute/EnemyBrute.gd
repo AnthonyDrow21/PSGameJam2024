@@ -4,7 +4,7 @@ func _ready():
 	movementSpeed = 90;
 	enemyHealth = 120;
 	self.knockbackValue = .5;
-	print(enemyHealth)
+	self.xpValue = 10.0
 
 func _physics_process(_delta):
 	var direction = global_position.direction_to(player.global_position)

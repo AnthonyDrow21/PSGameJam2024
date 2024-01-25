@@ -9,6 +9,7 @@ var wizardBullet = preload("res://Scenes/NPC/Wizard/wizardBullet.tscn")
 
 func _ready():
 	self.knockbackValue = 1;
+	self.xpValue = 3.0;
 	self.wizardBlast.connect(getMain.onWizardBlast)
 
 func _physics_process(_delta):
