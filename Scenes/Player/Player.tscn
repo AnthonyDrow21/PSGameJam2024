@@ -114,6 +114,7 @@ texture = SubResource("GradientTexture2D_bprlt")
 texture_scale = 7.0
 
 [node name="RegenTimer" type="Timer" parent="."]
+process_mode = 4
 autostart = true
 
 [connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]

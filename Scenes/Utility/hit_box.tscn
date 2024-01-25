@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://doqjam87h7732"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o87w0"]
-radius = 52.0
-height = 118.0
+radius = 36.0
+height = 72.0
 
 [node name="HitBox" type="Area2D" groups=["attack"]]
 process_mode = 1

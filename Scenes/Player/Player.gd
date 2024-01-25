@@ -113,7 +113,6 @@ func fireWeapons():
 
 func damagePlayer(damage):
 	currentHealth -= damage;
-	
 	playerHit.emit(damage);
 	updateHealthBar();
 	isDamagable = false;
