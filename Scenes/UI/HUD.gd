@@ -5,6 +5,7 @@ var mainLevel = load("res://Scenes/Levels/Main1.tscn")
 var mainMenu = load("res://Scenes/UI/MainMenuUI.tscn")
 
 @onready var player: Player = get_tree().get_first_node_in_group("Player")
+@onready var main = get_parent();
 @onready var corruptionInfo: CorruptionInfo = get_tree().current_scene.worldCorruption;
 
 @onready var corruptionBar = self.find_child("CorruptionBar");
@@ -16,8 +17,10 @@ var secondsLeft: int = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var main = get_parent();
 	maxTime = main.maxTime;
+	main.pausePressed.connect(pauseTimer);
+	main.unpausePressed.connect(unPauseTimer);
+	player.playerDied.connect(pauseTimer);
 	
 	$RetryButton.hide();
 	$MainMenuButton.hide();
@@ -37,11 +40,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	currentTime += delta;
-	#var minutes = fmod(currentTime, 3600) / 60;
-	minutesLeft = (maxTime - currentTime) / 60;
-	secondsLeft = fmod(maxTime - currentTime, 60);
-	$Timer.text = "%02d:%02d" % [minutesLeft, secondsLeft];
 	updateXPBars();
 	updateCorruptionBars();
 	pass
@@ -82,3 +80,16 @@ func _on_retry_button_pressed() -> void:
 
 func _on_main_menu_button_pressed() -> void:
 	get_tree().change_scene_to_packed(mainMenu);
+
+func pauseTimer():
+	$ClockTimer.set_paused(true);
+
+func unPauseTimer():
+	$ClockTimer.set_paused(false);
+
+func _on_clock_timer_timeout() -> void:
+	currentTime += 1.0;
+	#var minutes = fmod(currentTime, 3600) / 60;
+	minutesLeft = (maxTime - currentTime) / 60;
+	secondsLeft = fmod(maxTime - currentTime, 60);
+	$Timer.text = "%02d:%02d" % [minutesLeft, secondsLeft];

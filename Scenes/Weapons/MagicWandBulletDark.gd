@@ -11,5 +11,6 @@ func _ready() -> void:
 			closestDistance = distance;
 			closestEnemy = enemy;
 	
-	targetVector = self.position.direction_to(closestEnemy.position);
+	if(closestEnemy != null):
+		targetVector = self.position.direction_to(closestEnemy.position);
 

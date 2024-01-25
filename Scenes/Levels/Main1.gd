@@ -17,6 +17,9 @@ var isPaused: bool = false;
 var shotGun: ShotGun;
 var shotGunFound: bool = false;
 
+var darkMusicPosition = 0;
+var lightMusicPosition = 0;
+
 @onready var player: Player = get_node("Player");
 
 @export var worldCorruption: CorruptionInfo;
@@ -127,12 +130,13 @@ func _input(event):
 		if($LevelUpScreen.is_visible() == false):
 			if(tree.paused == false):
 				tree.paused = true;
+				toggleAudio(true);
 				pausePressed.emit();
 			else:
-				tree.paused = false;
-				unpausePressed.emit();
+				onUnpause();
 	
 	if event.is_action_pressed("invert"):
+		changeAudio();
 		if(player.isInverted == true):
 			startOrResumeCorruption();
 			placeWorldCorruption = true
@@ -158,6 +162,9 @@ func pauseCorruption():
 
 func _on_player_player_died() -> void:
 	$HUD.showGameOver();
+	$DarkMusic.stop();
+	$LightMusic.stop();
+	$PlayerDeath.play();
 	
 ###NPC Utility
 func onWizardBlast(wizardBullet, position, rotation):
@@ -216,3 +223,28 @@ func resetCorruption():
 	worldCorruption.corruption = 0.0;
 	worldCorruption.corruptionTier = 0;
 
+func changeAudio():
+	if(get_tree().paused == false):
+		if($DarkMusic.volume_db == -60):
+			$DarkMusic.volume_db = -20;
+			$LightMusic.volume_db = -60;
+		else:
+			$DarkMusic.volume_db = -60;
+			$LightMusic.volume_db = -20;
+
+func toggleAudio(isPaused: bool):
+	if(isPaused == true):
+		lightMusicPosition = $LightMusic.get_playback_position();
+		darkMusicPosition = $DarkMusic.get_playback_position();
+		$LightMusic.stop();
+		$DarkMusic.stop();
+	else:
+		$LightMusic.play();
+		$LightMusic.seek(lightMusicPosition);
+		$DarkMusic.play();
+		$DarkMusic.seek(darkMusicPosition);
+
+func onUnpause():
+	get_tree().paused = false;
+	toggleAudio(false);
+	unpausePressed.emit();
