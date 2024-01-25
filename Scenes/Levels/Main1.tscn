@@ -1317,11 +1317,6 @@ volume_db = -5.0
 stream = ExtResource("22_u5jil")
 volume_db = -5.0
 
-[node name="RedSkeleton" parent="." instance=ExtResource("11_idxgl")]
-
-[node name="RedSkeleton2" parent="." instance=ExtResource("11_idxgl")]
-position = Vector2(122, 24)
-
 [connection signal="playerDied" from="Player" to="." method="_on_player_player_died"]
 [connection signal="playerLeveled" from="Player" to="." method="_on_player_player_leveled"]
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
