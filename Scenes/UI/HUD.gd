@@ -96,7 +96,7 @@ func _on_clock_timer_timeout() -> void:
 	currentTime += 1.0;
 	if(currentTime == maxTime):
 		$ClockTimer.stop();
-		main.gameOver();
+		main.gameOver(true);
 	#var minutes = fmod(currentTime, 3600) / 60;
 	minutesLeft = (maxTime - currentTime) / 60;
 	secondsLeft = fmod(maxTime - currentTime, 60);

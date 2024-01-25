@@ -69,8 +69,8 @@ func onMagicWandShoot(bullet: Variant, direction: Variant, location: Variant) ->
 	
 func onShotGunShoot(bullet: Variant, direction: Variant, location: Variant) -> void:
 	var splits = shotGun.splits + shotGun.splitUpgrade;
-	var angleIncrease = 180.0 / splits;
-	var currentAngle = -90;
+	var angleIncrease = 90.0 / splits;
+	var currentAngle = -45;
 	if(player.isInverted == false):
 		for i in splits:
 			var spawnedBullet = bullet.instantiate()
@@ -162,9 +162,7 @@ func pauseCorruption():
 	pass;
 
 func _on_player_player_died() -> void:
-	$HUD.showGameOver();
-	stopMusic();
-	$PlayerDeath.play();
+	gameOver(false);
 	
 ###NPC Utility
 func onWizardBlast(wizardBullet, position, rotation):
@@ -253,10 +251,13 @@ func stopMusic():
 	$DarkMusic.stop();
 	$LightMusic.stop();
 
-func gameOver():
+func gameOver(isWin: bool):
 	gameIsOver = true;
 	get_tree().paused = true;
-	$HUD.setMessage("You Win");
 	stopMusic();
-	$Victory.play();
+	if(isWin == true):
+		$HUD.setMessage("You Win");
+		$Victory.play();
+	else:
+		$PlayerDeath.play();
 	$HUD.showGameOver();
