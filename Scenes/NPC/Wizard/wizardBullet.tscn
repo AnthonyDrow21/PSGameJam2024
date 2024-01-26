@@ -28,7 +28,7 @@ position = Vector2(0.5, -1.5)
 shape = SubResource("RectangleShape2D_lixj0")
 
 [node name="FadeTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 one_shot = true
 autostart = true
 
