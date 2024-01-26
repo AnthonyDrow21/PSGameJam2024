@@ -15,10 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://drjtdncp6aqen" path="res://Scenes/NPC/RedSkeleton/RedSkeleton.tscn" id="11_idxgl"]
 [ext_resource type="PackedScene" uid="uid://ex8px4ix4q34" path="res://Scenes/UI/PauseScreen.tscn" id="11_ruu0n"]
 [ext_resource type="Texture2D" uid="uid://d3037ujvawr5o" path="res://BoundryTiles.png" id="14_0oqfc"]
-[ext_resource type="AudioStream" uid="uid://b6c0ex2agm00l" path="res://Assets/Music/regmaindemo.ogg" id="16_jg748"]
+[ext_resource type="AudioStream" uid="uid://crlvq0o2030la" path="res://Assets/Music/regmainv1.ogg" id="16_ixfn6"]
 [ext_resource type="PackedScene" uid="uid://c0gsn2o8xonou" path="res://Scenes/NPC/Witness/EnemyWitness.tscn" id="16_ky0o4"]
 [ext_resource type="PackedScene" uid="uid://blkypsn0xm607" path="res://Scenes/UI/LevelUpScreen.tscn" id="17_dokf3"]
-[ext_resource type="AudioStream" uid="uid://yqk88q708yl" path="res://Assets/Music/darkmaindemo.ogg" id="17_qnplp"]
+[ext_resource type="AudioStream" uid="uid://c4fki3rljce7s" path="res://Assets/Music/darkmainv1samekey.ogg" id="17_wtdvc"]
 [ext_resource type="PackedScene" uid="uid://bjiftpo171fln" path="res://Scenes/NPC/Boss/Boss.tscn" id="18_ei266"]
 [ext_resource type="AudioStream" uid="uid://bd8hmi1i2xc7v" path="res://Assets/Music/urfukndedguitarz.ogg" id="21_p1syo"]
 [ext_resource type="AudioStream" uid="uid://bg2xiae37w4g7" path="res://Assets/Music/victoryv1.ogg" id="22_u5jil"]
@@ -808,7 +808,7 @@ enemy = ExtResource("18_ei266")
 enemyNum = 1
 enemySpawnDelay = 1
 corruptionTier = 0
-circleRadius = 0.0
+circleRadius = 300.0
 enemySpawnLocationType = 1
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gx0st"]
@@ -1272,10 +1272,10 @@ autostart = true
 [node name="HUD" parent="." instance=ExtResource("8_bblo0")]
 
 [node name="LightMusic" parent="." instance=ExtResource("9_dgq3r")]
-stream = ExtResource("16_jg748")
+stream = ExtResource("16_ixfn6")
 
 [node name="DarkMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("17_qnplp")
+stream = ExtResource("17_wtdvc")
 volume_db = -60.0
 autoplay = true
 
