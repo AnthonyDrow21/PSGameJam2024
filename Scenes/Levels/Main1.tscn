@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://d3037ujvawr5o" path="res://BoundryTiles.png" id="14_0oqfc"]
 [ext_resource type="AudioStream" uid="uid://crlvq0o2030la" path="res://Assets/Music/regmainv1.ogg" id="16_ixfn6"]
 [ext_resource type="PackedScene" uid="uid://c0gsn2o8xonou" path="res://Scenes/NPC/Witness/EnemyWitness.tscn" id="16_ky0o4"]
-[ext_resource type="PackedScene" uid="uid://blkypsn0xm607" path="res://Scenes/UI/LevelUpScreen.tscn" id="17_dokf3"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/LevelUpScreen.tscn" id="17_dokf3"]
 [ext_resource type="AudioStream" uid="uid://c4fki3rljce7s" path="res://Assets/Music/darkmainv1samekey.ogg" id="17_wtdvc"]
 [ext_resource type="PackedScene" uid="uid://bjiftpo171fln" path="res://Scenes/NPC/Boss/Boss.tscn" id="18_ei266"]
 [ext_resource type="AudioStream" uid="uid://bd8hmi1i2xc7v" path="res://Assets/Music/urfukndedguitarz.ogg" id="21_p1syo"]
