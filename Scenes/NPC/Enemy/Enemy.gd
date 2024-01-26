@@ -25,7 +25,7 @@ func DamageEnemy(damage, incoming_dmg_pos, knockback_modifier = 1):
 		player.gainXp(xpValue);
 		queue_free()
 		#TODO# If we want gems for increasing XP this is the call to start at.
-		spawn_gem(incoming_dmg_pos)
+		#spawn_gem(incoming_dmg_pos)
 	else:
 		knockback_enemy(incoming_dmg_pos, damage, knockback_modifier)
 
@@ -46,16 +46,16 @@ func knockback_enemy(dmg_source_pos: Vector2, received_dmg: int, knockback_modif
 	var knockback = dmg_source_pos * knockback_strength
 	move_and_collide(knockback) 
 
-func spawn_gem(location):
-		## Randomize the chance that a Gem will spawn, and lower those chances for the higher XP gems.
-	var random_number = rng.randf_range(0.0, 100.0)
-	if random_number >= 90.0:
-		#Spawn the Dark Gem
-		var DarkGem = darkGem.instantiate();
-		DarkGem.position = location;
-		self.add_child(DarkGem);
-	else: if random_number >= 20.0:
-		#Spawn the light Gem
-		var LightGem = lightGem.instantiate();
-		LightGem.position = location;
-		self.add_child(LightGem);
+#func spawn_gem(location):
+		### Randomize the chance that a Gem will spawn, and lower those chances for the higher XP gems.
+	#var random_number = rng.randf_range(0.0, 100.0)
+	#if random_number >= 90.0:
+		##Spawn the Dark Gem
+		#var DarkGem = darkGem.instantiate();
+		#DarkGem.position = location;
+		#self.add_child(DarkGem);
+	#else: if random_number >= 20.0:
+		##Spawn the light Gem
+		#var LightGem = lightGem.instantiate();
+		#LightGem.position = location;
+		#self.add_child(LightGem);
