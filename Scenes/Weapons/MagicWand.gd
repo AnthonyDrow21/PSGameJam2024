@@ -36,7 +36,7 @@ func levelUp(upgradeType: WeaponUpgrades.WandUpgrades):
 		WeaponUpgrades.WandUpgrades.DAMAGE:
 			damageUpgrade += 1;
 			print("Wand damage upgraded");
-		WeaponUpgrades.WandUpgrades.SPEED:
+		WeaponUpgrades.WandUpgrades.BULLET_SPEED:
 			speedUpgrade += 20;
 			print("Wand speed upgraded");
 		WeaponUpgrades.WandUpgrades.PIERCING:

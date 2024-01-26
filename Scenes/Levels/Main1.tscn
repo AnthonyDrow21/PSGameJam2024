@@ -1311,11 +1311,11 @@ layer_0/tile_data = PackedInt32Array(-3276781, 1, 0, -3211245, 1, 1, -3145709, 1
 
 [node name="PlayerDeath" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_p1syo")
-volume_db = -5.0
+volume_db = -15.0
 
 [node name="Victory" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("22_u5jil")
-volume_db = -5.0
+volume_db = -15.0
 
 [connection signal="playerDied" from="Player" to="." method="_on_player_player_died"]
 [connection signal="playerLeveled" from="Player" to="." method="_on_player_player_leveled"]

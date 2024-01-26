@@ -39,7 +39,7 @@ func levelUp(upgradeType: WeaponUpgrades.ShotGunUpgrades):
 		WeaponUpgrades.ShotGunUpgrades.DAMAGE:
 			damageUpgrade += 1;
 			print("ShotGun damage upgraded");
-		WeaponUpgrades.ShotGunUpgrades.SPEED:
+		WeaponUpgrades.ShotGunUpgrades.BULLET_SPEED:
 			speedUpgrade += 20;
 			print("ShotGun speed upgraded");
 		WeaponUpgrades.ShotGunUpgrades.SPLIT:
