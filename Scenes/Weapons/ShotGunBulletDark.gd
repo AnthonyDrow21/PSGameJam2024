@@ -48,3 +48,7 @@ func _on_area_2d_area_entered(area):
 		parent.DamageEnemy(self.damage, targetVector, parent.knockbackValue);
 		get_tree().call_group("DarkShotGunListeners", "onDarkShotGunCollide", bullet, targetVector, self.global_position, self.splits);
 		_Enemy_Hit()
+
+
+func _on_split_timer_timeout() -> void:
+	get_tree().call_group("DarkShotGunListeners", "onDarkShotGunCollide", bullet, targetVector, self.global_position, self.splits);

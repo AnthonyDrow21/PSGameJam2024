@@ -37,3 +37,9 @@ shape = SubResource("CapsuleShape2D_xwi1n")
 
 [node name="DisableHitboxTimer" type="Timer" parent="Hitbox"]
 wait_time = 0.5
+
+[node name="CorruptionSpawn" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="CorruptionSpawn" to="." method="_on_corruption_spawn_timeout"]

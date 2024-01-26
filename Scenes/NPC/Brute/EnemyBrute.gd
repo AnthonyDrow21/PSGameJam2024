@@ -1,5 +1,7 @@
 extends Enemy
 
+@onready var mainScene = get_tree().get_root().get_node("Main")
+
 func _ready():
 	movementSpeed = 90;
 	enemyHealth = 120;
@@ -23,3 +25,5 @@ func Display_DMG(damage: int):
 	if indicator:
 		indicator.label.text = str(damage)
 
+func _on_corruption_spawn_timeout() -> void:
+	mainScene.spawnPlayerCorruption(self.position)

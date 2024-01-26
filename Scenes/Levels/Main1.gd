@@ -39,9 +39,7 @@ func _process(_delta):
 	# Check every frame if the magic wand has been added. If it has, then wire up the shoot signal.
 	if placeWorldCorruption == true && enableCorruption == true:
 		if worldCorruptionDelayTimerReady == true:
-			var wCorruptInst = wCorrupt.instantiate()
-			wCorruptInst.position = player.position
-			add_child(wCorruptInst)
+			spawnPlayerCorruption(player.position)
 			worldCorruptionDelayTimerReady = false
 			$WorldCorruptionDelay.start()
 	
@@ -84,19 +82,20 @@ func onShotGunShoot(bullet: Variant, direction: Variant, location: Variant) -> v
 	elif(player.isInverted == true):
 		var spawnedBullet = bullet.instantiate();
 		spawnedBullet.position = location;
-		spawnedBullet.splits += shotGun.splitUpgrade;
 		add_child(spawnedBullet);
 
 func onDarkShotGunCollide(bullet: Variant, direction: Variant, location: Variant, splits: int) -> void:
 	#TODO# When the Dark Shot Gun shot collides with an enemy, split into a circle of shots.
 	#$AttackTimer.start();
+	splits += shotGun.splitUpgrade;
 	var iterator = 360 / splits;
 	var currentAngle = 0;
 	
 	for i in splits:
 		var spawnedBullet = bullet.instantiate()
 		spawnedBullet.position = location
-		#spawnedBullet.damage += shotGun.damageUpgrade;
+		spawnedBullet.damage += shotGun.damageUpgrade;
+		spawnedBullet.bulletSpeed += shotGun.speedUpgrade;
 		add_child(spawnedBullet)
 		var newVector = spawnedBullet.targetVector.rotated(deg_to_rad(currentAngle))
 		spawnedBullet.targetVector = newVector
@@ -216,7 +215,12 @@ func mainDripCorruption(position):
 	var corruptDrip = corruptDrip.instantiate()
 	corruptDrip.position = position
 	add_child(corruptDrip)
-	
+
+func spawnPlayerCorruption(position):
+	var wCorruptInst = wCorrupt.instantiate()
+	wCorruptInst.position = position
+	add_child(wCorruptInst)
+
 func resetCorruption():
 	worldCorruption.corruption = 0.0;
 	worldCorruption.corruptionTier = 0;
@@ -256,7 +260,8 @@ func gameOver(isWin: bool):
 	get_tree().paused = true;
 	stopMusic();
 	if(isWin == true):
-		$HUD.setMessage("You Win");
+		$HUD.setMessage("You have become HIM");
+		$HUD/ScreenMessage/SubMessage.show();
 		$Victory.play();
 	else:
 		$PlayerDeath.play();

@@ -24,6 +24,7 @@ func _ready() -> void:
 	
 	$RetryButton.hide();
 	$MainMenuButton.hide();
+	$ScreenMessage/SubMessage.hide();
 	
 	# Connect to player's invert signal on startup so we only have to do this once.
 	player.playerInverted.connect(onInvert);
