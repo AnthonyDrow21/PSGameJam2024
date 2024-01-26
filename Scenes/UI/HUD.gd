@@ -97,7 +97,9 @@ func _on_clock_timer_timeout() -> void:
 	currentTime += 1.0;
 	if(currentTime == maxTime):
 		$ClockTimer.stop();
-		main.gameOver(true);
+		$ScreenMessage/SubMessage.text = "Time has run out";
+		$ScreenMessage/SubMessage.show()
+		main.gameOver(false);
 	#var minutes = fmod(currentTime, 3600) / 60;
 	minutesLeft = (maxTime - currentTime) / 60;
 	secondsLeft = fmod(maxTime - currentTime, 60);
