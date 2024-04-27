@@ -7,6 +7,6 @@ increasingly difficult waves of enemies. As enemies are defeated, the player can
 the player can enter a "dark mode" that significantly increases their power but creates damaging corruption on the ground that enemies are capable
 of spreading. 
 
-![Gameplay1](./Assets/Misc/Gameplay1.png)
+![Gameplay1](./Assets/Misc/Gameplay1.PNG)
 
-![Gameplay2](./Assets/Misc/Gameplay2.png)
+![Gameplay2](./Assets/Misc/Gameplay2.PNG)
